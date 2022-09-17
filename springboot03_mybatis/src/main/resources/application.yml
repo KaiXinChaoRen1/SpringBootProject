@@ -1,0 +1,19 @@
+## datasource 不进行手动整合连接池
+#spring:
+#  datasource:
+#    url: jdbc:mysql:///db1001?serverTimezone=UTC   #serverTimezone在低版本可能会用到
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver   #cj是新版的，旧版的一般都不用了
+
+
+
+# druid连接池
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql:///db1001?serverTimezone=UTC   #serverTimezone在低版本可能会用到
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver   #cj是新版的，旧版的一般都不用了
+

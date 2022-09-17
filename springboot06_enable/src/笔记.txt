@@ -1,0 +1,12 @@
+springboot本不能直接加载第三方的bean，因为springbootApplaction中的CompoentScan只能扫描引导类所在包及其子包。
+但是它为什么能自动配置呢？
+
+springboot中提供很多Enable开头的注解，这些注解是用于动态开启某些功能。
+而其底层原理是使用@Import注解导入一些配置类，实现bean的动态加载，其中import提供四种方式导入
+
+其中第三种，导入ImportSelector的实现类。（根据字符串数组，导入多个bean，所以我们可以利用外部配置文件，去动态加载）也是springboot底层的实现
+
+
+最后，springboot自动配置用的@EnableAutoConfiguration注解，它的内部使用@Import注解的第三种导入方式（导入ImportSelector的实现类），
+而这种方式的实现类，内部读取META—INF/spring.factories的许多配置类，但不是其中所有的bean都被初始化，用到@condition，根据条件初始化bean
+

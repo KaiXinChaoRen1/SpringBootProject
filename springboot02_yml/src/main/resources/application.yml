@@ -1,0 +1,27 @@
+server:
+  port: 8088
+
+a: lwq
+
+name: lisi
+
+msg1: 'hhehe \n haha'       # 单引忽略转义字符
+
+msg2: "hhehe \n haha"       # 双引识别转义字符
+
+address:
+  - address1111111111
+  - address2222222222
+
+
+
+
+person:
+  #name: zhangsan
+  name: ${name}       #引用其他
+  age: 20
+  address:
+    - huoxing
+    - yueqiu
+
+

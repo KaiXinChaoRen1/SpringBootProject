@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">  <!--语法提示-->
+<head>
+    <meta charset="UTF-8">
+    <title>全网寻找少爷身份</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios-0.18.0.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--elementui用tm联网的就能行妈的-->
+</head>
+<body>
+<div id="div" align="center">
+    <h1>赶紧输入姓名，测一下你的身世</h1>
+
+<!--    <form autocomplete="off">
+        姓名：<input type="text"  v-model="username"> &lt;!&ndash;双向数据绑定&ndash;&gt;
+    </form><br>-->
+
+    姓名：<input type="text"  v-model="username"><br> <!--双向数据绑定-->
+    年龄：<input type="text"  v-model="userage"><br>
+
+    <el-button type="primary" @click="send()">点击查看您的身世</el-button><br>
+    <el-button type="success" @click="send2()">查看所有天选之人</el-button><br>
+
+    <el-button type="warning" @click="send3()">测试一下</el-button><br>
+
+    <h3>{{msg}}</h3>
+    <h3>{{allPeople}}</h3>
+    <h3>{{eat}}</h3>
+</div>
+</body>
+
+<script>
+    new Vue({
+        el:"#div",
+        data:{
+            username:"你寄吧谁呀",
+            usergae:"",
+            msg:"",
+            allPeople:"",
+            eat:""
+        },
+        methods:{
+            send(){
+                    // GET方式请求(restful)
+                    // axios.get("/test/get/" + this.username)
+                    // .then(resp => {
+                    //     alert(resp.data);
+                    //     this.msg=resp.data;
+                    // })
+                    // .catch(error => {
+                    //     alert(error);
+                    // })
+
+                    // POST方式请求        //axios.post("/test/post","username="+this.username)
+                                          //axios.post("/test/post/"+this.username)
+                    let data = new FormData();
+                    data.append('name',this.username);
+
+                    axios.post("/test/post",data)
+                    .then(resp => {
+                        alert(resp.data);
+                        this.msg=resp.data;
+                    })
+                    .catch(error => {
+                        alert(error);
+                    })
+
+            },
+            send2(){
+                axios.get("/test/all/")
+                    .then(resp => {
+                        alert(resp.data);
+                        var mylist=new Array();
+                        mylist=resp.data;
+                        for (let i = 0; i <mylist.length ; i++) {
+                            this.allPeople+=mylist[i].name+",";
+                        }
+                    })
+                    .catch(error => {
+                        alert(error);
+                    })
+            },
+            send3(){
+                let data = new FormData();
+                data.append('name',this.username);
+                data.append('age',this.userage);         //data.append('age','22');
+
+                axios.post("/test/test/",data)
+                    .then(resp => {
+                        this.eat=resp.data;
+                    })
+                    .catch(error => {
+                        alert(error);
+                    })
+            }
+        }
+    });
+</script>
+</html>
