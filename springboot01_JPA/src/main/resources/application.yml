@@ -4,10 +4,10 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/lwq_database?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://bj-cynosdbmysql-grp-q8gh40uo.sql.tencentcdb.com:29119/lwq_test?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: Aa@111111
 
 
   #jpa相关配置
