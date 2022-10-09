@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>com.lwq</groupId>
-    <artifactId>springboot00_parent</artifactId>
+    <artifactId>springboot00_MyDependency</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>parent</name>
-    <description>Others parents</description>
+    <name>MyDependency</name>
+    <description>maven项目作为其他项目的依赖</description>
 
 
     <properties>
