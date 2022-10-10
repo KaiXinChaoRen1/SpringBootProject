@@ -3,6 +3,8 @@ package com.lwq.springboot01.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Builder
@@ -29,6 +31,9 @@ public class Student {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
     private HeadTeacher ht;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    private Set<Course> courseSet;
 
 //    @Override
 //    public String toString() {

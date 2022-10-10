@@ -10,7 +10,12 @@ import java.util.Set;
 
 public interface StudentRepository extends PagingAndSortingRepository<Student,Integer> {
 
+    
+
     @Query
-    public List<Student> findByHt(HeadTeacher headTeacher);
+    List<Student> findByHt(HeadTeacher headTeacher);
+
+    @Query
+    Student findByName(String string);
 
 }
