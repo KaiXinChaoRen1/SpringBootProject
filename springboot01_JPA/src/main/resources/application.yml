@@ -1,6 +1,3 @@
-server:
-  port: 8088
-
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -13,7 +10,7 @@ spring:
   #jpa相关配置
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
                 #none 什么也不做
                 #create: 每次运行应用程序时，都会重新创建表，所以，数据都会丢失
                 #create-drop:每次运行程序时会创建表结构，然后程序结束时清空数据

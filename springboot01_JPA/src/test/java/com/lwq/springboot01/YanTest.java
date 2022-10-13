@@ -2,7 +2,7 @@ package com.lwq.springboot01;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,10 @@ import com.lwq.springboot01.Entity.Test.A;
 import com.lwq.springboot01.Entity.Test.ADao;
 import com.lwq.springboot01.Entity.Test.B;
 import com.lwq.springboot01.Entity.Test.BDao;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
 
 @SpringBootTest
 public class YanTest {
@@ -23,6 +27,7 @@ public class YanTest {
     @Autowired
     BDao bDao;
 
+
     @Transactional
     @Commit
     @Test
@@ -31,16 +36,17 @@ public class YanTest {
         B b=B.builder().name("bbbbbbbbb").build();
  
         b.setA(a);
-        b= bDao.save(b);
+        B saveB = bDao.save(b);
 
-        System.out.println("==================="+b.getA());
 
-        Optional<A> findById = aDao.findById(1);
-        A a2 = findById.get();
-        System.out.println(a==a2);
-        System.out.println("==================="+a2.getName());
-        
-        System.out.println("==================="+a2.getBSet());
+        System.out.println("通过b get a==================="+saveB.getA());
+
+        //此时从数据库中取A
+        Optional<A> byId = aDao.findById(1);
+        A findA = byId.get();
+        System.out.println(a==findA);
+
+        System.out.println("通过a get b===================>"+findA.getBSet());
         
     }
 
@@ -48,10 +54,10 @@ public class YanTest {
     @Commit
     @Test
     public void name2() {
-       
-        Optional<A> findById = aDao.findById(1);
-        
-        System.out.println("==================="+findById.get().getBSet());
+
+        Optional<A> byId = aDao.findById(1);
+        A findA = byId.get();
+        System.out.println("单独从数据库===================>"+findA.getBSet());
         
     }
 

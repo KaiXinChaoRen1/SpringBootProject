@@ -14,9 +14,7 @@
     <artifactId>springboot01_JPA</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <dependencies>
-
-    </dependencies>
+    <dependencies></dependencies>
 
 
 
