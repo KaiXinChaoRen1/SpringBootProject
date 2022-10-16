@@ -54,15 +54,15 @@ public class HelloController {
     @GetMapping("/hehe4")
     public String hehe4() {
         //内容同YanTest
-        A a=A.builder().id(1).name("aaaaaaaaa").build();
-        B b=B.builder().id(2).name("bbbbbbbbb").build();
+        A a = A.builder().id(1).name("aaaaaaaaa").build();
+        B b = B.builder().id(2).name("bbbbbbbbb").build();
         b.setA(a);
         B saveB = bDao.save(b);
-        System.out.println("通过b get a==================="+saveB.getA());
+        System.out.println("通过b get a===================" + saveB.getA());
         Optional<A> byId = aDao.findById(1);
         A findA = byId.get();
-        System.out.println(a==findA);
-        System.out.println("通过a get b===================>"+findA.getBSet());
+        System.out.println(a == findA);
+        System.out.println("通过a get b===================>" + findA.getBSet());
         return "看控制台";
     }
 
@@ -70,19 +70,25 @@ public class HelloController {
      * 测试Jpa的多层次结构
      */
     @GetMapping("/hehe5")
-    public String  hehe5() {
+    public String hehe5() {
         testMoreLayers();
-        return "看控制台..lll";
+        return "testMoreLayers看控制台";
+    }
+
+    @GetMapping("/hehe6")
+    public String hehe6() {
+        testMoreLayers2();
+        return "testMoreLayers222222222看控制台";
     }
 
 
     /**
-     * 测试Jpa的多层次结构
+     * 测试Jpa的多层次结构(一切正常)
      */
-    public void testMoreLayers(){
-        A aaa=A.builder().id(1).name("aaa").build();
-        A bbb=A.builder().id(2).name("bbb").build();
-        A ccc=A.builder().id(3).name("ccc").build();
+    public void testMoreLayers() {
+        A aaa = A.builder().id(1).name("aaa").build();
+        A bbb = A.builder().id(2).name("bbb").build();
+        A ccc = A.builder().id(3).name("ccc").build();
         aDao.save(aaa);
         bbb.setParentA(aaa);
         aDao.save(bbb);
@@ -96,10 +102,40 @@ public class HelloController {
         Set<A> childrenA = byId1.get().getChildrenA();
         System.out.println(childrenA);
 
-        Optional<A> byId2 = aDao.findById(2);
-        Set<A> childrenAA = byId2.get().getChildrenA();
-        System.out.println(childrenAA);
 
+
+
+    }
+
+    /**
+     * 测试builder,(也是正常的)
+     */
+    public void testMoreLayers2() {
+        A aaa = A.builder().id(1).name("aaa").build();
+        aDao.save(aaa);
+        A bbb = A.builder().id(2).name("bbb").parentA(aaa).build();
+        aDao.save(bbb);
+        A ccc = A.builder().id(3).name("ccc").parentA(bbb).build();
+        aDao.save(ccc);
+
+        //从子往父查看
+        Optional<A> byId = aDao.findById(3);
+        System.out.println(byId.get());
+
+        //从父往子查看
+        Optional<A> byId1 = aDao.findById(1);
+        A a1 = byId1.get();
+
+        Set<A> childrenA = a1.getChildrenA();
+        System.out.println(childrenA);
+
+        A a2=null;
+        for (A a : a1.getChildrenA()) {
+            if(a.getName().equals("bbb")){
+                a2=a;
+            }
+        }
+        System.out.println(a2);
 
 
     }
