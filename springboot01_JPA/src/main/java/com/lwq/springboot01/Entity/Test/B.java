@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name="t_b")
 public class B {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JoinColumn

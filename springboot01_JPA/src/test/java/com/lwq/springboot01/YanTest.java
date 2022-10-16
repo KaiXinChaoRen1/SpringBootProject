@@ -32,12 +32,11 @@ public class YanTest {
     @Commit
     @Test
     public void name1() {
-        A a=A.builder().name("aaaaaaaaa").build();
-        B b=B.builder().name("bbbbbbbbb").build();
+        A a=A.builder().id(1).name("aaaaaaaaa").build();
+        B b=B.builder().id(2).name("bbbbbbbbb").build();
  
         b.setA(a);
         B saveB = bDao.save(b);
-
 
         System.out.println("通过b get a==================="+saveB.getA());
 

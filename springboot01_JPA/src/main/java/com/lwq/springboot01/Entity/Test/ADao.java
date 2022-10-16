@@ -11,7 +11,10 @@ import java.util.Optional;
 
 public interface ADao extends JpaRepository<A,Integer> {
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    @Override
-    Optional<A> findById(Integer integer);
+    //@Query
+    A findByName(String name);
+
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
+//    @Override
+//    Optional<A> findById(Integer integer);
 }
