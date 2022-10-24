@@ -2,6 +2,8 @@ msg1: 'hhehe \n haha'       # 单引忽略转义字符
 
 msg2: "hhehe \n haha"       # 双引识别转义字符
 
+iphone: 18Pro
+
 person:
   name: lwq
   age: 23
@@ -14,7 +16,7 @@ person:
     name: ahuang
   list:
     - 14pro
-    - 15pro
+    - ${iphone}
   map1:
     english: good
     math: good
