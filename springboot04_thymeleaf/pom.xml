@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lwq</groupId>
-    <artifactId>springboot04_thymeleaf</artifactId>
+    <artifactId>04_thymeleaf</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <parent>

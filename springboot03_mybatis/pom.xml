@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>  <!--maven2和3都是这个-->
 
     <groupId>com.lwq</groupId>
-    <artifactId>springboot03_mybatis</artifactId>
+    <artifactId>03_mybatis</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <parent>

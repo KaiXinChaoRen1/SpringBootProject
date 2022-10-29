@@ -6,12 +6,12 @@
 
     <parent>
         <groupId>com.lwq</groupId>
-        <artifactId>springboot00_MyDependency</artifactId>
+        <artifactId>01_MyDependency</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.lwq</groupId>
-    <artifactId>springboot01_JPA</artifactId>
+    <artifactId>01_JPA</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies></dependencies>

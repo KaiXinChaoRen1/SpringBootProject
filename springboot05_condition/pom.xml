@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lwq</groupId>
-    <artifactId>springboot05_condition</artifactId>
+    <artifactId>05_condition</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot05_condition</name>
-    <description>Demo project for Spring Boot</description>
+
+
     <properties>
         <java.version>1.8</java.version>
     </properties>

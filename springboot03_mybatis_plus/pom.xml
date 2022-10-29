@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>com.lwq</groupId>
-    <artifactId>springboot03_mybatis_plus</artifactId>
+    <artifactId>03_mybatis_plus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>

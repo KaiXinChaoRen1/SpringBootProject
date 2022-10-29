@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.lwq</groupId>
-    <artifactId>springboot02_yml</artifactId>
+    <artifactId>02_yml</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
 

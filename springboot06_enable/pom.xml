@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lwq</groupId>
-    <artifactId>springboot06_enable</artifactId>
+    <artifactId>06_enable</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
 
