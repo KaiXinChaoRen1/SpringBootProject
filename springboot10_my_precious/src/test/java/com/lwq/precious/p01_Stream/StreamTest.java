@@ -14,17 +14,15 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class HelloTest {
-
     /**
      * 1数据源 2数据处理 3收集结果（终结操作）
      * 流对象是一次性的,只能进行一次终结操作
      * 原数据不会被影响
-     * 
-     * @author wenqiang.li1
-     *
      */
+
+@SpringBootTest
+class StreamTest {
+
 
     // 单列集合获取Stream
     @Test
@@ -162,7 +160,7 @@ class HelloTest {
         peopleList.add(new People("屈百琛", 20, 4444));
 
         boolean anyMatch = peopleList.stream()
-                .anyMatch(p -> p.getSalary() > 6800);
+                .anyMatch(p -> p.getSalary() > 6665);
         System.out.println(anyMatch);
     }
 
