@@ -13,7 +13,7 @@ import org.dom4j.io.XMLWriter;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class XMLTest {
     // 读入
     @Test
