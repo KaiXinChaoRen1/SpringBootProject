@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<books>
+
+    <book>
+        <title>郭德纲相声选</title>
+        <author>于麒麟</author>
+        <price>999.9</price>
+    </book>
+</books>
