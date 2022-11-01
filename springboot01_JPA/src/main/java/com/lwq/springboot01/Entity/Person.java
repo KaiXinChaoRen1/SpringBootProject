@@ -25,4 +25,9 @@ public class Person {
     @Column(name = "age")
     private Integer age;
 
+    public Person(String name){
+        this.name=name;
+    }
+
+
 }
