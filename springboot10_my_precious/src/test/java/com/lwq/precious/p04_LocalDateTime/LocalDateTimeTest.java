@@ -16,16 +16,22 @@ public class LocalDateTimeTest {
 
     @Test
     public void name() {
+        //获取当前时间或日期
         System.out.println(LocalDate.now());
         System.out.println(LocalDateTime.now());
 
+        //根据年月日指定日期
+        LocalDate localDate1 = LocalDate.of(2019, 2, 28);// 年月日
+        System.err.println(localDate1);
+
+        
         String str = "2019-02-31";// 日期31号之后直接报错,31之前,如果大于当月最大,那就是当月最大那一号
         LocalDate localDate = LocalDate.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.err.println(localDate);
 
-        LocalDate localDate1 = LocalDate.of(2019, 2, 28);// 年月日
-        System.err.println(localDate1);
-
+        String dateTimeStr = "2018-07-28 14:11:15";
+        LocalDateTime localDateTime = LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.err.println(localDateTime);
     }
 
     /**
