@@ -49,6 +49,25 @@ class StreamTest {
         System.out.println(res);
     }
 
+    /**
+     * anyMatch & allMatch
+     */
+    @Test
+    public void nameaa() {
+
+        ArrayList<People> peopleList = new ArrayList<People>();
+        peopleList.add(new People("李文强", 17, 6666));
+        peopleList.add(new People("孙文腾", 19, 5555));
+        peopleList.add(new People("屈百琛", 20, 4444));
+
+        Predicate<People> predicate1 = people -> people.getAge() > 1;
+        Predicate<People> predicate2 = people -> people.getSalary() > 4444;
+        boolean anyMatch = peopleList.stream().anyMatch(predicate1.and(predicate2));
+        boolean allMatch = peopleList.stream().allMatch(predicate1.and(predicate2));
+        System.out.println(anyMatch);
+        System.out.println(allMatch);
+    }
+
     // 数组获取Stream
     @Test
     public void name11() {
