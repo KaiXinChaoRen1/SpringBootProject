@@ -13,6 +13,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class LocalDateTimeTest {
+
+    /*
+     * 比较LocalDate
+     */
+    @Test
+    public void name10() {
+        String dateTimeStr = "2018-07-15 14:11:15";
+        LocalDateTime localDateTime1 = LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        String dateTimeStr2 = "2018-07-15 14:11:15";
+        LocalDateTime localDateTime2 = LocalDateTime.parse(dateTimeStr2, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        int compareTo = localDateTime1.compareTo(localDateTime2);
+        System.out.println(compareTo);//同一个月内,可以显示差几天,否则用+-1代表大小
+
+        System.out.println(localDateTime1.isBefore(localDateTime2));
+        System.out.println(localDateTime1.isEqual(localDateTime2));
+    }
     /**
      * 获取LocalDate
      */
