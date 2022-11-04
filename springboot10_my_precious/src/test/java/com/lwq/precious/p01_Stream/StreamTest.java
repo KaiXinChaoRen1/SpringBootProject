@@ -23,6 +23,60 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class StreamTest {
+    /**
+     * 并行流
+     */
+    @Test
+    public void name9999() {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+        list.stream().forEach(System.out::println);     //串行流
+        System.out.println("------------------------------------------");
+        list.stream().parallel().forEach(System.out::println);  //并行流
+    }
+
+    /**
+     * 对基本类型拆箱装箱的优化
+     */
+    @Test
+    public void name999() {
+        ArrayList<People> peopleList = new ArrayList<People>();
+        peopleList.add(new People("李文强", 17, 6666));
+        peopleList.add(new People("孙文腾", 19, 5555));
+        peopleList.add(new People("屈百琛", 20, 4444));
+
+        peopleList.stream()
+                .map(o -> o.getAge())
+                .filter(o -> o > 17)
+                .map(o -> o + 10)           //这里这么做会出现频繁的拆箱装箱
+                .forEach(System.out::println);
+
+        //这样优化一下即可
+        peopleList.stream()
+                .mapToInt(o -> o.getAge())
+                .filter(o -> o > 17)
+                .map(o -> o + 10)
+                .forEach(System.out::println);
+
+    }
+
+    /**
+     * 使用map转换流里的数据类型
+     */
+    @Test
+    public void name99() {
+        ArrayList<People> peopleList = new ArrayList<People>();
+        peopleList.add(new People("李文强", 17, 6666));
+        peopleList.add(new People("孙文腾", 19, 5555));
+        peopleList.add(new People("屈百琛", 20, 4444));
+
+        List<Integer> collect = peopleList.stream().map(o -> o.getAge()).collect(Collectors.toList());
+        System.out.println(collect);
+        List<String> collect1 = peopleList.stream().map(o -> "hehe").collect(Collectors.toList());
+        System.out.println(collect1);
+    }
 
     // 单列集合获取Stream
     // filter & Predicate
@@ -71,7 +125,7 @@ class StreamTest {
     // 数组获取Stream
     @Test
     public void name11() {
-        Integer[] arr = { 1, 2, 3, 4, 5 };
+        Integer[] arr = {1, 2, 3, 4, 5};
         Stream<Integer> stream = Arrays.stream(arr);
         stream.filter(num -> num < 4).forEach(num -> System.out.println(num));
     }
