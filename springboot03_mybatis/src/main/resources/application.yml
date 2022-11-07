@@ -12,8 +12,8 @@
 spring:
   datasource:
     druid:
-      url: jdbc:mysql:///db1001?serverTimezone=UTC   #serverTimezone在低版本可能会用到
+      url: jdbc:mysql:///bj-cynosdbmysql-grp-q8gh40uo.sql.tencentcdb.com:29119?serverTimezone=UTC   #serverTimezone在低版本可能会用到
       username: root
-      password: root
+      password: Aa@111111
       driver-class-name: com.mysql.jdbc.Driver   #cj是新版的，旧版的一般都不用了
 
