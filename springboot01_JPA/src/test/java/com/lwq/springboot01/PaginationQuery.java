@@ -72,7 +72,7 @@ public class PaginationQuery {
 //    }
 
     /**
-     * 条件查询带分页简单写法
+     * 条件查询带分页简单写法PageRequest.of()里边可以加多种参数
      */
     @Test
     public void name2() {
