@@ -79,11 +79,12 @@
 
     <build>
         <plugins>
-            <!-- 打包插件,将依赖打进包里-->
+            <!-- 打包插件,将依赖也打进包里-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!-- 编译插件,指定maven编译所用的jdk -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
