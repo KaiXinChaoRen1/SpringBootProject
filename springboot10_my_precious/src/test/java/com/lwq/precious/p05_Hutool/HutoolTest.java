@@ -29,4 +29,9 @@ public class HutoolTest {
         System.out.println("原始数据==>"+strList);
     }
 
+    @Test
+    public void name1() {
+
+    }
+
 }
