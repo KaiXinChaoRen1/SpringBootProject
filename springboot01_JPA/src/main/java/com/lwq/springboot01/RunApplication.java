@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 //        因此为了简化开发， 我们可以将其交给jpa来自动填充。
 @EnableJpaAuditing
 @SpringBootApplication
-public class HeheApplaction {
+public class RunApplication {
     public static void main(String[] args) {
         //run就是IOC容器
-        ConfigurableApplicationContext run = SpringApplication.run(HeheApplaction.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(RunApplication.class, args);
 
         System.out.println(run.getBean("p1"));
         System.out.println("项目已启动~~~~~~~~~~");
