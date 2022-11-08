@@ -10,6 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
+/**
+ * cascade和mappedBy可以同时用吗?
+ */
 @SpringBootTest
 public class OneToOne {
     @Autowired

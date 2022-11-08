@@ -16,10 +16,8 @@ spring:
                 #create-drop:每次运行程序时会创建表结构，然后程序结束时清空数据
                 #update: 每次运行程序没有表时会创建表，如果对象改变会更新表结构，原有数据不会清除，只会更新
                 #validate: 运行程序会校验数据与数据库的字段类型是否相同，字段不同会报错
-
-    show-sql: true        #打印执行的sql及参数
     open-in-view: false   # 关闭懒加载配置，否则会报错
     properties:
       hibernate:
-       show_sql: true    #输出sql语句
-       format_sql: true  #格式化输出的sql，否则会一行显示
+       show_sql: false    #输出sql语句
+       format_sql: false  #格式化输出的sql，否则会一行显示

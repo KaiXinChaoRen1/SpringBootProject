@@ -2,21 +2,16 @@ package com.lwq.springboot01;
 
 import java.util.Optional;
 
-
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-
-import com.lwq.springboot01.Entity.Test.A;
-import com.lwq.springboot01.Entity.Test.ADao;
-import com.lwq.springboot01.Entity.Test.B;
-import com.lwq.springboot01.Entity.Test.BDao;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
+import com.lwq.springboot01.Entity.yanTest.A;
+import com.lwq.springboot01.Entity.yanTest.ADao;
+import com.lwq.springboot01.Entity.yanTest.B;
+import com.lwq.springboot01.Entity.yanTest.BDao;
 
 @SpringBootTest
 public class YanTest {

@@ -25,7 +25,9 @@ public class HeadTeacher {
     @Column
     private String  name;
 
-    @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "ht") //只有OneToOne,OneToMany,ManyToMany上才有mappedBy属性，ManyToOne不存在该属性；
+    //只有OneToOne,OneToMany,ManyToMany上才有mappedBy属性，ManyToOne不存在该属性；
+    //mappedBy标签一定是定义在被拥有方的，他指向拥有方； 
+    @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "ht") 
     private Set<Student> students = new HashSet<>();
 
 

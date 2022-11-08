@@ -1,9 +1,5 @@
 package com.lwq.springboot01.controller;
 
-import com.lwq.springboot01.Entity.Test.A;
-import com.lwq.springboot01.Entity.Test.ADao;
-import com.lwq.springboot01.Entity.Test.B;
-import com.lwq.springboot01.Entity.Test.BDao;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -15,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lwq.springboot01.Entity.Person;
+import com.lwq.springboot01.Entity.yanTest.A;
+import com.lwq.springboot01.Entity.yanTest.ADao;
+import com.lwq.springboot01.Entity.yanTest.B;
+import com.lwq.springboot01.Entity.yanTest.BDao;
 import com.lwq.springboot01.dao.PersonRepository;
 
 @Slf4j
