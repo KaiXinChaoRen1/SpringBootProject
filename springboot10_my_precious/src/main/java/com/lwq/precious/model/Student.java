@@ -26,4 +26,8 @@ public class Student {
     String studentId;
     @NotEmpty(message = "选课不能为空")
     List<String> courseSelection;
+
+    private void cry() {
+        System.out.println("我在狗叫,芜湖~");
+    }
 }
