@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lwq.springboot01.Entity.Person;
+import com.lwq.springboot01.Entity.schoolstory.Person;
 import com.lwq.springboot01.Entity.yanTest.A;
 import com.lwq.springboot01.Entity.yanTest.ADao;
 import com.lwq.springboot01.Entity.yanTest.B;
 import com.lwq.springboot01.Entity.yanTest.BDao;
-import com.lwq.springboot01.dao.PersonRepository;
+import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
 
 @Slf4j
 @RestController

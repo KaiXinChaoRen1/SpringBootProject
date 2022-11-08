@@ -1,8 +1,9 @@
 package com.lwq.springboot01.config;
 
-import com.lwq.springboot01.Entity.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.lwq.springboot01.Entity.schoolstory.Person;
 
 /**
  * proxyBeanMethods属性默认为true，

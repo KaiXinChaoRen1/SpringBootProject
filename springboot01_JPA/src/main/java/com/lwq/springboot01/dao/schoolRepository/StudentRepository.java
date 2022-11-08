@@ -1,9 +1,10 @@
-package com.lwq.springboot01.dao;
+package com.lwq.springboot01.dao.schoolRepository;
 
-import com.lwq.springboot01.Entity.HeadTeacher;
-import com.lwq.springboot01.Entity.Student;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
+import com.lwq.springboot01.Entity.schoolstory.Student;
 
 import java.util.List;
 import java.util.Set;

@@ -1,9 +1,10 @@
 package com.lwq.springboot01;
 
-import com.lwq.springboot01.Entity.HeadTeacher;
-import com.lwq.springboot01.Entity.Student;
-import com.lwq.springboot01.dao.HeadTeacherRepository;
-import com.lwq.springboot01.dao.StudentRepository;
+import com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
+import com.lwq.springboot01.Entity.schoolstory.Student;
+import com.lwq.springboot01.dao.schoolRepository.HeadTeacherRepository;
+import com.lwq.springboot01.dao.schoolRepository.StudentRepository;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.lwq.springboot01.Entity;
+package com.lwq.springboot01.Entity.schoolstory;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;

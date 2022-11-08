@@ -1,4 +1,4 @@
-package com.lwq.springboot01.Entity;
+package com.lwq.springboot01.Entity.schoolstory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

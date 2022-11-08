@@ -19,7 +19,7 @@ import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 
 /**
- * JPA中表之间有继承的学习
+ * 当JPA遇到继承
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class inheritTest {
@@ -38,8 +38,6 @@ public class inheritTest {
     @Test
     public void value1() {
 
-        Dijia d = Dijia.builder().uuid(snowflake.nextIdStr()).power(90).speed(90).build();
-
         StrongDijia sd = StrongDijia.builder().uuid(snowflake.nextIdStr()).power(100).speed(80).skill("迪拉修姆光流")
                 .favorite(true).build();
         FastDijia fd = FastDijia.builder().uuid(snowflake.nextIdStr()).power(80).speed(100).skill("兰帕尔特光弹").build();
@@ -56,6 +54,9 @@ public class inheritTest {
     @Test
     public void value2() {
 
+        Dijia d = Dijia.builder().uuid(snowflake.nextIdStr()).power(90).speed(90).build();
+        dr.save(d);
+
         Color blue = Color.builder().uuid(snowflake.nextIdStr()).value("蓝色").build();
         Color red = Color.builder().uuid(snowflake.nextIdStr()).value("红色").build();
 
@@ -71,27 +72,41 @@ public class inheritTest {
 
     @Test
     public void value3() {
-        Optional<Color> colorOptional = cr.findById("1589923982461767681");
+        Optional<Color> colorOptional = cr.findById("1589945531516456961");
         Color color = colorOptional.get();
-        StrongDijia dijia = (StrongDijia) color.getDijia();
+        Dijia dijia = color.getDijia();
         System.out.println(dijia);
+        // System.out.println(dijia.getskill());
+        System.out.println(dijia.getClass());
+
+        StrongDijia strongDijia = (StrongDijia) dijia;
+        System.out.println(strongDijia);
+        System.out.println(strongDijia.getSkill());
+
     }
 
     @Test
     public void value4() {
-        String id = "1589923982465961984";
+        String id = "1589945531520651264";
 
-        // 通过自己的Repository查询
+        // 1.通过自己的Repository查询
         Optional<FastDijia> findById = fr.findById(id);
         FastDijia fastDijia = findById.get();
         System.out.println(fastDijia);
 
-        // 通过父类的Repository查询
+        // 2.通过父类的Repository查询子类的id
         Optional<Dijia> findById2 = dr.findById(id);
         Dijia dijia = findById2.get();
         System.out.println(dijia);
+        System.out.println(dijia.getClass());
 
-        // 通过父类的Repository查询并强转
+        // 2.1.通过父类的Repository查询父类的id
+        Optional<Dijia> findById4 = dr.findById("1589945531034112000");
+        Dijia dijia2 = findById4.get();
+        System.out.println(dijia2);
+        System.out.println(dijia2.getClass());
+
+        // 3.通过父类的Repository查询并强转
         Optional<Dijia> findById3 = dr.findById(id);
         FastDijia fastDijia2 = (FastDijia) findById3.get();
         System.out.println(fastDijia2);

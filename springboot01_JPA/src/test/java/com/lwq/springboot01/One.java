@@ -1,7 +1,8 @@
 package com.lwq.springboot01;
 
-import com.lwq.springboot01.Entity.Person;
-import com.lwq.springboot01.dao.PersonRepository;
+import com.lwq.springboot01.Entity.schoolstory.Person;
+import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
