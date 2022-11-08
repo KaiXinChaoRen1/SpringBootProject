@@ -22,4 +22,6 @@ import lombok.experimental.SuperBuilder;
 public class StrongDijia extends Dijia {
 
     String skill;
+
+    Boolean favorite;
 }

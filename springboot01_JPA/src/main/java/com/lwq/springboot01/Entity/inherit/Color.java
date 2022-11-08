@@ -21,14 +21,15 @@ public class Color {
 
     @Id
     String uuid;
-    String name;
+
+    String value;
     
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "color")
     private Dijia dijia;
 
     @Override
     public String toString() {
-        return "Color [uuid=" + uuid + ", name=" + name + "]";
+        return "Color [uuid=" + uuid + ", name=" + value + "]";
     }
 
     
