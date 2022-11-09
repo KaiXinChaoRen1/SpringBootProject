@@ -1,11 +1,24 @@
 package com.lwq.springboot01.Entity.schoolstory;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
 @AllArgsConstructor
@@ -14,7 +27,6 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "lwq_student")
-
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
@@ -32,7 +44,7 @@ public class Student {
     @JoinColumn
     private HeadTeacher ht;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.ALL})
     private Set<Course> courseSet;
 
 //    @Override

@@ -13,7 +13,8 @@ import javax.persistence.*;
  * b) mappedBy标签一定是定义在the owned side(被拥有方的)，他指向the owning side(拥有方)；
  * c) mappedBy的含义，应该理解为，拥有方能够自动维护 跟被拥有方的关系；
  * 当然，如果从被拥有方，通过手工强行来维护拥有方的关系也是可以做到的。
- * d) mappedBy跟JoinColumn/JoinTable总是处于互斥的一方，可以理解为正是由于拥有方的关联被拥有方的字段存在，拥有方才拥有了被 拥有方。mappedBy这方定义的JoinColumn/JoinTable总是失效的，不会建立对应的字段或者表
+ * d) mappedBy跟JoinColumn/JoinTable总是处于互斥的一方，可以理解为正是由于拥有方的关联被拥有方的字段存在，拥有方才拥有了被
+ * 拥有方。mappedBy这方定义的JoinColumn/JoinTable总是失效的，不会建立对应的字段或者表
  */
 @Builder
 @AllArgsConstructor
@@ -25,23 +26,25 @@ public class StudentId {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column
     private Integer StudentIdNumber;
+
     @Column
     private String other;
 
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sid"/*, optional = false*/)//optional = false,学生证必须有对应的学生
-    //@JoinColumn
+    // optional = false,学生证必须有对应的学生
+    // @OneToOne(cascade = CascadeType.ALL, mappedBy = "sid", optional =false)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sid")
     private Student student;
 
-//    @Override
-//    public String toString() {
-//        return "StudentId{" +
-//                "id=" + id +
-//                ", StudentIdNumber=" + StudentIdNumber +
-//                ", other='" + other + '\'' +
-//                ", Student='"+student.getName()+
-//                '}';
-//    }
+    // @Override
+    // public String toString() {
+    // return "StudentId{" +
+    // "id=" + id +
+    // ", StudentIdNumber=" + StudentIdNumber +
+    // ", other='" + other + '\'' +
+    // ", Student='"+student.getName()+
+    // '}';
+    // }
 }

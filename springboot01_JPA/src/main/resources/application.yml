@@ -10,8 +10,8 @@ spring:
   #jpa相关配置
   jpa:
     hibernate:
-      ddl-auto: update
-      #ddl-auto: create
+      #ddl-auto: update
+      ddl-auto: create
                 #none 什么也不做
                 #create: 每次运行应用程序时，都会重新创建表，所以，数据都会丢失
                 #create-drop:每次运行程序时会创建表结构，然后程序结束时清空数据
@@ -20,5 +20,5 @@ spring:
     open-in-view: false   # 关闭懒加载配置，否则会报错
     properties:
       hibernate:
-       show_sql: false    #输出sql语句
-       format_sql: false  #格式化输出的sql，否则会一行显示
+       show_sql: true    #输出sql语句
+       format_sql: true  #格式化输出的sql，否则会一行显示
