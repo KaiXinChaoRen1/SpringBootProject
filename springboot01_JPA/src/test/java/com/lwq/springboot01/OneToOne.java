@@ -21,34 +21,6 @@ public class OneToOne {
     @Autowired
     private StudentRepository sr;
 
-    // 查询学号,也有学生信息
-    @Test
-    public void name10() {
-        StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("其他信息").build();
-        Student s1 = Student.builder().name("李文强").sid(sid1).build();
-        sr.save(s1);
-
-        Optional<StudentId> byId = sidr.findById(1);
-        StudentId studentId = byId.get();
-        System.out.println("学号是" + studentId.getStudentIdNumber());
-        System.out.println("学号对应的学生是" + studentId.getStudent().getName());
-    }
-
-    // 查询学生带着学号信息
-    @Test
-    public void name9() {
-        StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("其他信息").build();
-        Student s1 = Student.builder().name("李文强").sid(sid1).build();
-        sr.save(s1);
-
-        Optional<Student> byId = sr.findById(1);
-        Student student = byId.get();
-        System.out.println("学生是" + student.getName());
-        System.out.println("学生对应的学号是" + student.getSid().getStudentIdNumber());
-
-    }
-
-
     @Test
     public void name3() {
         StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("其他信息").build();
@@ -56,33 +28,30 @@ public class OneToOne {
         sr.save(s1);
 
         // 1.级联删除
-        //sr.delete(s1);
+        // sr.delete(s1);
 
         // 2.创建另一个属性完全相同的对象也可以级联删除
         // Student s2 = Student.builder().id(1).name("李文强").sid(sid1).build();
         // sr.delete(s2);
 
-        //3.主键相同不算同一个对象所以自然不能删除,甚至还会把s2保存进去?(抽空看一下sql)
+        // 3.主键相同不算同一个对象所以自然不能删除,甚至还会把s2保存进去?(抽空看一下sql)
         // Student s2 = Student.builder().id(1).build();
         // sr.delete(s2);
 
-        //4.直接根据主键删除不就好啦
-        //sr.deleteById(1);
+        // 4.直接根据主键删除不就好啦
+        // sr.deleteById(1);
 
-        //5.因为这个sid中没有设置student,所以与数据库中的不一样,所以不能删除
-        //sidr.delete(sid1);
+        // 5.因为这个sid中没有设置student,所以与数据库中的不一样,所以不能删除
+        // sidr.delete(sid1);
 
-        //6.删除数据库中查出来的就好了(只要设置了级联,被拥有的一方也一样能级联)
+        // 6.删除数据库中查出来的就好了(只要设置了级联,被拥有的一方也一样能级联)
         // Optional<StudentId> findById = sidr.findById(1);
         // sidr.delete(findById.get());
 
-        //7.被拥有方根据id删除,如果不设级联,拥有方的外键值会删除吗?结果是表没有变化,不仅不会删除,连sid都不会删除,因为他被外键引用着
-        //sidr.deleteById(1);
-
+        // 7.被拥有方根据id删除,如果不设级联,拥有方的外键值会删除吗?结果是表没有变化,不仅不会删除,连sid都不会删除,因为他被外键引用着
+        // sidr.deleteById(1);
 
     }
-
-    //----------------------下面这部分测试mappedBy---------------------------------------
 
     // s1中有sid就可以维护外键关系,即使用sidr(放弃维护一方的Repository)去保存也可以正常维护,
     // 但要保证sid中有s1,这样才能在存sid的时候存s1,而s1维护了外键关系
@@ -115,6 +84,19 @@ public class OneToOne {
         StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("其他信息").build();
         Student s1 = Student.builder().name("李文强").sid(sid1).build();
         sr.save(s1);
+
+        // 查询学生带着学号
+        Optional<Student> stuOptional = sr.findById(1);
+        Student student = stuOptional.get();
+        System.out.println("学生是" + student.getName());
+        System.out.println("学生对应的学号是" + student.getSid().getStudentIdNumber());
+
+        // 查询学号带着学生
+        Optional<StudentId> stuIdOptional = sidr.findById(1);
+        StudentId studentId = stuIdOptional.get();
+        System.out.println("学号是" + studentId.getStudentIdNumber());
+        System.out.println("学号对应的学生是" + studentId.getStudent().getName());
+
     }
 
 }

@@ -20,5 +20,5 @@ spring:
     open-in-view: false   # 关闭懒加载配置，否则会报错
     properties:
       hibernate:
-       show_sql: true    #输出sql语句
-       format_sql: true  #格式化输出的sql，否则会一行显示
+       show_sql: false    #输出sql语句
+       format_sql: false  #格式化输出的sql，否则会一行显示
