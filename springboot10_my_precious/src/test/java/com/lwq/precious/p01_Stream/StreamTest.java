@@ -20,8 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * 流对象是一次性的,只能进行一次终结操作
  * 原数据不会被影响
  */
-
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class StreamTest {
     /**
      * 并行流
