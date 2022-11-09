@@ -16,6 +16,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e) {
         log.error("", e);
-        return  "全局异常处理执行了";
+        return  "全局异常处理执行了-----"+e.getMessage();
     }
 }
