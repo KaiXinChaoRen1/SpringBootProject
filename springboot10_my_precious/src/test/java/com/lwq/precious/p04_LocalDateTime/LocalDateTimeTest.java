@@ -129,9 +129,19 @@ public class LocalDateTimeTest {
     @Test
     public void name7() {
         long timestamp = System.currentTimeMillis();
+        System.out.println(timestamp);
         LocalDate localDate = Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDateTime localDateTime = Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDateTime();
         System.out.println(localDate);
+        System.out.println(localDateTime);
+    }
+
+    /**
+     * 定义long要加L
+     */
+    @Test
+    public void name8() {
+        LocalDateTime localDateTime = Instant.ofEpochMilli(1665675006999L).atZone(ZoneId.systemDefault()).toLocalDateTime();
         System.out.println(localDateTime);
     }
 
