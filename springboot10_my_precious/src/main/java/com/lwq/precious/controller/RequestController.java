@@ -14,10 +14,14 @@ import com.lwq.precious.model.Student;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+/**
+ *  @RequestParam的name和value两个属性是别名关系,都是获取从前台传入的参数
+ */
+
 @Api(tags = "参数测试")
 @RestController
 @RequestMapping("/par")
-public class ParameterController {
+public class RequestController {
 
     @ApiOperation("1@NotNull")
     @PostMapping("/1")
