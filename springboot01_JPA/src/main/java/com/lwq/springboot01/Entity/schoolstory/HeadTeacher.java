@@ -1,15 +1,21 @@
 package com.lwq.springboot01.Entity.schoolstory;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Builder
 @AllArgsConstructor
@@ -28,6 +34,7 @@ public class HeadTeacher {
     //只有OneToOne,OneToMany,ManyToMany上才有mappedBy属性，ManyToOne不存在该属性；
     //mappedBy标签一定是定义在被拥有方的，他指向拥有方； 
     @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "ht") 
+    @Builder.Default
     private Set<Student> students = new HashSet<>();
 
 

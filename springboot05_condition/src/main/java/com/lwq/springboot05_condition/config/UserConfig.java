@@ -1,13 +1,11 @@
 package com.lwq.springboot05_condition.config;
 
 
-import com.lwq.springboot05_condition.condtion.ClassCondition;
-import com.lwq.springboot05_condition.domain.User;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+
+import com.lwq.springboot05_condition.domain.User;
 
 
 @Configuration

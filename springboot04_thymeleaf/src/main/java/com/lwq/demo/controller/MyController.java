@@ -29,7 +29,7 @@ public class MyController {
     @RequestMapping("/success2")
     public String success2(Model m){
         List<Book> list=new ArrayList<>();
-        Book  Hee= new Book();
+        //Book  Hee= new Book();
         list.add(new Book(1001,"李文强自传"));
         list.add(new Book(1002,"李文强自传2"));
         list.add(new Book(1003,"李文强自传3"));

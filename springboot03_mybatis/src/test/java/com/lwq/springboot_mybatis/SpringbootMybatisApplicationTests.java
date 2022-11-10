@@ -1,13 +1,13 @@
 package com.lwq.springboot_mybatis;
 
-import com.lwq.springboot_mybatis.domain.User;
-import com.lwq.springboot_mybatis.mapper.UserMapper;
-import com.lwq.springboot_mybatis.service.UserService;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
+import com.lwq.springboot_mybatis.domain.User;
+import com.lwq.springboot_mybatis.service.UserService;
 
 @SpringBootTest
 class SpringbootMybatisApplicationTests {

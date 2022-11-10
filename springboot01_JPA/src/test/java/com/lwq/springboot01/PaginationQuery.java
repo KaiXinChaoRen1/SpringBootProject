@@ -1,7 +1,7 @@
 package com.lwq.springboot01;
 
-import com.lwq.springboot01.Entity.schoolstory.Person;
-import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.List;
+import com.lwq.springboot01.Entity.schoolstory.Person;
+import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class PaginationQuery {
@@ -77,12 +75,12 @@ public class PaginationQuery {
      */
     @Test
     public void name2() {
-        List<Person> aaa = pageSelectQuery(PageRequest.of(0, 2), "bbb");
+        List<Person> aaa = pageSelectQuery(PageRequest.of(0, 2), "aa");
         System.out.println(aaa);
     }
 
     private List<Person> pageSelectQuery(Pageable pageable, String name) {
-        Page all = pr.findAll((root, cq, cb) -> cq.where(cb.equal(root.get("name"), name)).getRestriction(), pageable);
+        Page<Person> all = pr.findAll((root, cq, cb) -> cq.where(cb.equal(root.get("name"), name)).getRestriction(), pageable);
         return all.getContent();
     }
 

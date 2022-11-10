@@ -1,9 +1,8 @@
 package com.lwq.springboot_mybatis.service;
 
-import com.lwq.springboot_mybatis.domain.User;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+
+import com.lwq.springboot_mybatis.domain.User;
 
 public interface UserService {
 

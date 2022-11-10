@@ -1,9 +1,9 @@
 package com.lwq.springboot01;
 
-import com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
-import com.lwq.springboot01.Entity.schoolstory.Student;
-import com.lwq.springboot01.dao.schoolRepository.HeadTeacherRepository;
-import com.lwq.springboot01.dao.schoolRepository.StudentRepository;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Column;
-import java.util.*;
+import com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
+import com.lwq.springboot01.Entity.schoolstory.Student;
+import com.lwq.springboot01.dao.schoolRepository.HeadTeacherRepository;
+import com.lwq.springboot01.dao.schoolRepository.StudentRepository;
 
 @SpringBootTest
 public class ManyToOne {

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.lwq.springboot01.Entity.schoolstory.Person;
 
-public interface PersonRepository extends JpaRepository<Person,Integer>, JpaSpecificationExecutor {
+public interface PersonRepository extends JpaRepository<Person,Integer>, JpaSpecificationExecutor<Person> {
 }

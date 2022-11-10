@@ -1,7 +1,5 @@
 package com.lwq.precious.p06_Collection;
 
-import static org.mockito.Answers.values;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
