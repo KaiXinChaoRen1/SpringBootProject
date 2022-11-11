@@ -42,7 +42,7 @@ public class FileController {
     }
 
     /**
-     * MultipartFile-->File工具方法
+     * MultipartFile-->File工具方法(妈的,没用)
      */
     private File toFile(MultipartFile multipartFile) {
         File file =null;
