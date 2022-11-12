@@ -25,6 +25,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * HttpClientUtils主要用来调用一些第三方的接口(例如微信支付接口等)
+ */
 public class HttpClientUtils {
     private String url;
     private Map<String, String> param;

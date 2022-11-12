@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.text.ParseException;
 
+/**
+ * HttpClientUtils主要用来调用一些第三方的接口(例如微信支付接口等)
+ */
 @RestController
 @RequestMapping("/http")
 public class HttpClientController {
