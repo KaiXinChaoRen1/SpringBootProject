@@ -44,8 +44,8 @@ public class HelloController {
      * Environment  
      * getProperty()返回String
      */
-    @RequestMapping("/hehe2")
-    public String hehe2() {
+    @RequestMapping("/test2")
+    public String test2() {
         System.out.println(env.getProperty("person.name"));
         System.out.println(env.getProperty("person.age"));
         System.out.println(env.getProperty("person.title"));//null
@@ -55,8 +55,8 @@ public class HelloController {
         return "看控制台！";
     }
 
-    @RequestMapping("/hehe3")
-    public String hehe3() {
+    @RequestMapping("/test3")
+    public String test3() {
         System.out.println(message);
         System.out.println(myName);
         System.out.println(myAge);

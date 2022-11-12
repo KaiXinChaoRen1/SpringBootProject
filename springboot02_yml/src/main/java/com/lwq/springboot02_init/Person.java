@@ -14,6 +14,7 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "person")         //把配置文件中的属性注入到类中
 public class Person {
 
+    private String hehe="lllwwwqqq";
     private String name;
     private Integer age;
     private Date birth;
