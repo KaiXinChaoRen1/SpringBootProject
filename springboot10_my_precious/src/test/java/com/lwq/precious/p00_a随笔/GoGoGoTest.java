@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -68,6 +69,35 @@ public class GoGoGoTest {
         System.out.println("3%2=" + 3 % 2);
         System.out.println("2%3=" + 2 % 3);
         System.out.println((double) 2 / 3);
+    }
+
+    /**
+     * list添加null和removeAll
+     */
+    @Test
+    public void name5() {
+        ArrayList<Integer> l = new ArrayList<>();
+        l.add(1);
+        l.add(null);
+        System.out.println(l);
+        System.out.println(l.size());
+        Object[] objects = l.toArray();
+        System.out.println(objects);
+        System.out.println(objects.length);
+
+
+        //removeAll
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        ArrayList<Integer> list2 = new ArrayList<>();
+        list2.add(2);
+        list2.add(3);
+        list2.add(4);
+        list.removeAll(list2);
+        System.out.println(list);
+
     }
 
 
