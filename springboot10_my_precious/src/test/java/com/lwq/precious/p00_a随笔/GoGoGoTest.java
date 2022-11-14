@@ -41,4 +41,13 @@ public class GoGoGoTest {
         System.out.println(jsonObject.getString("name"));
         System.out.println(jsonObject.getString("age"));
     }
+
+    @Test
+    public void name4() {
+        System.out.println("3/2="+3/2);
+        System.out.println("2/3="+2/3);
+        System.out.println("3%2="+3%2);
+        System.out.println("2%3="+2%3);
+        System.out.println((double)2/3);
+    }
 }
