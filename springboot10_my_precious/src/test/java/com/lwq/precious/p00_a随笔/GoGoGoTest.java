@@ -1,14 +1,10 @@
 package com.lwq.precious.p00_a随笔;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
+import com.lwq.precious.model.CloneStudent;
+import lombok.ToString;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,12 +12,19 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.hutool.core.util.ObjectUtil;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
-/**
- *  单元测试中使用scanner输入和I/O流是没有任何反应的
- */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class GoGoGoTest {
+public class GoGoGoTest implements Serializable{
+
+    /**
+     *
+     */
+    @Test
+    public void name11() {
+
+    }
+
 
     /**
      * Long包装类对比
@@ -99,6 +102,84 @@ public class GoGoGoTest {
         System.out.println(list);
 
     }
+
+    /**
+     * 手写序列化对象深拷贝
+     */
+    @Test
+    public void name8() throws Exception{
+        CloneStudent xiaoming = new CloneStudent("小明");
+        CloneStudent xiaowang = new CloneStudent("小王", xiaoming);
+        // 序列化到文件
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\lwq\\Desktop\\student.bin", false));
+        oos.writeObject(xiaowang);
+        oos.flush();
+        oos.close();
+
+        // 反序列化到对象
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\lwq\\Desktop\\student.bin"));
+        CloneStudent xiaowang2 = (CloneStudent) ois.readObject();
+        ois.close();
+
+        System.out.println(xiaowang);
+        System.out.println(xiaowang2);
+        xiaowang.getFavoriteClassmate().setName("小小明");
+        System.out.println(xiaowang);
+        System.out.println(xiaowang2);
+    }
+
+    /**
+     * Hutool序列化深拷贝
+     */
+    @Test
+    public void name9(){
+        CloneStudent xiaoming = new CloneStudent("小明");
+        CloneStudent xiaowang = new CloneStudent("小王", xiaoming);
+        CloneStudent xiaowang2 = ObjectUtil.cloneByStream(xiaowang);
+        System.out.println(xiaowang);
+        System.out.println(xiaowang2);
+        xiaowang.getFavoriteClassmate().setName("小小明");
+        System.out.println(xiaowang);
+        System.out.println(xiaowang2);
+    }
+
+    /**
+     * 普通内部类不能直接序列化,
+     *      可以让外部类继承序列化接口,
+     *      或者改成静态内部类
+     * 才可以序列化
+     */
+    @Test
+    public void name10() throws Exception{
+        //hutool
+        User u = new User();
+        u.setName("li");
+        System.out.println(u);
+        User u2 = ObjectUtil.cloneByStream(u);
+        System.out.println(u2);
+
+        //手写
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\lwq\\Desktop\\u.bin", false));
+        oos.writeObject(u);
+        oos.flush();
+        oos.close();
+        // 反序列化到对象
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\lwq\\Desktop\\u.bin"));
+        User u3 = (User) ois.readObject();
+        ois.close();
+        System.out.println(u3);
+
+
+    }
+    @Data
+    @ToString
+    class User implements Serializable{
+        String name;
+        String age;
+    }
+
+
+
 
 
 }

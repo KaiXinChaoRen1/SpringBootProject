@@ -1,4 +1,4 @@
-package com.lwq.precious.psvmTest.cloneTest;
+package com.lwq.precious.model;
 
 import lombok.Data;
 
@@ -10,16 +10,16 @@ import java.io.Serializable;
  * 序列化深克隆的方式需要实现Serializable
  */
 @Data
-public class Student implements Cloneable, Serializable {
+public class CloneStudent implements Cloneable, Serializable {
 
     String name;
-    Student favoriteClassmate;
+    CloneStudent favoriteClassmate;
 
-    public Student(String name) {
+    public CloneStudent(String name) {
         this.name = name;
     }
 
-    public Student(String name, Student favoriteClassmate) {
+    public CloneStudent(String name, CloneStudent favoriteClassmate) {
         this.name = name;
         this.favoriteClassmate = favoriteClassmate;
     }
