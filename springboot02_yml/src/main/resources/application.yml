@@ -4,6 +4,8 @@ msg2: "hhehe \n haha"       # 双引识别转义字符
 
 iphone: 18Pro
 
+appid: 99999
+
 person:
   hehe: hehe #测试配置文件和代码写死的优先级,配置文件的优先级更高呀
   name: lwq

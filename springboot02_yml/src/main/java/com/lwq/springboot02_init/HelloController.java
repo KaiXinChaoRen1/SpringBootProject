@@ -6,8 +6,24 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
+
 @RestController
 public class HelloController {
+
+    //*************************配置静态变量******************************
+    public static String APP_ID;
+
+    @Value("${appid}")
+    private String appId;
+
+    @PostConstruct
+    public void getStaticEnvironment() {
+        APP_ID = appId;
+    }
+    //******************************END********************************
+
+
     @Value("直接写入值")
     private String message;
 
@@ -37,11 +53,12 @@ public class HelloController {
 
     @RequestMapping("/")
     public Person hehe1() {
+        System.out.println(APP_ID);
         return person;
     }
 
     /**
-     * Environment  
+     * Environment
      * getProperty()返回String
      */
     @RequestMapping("/test2")
