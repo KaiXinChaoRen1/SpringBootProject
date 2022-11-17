@@ -15,14 +15,31 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class GoGoGoTest implements Serializable{
+public class GoGoGoTest implements Serializable {
+
 
     /**
-     *
+     * lambda表达式里不能修改外部的普通变量,想要访问可以放到数组里
      */
     @Test
-    public void name11() {
-
+    public void name13() {
+        ArrayList<Integer> integers = new ArrayList<>();
+        integers.add(1);  //ctrl+d复制上一行
+        integers.add(2);
+        integers.add(3);
+//        boolean b=false;
+//        integers.forEach(i->{
+//            if(i==3){
+//                b=true;     //报错:Variable used in lambda expression should be final or effectively final
+//            }
+//        });
+        boolean[] b = new boolean[]{false};
+        integers.forEach(i -> {
+            if (i == 3) {
+                b[0] = true;
+            }
+        });
+        System.out.println(b[0]);
     }
 
 
@@ -75,7 +92,7 @@ public class GoGoGoTest implements Serializable{
     }
 
     /**
-     * list添加null和removeAll
+     * list添加null 和 removeAll
      */
     @Test
     public void name5() {
@@ -107,7 +124,7 @@ public class GoGoGoTest implements Serializable{
      * 手写序列化对象深拷贝
      */
     @Test
-    public void name8() throws Exception{
+    public void name8() throws Exception {
         CloneStudent xiaoming = new CloneStudent("小明");
         CloneStudent xiaowang = new CloneStudent("小王", xiaoming);
         // 序列化到文件
@@ -132,7 +149,7 @@ public class GoGoGoTest implements Serializable{
      * Hutool序列化深拷贝
      */
     @Test
-    public void name9(){
+    public void name9() {
         CloneStudent xiaoming = new CloneStudent("小明");
         CloneStudent xiaowang = new CloneStudent("小王", xiaoming);
         CloneStudent xiaowang2 = ObjectUtil.cloneByStream(xiaowang);
@@ -145,12 +162,12 @@ public class GoGoGoTest implements Serializable{
 
     /**
      * 普通内部类不能直接序列化,
-     *      可以让外部类继承序列化接口,
-     *      或者改成静态内部类
+     * 可以让外部类继承序列化接口,
+     * 或者改成静态内部类
      * 才可以序列化
      */
     @Test
-    public void name10() throws Exception{
+    public void name10() throws Exception {
         //hutool
         User u = new User();
         u.setName("li");
@@ -171,15 +188,13 @@ public class GoGoGoTest implements Serializable{
 
 
     }
+
     @Data
     @ToString
-    class User implements Serializable{
+    class User implements Serializable {
         String name;
         String age;
     }
-
-
-
 
 
 }
