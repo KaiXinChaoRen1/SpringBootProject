@@ -11,10 +11,13 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+/**
+ * 访问--> http://localhost:8080/swagger-ui/index.html
+ */
 @Configuration
 public class Swagger3Config {
     @Bean
-    public Docket webApiConfig(){
+    public Docket webApiConfig() {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(webApiInfo())
                 .enable(true)
@@ -25,7 +28,7 @@ public class Swagger3Config {
                 .build();
     }
 
-    private ApiInfo webApiInfo(){
+    private ApiInfo webApiInfo() {
         return new ApiInfoBuilder()
                 .title("<我是标题>")
                 .description("我是描述..............")
