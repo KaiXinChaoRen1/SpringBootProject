@@ -1,4 +1,15 @@
 spring:
   mvc:
     pathmatch:
-      matching-strategy: ant_path_matcher
+      matching-strategy: ant_path_matcher   #swagger3需要加这个否则报错
+  #redis
+  redis:
+    host: 43.143.216.21
+    port: 6379
+    password: Aa@111111
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 100ms
