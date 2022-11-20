@@ -22,7 +22,7 @@ import cn.hutool.core.util.IdUtil;
  * 当JPA遇到继承
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class inheritTest {
+public class InheritTest {
     @Autowired
     DijiaRepository dr;
     @Autowired
