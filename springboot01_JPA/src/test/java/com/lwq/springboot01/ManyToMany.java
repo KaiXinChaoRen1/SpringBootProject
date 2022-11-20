@@ -19,11 +19,6 @@ public class ManyToMany {
     @Autowired
     StudentRepository sr;
 
-    @Test
-    public void clean() {
-        System.out.println("yml修改为jpa:hibernate:ddl-auto: create 清空数据库,完事再改回来");
-    }
-
     /**
      * 修改
      */

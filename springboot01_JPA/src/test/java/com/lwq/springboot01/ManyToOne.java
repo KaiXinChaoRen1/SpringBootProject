@@ -23,6 +23,43 @@ public class ManyToOne {
     @Autowired
     private HeadTeacherRepository htr;
 
+    //************************ detached entity passed to persist*******************************
+    @Test
+    @Commit
+    @Transactional
+    public void name6() {
+        HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
+        Student s1 = Student.builder().name("李文强").ht(ht1).build();
+        sr.save(s1);
+
+        HeadTeacher ht2 = htr.findById(1).get();
+        ht2.setName("hehe");
+        System.out.println(ht2);
+
+        Student s2 = Student.builder().name("李文强").ht(ht2).build();
+        sr.save(s2);
+    }
+
+    @Commit
+    @Transactional
+    @Test
+    public void name5() {
+        HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
+        Student s1 = Student.builder().name("李文强").ht(ht1).build();
+        sr.save(s1);
+
+        //模拟一个id一样的
+        HeadTeacher ht2 = HeadTeacher.builder().id(1).name("hehe").build();
+        System.out.println(ht2);
+
+        Student s2 = Student.builder().name("李文强").ht(ht2).build();
+        sr.save(s2);
+        //InvalidDataAccessApiUsageException: detached entity passed to persist: com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
+
+    }
+    //***********************************************************************************
+
+
     //先存再查的方式可能会缓存,这里直接手动在数据库写数据,直接查,记得      ddl-auto: update
     @Commit
     @Transactional
@@ -30,8 +67,8 @@ public class ManyToOne {
     public void name4() {
         Optional<HeadTeacher> byId = htr.findById(1);
         HeadTeacher headTeacher = byId.get();
-        System.out.println("老师是"+headTeacher.getName());
-        System.out.println("他的学生有"+headTeacher.getStudents());
+        System.out.println("老师是" + headTeacher.getName());
+        System.out.println("他的学生有" + headTeacher.getStudents());
 
 
     }
@@ -50,7 +87,7 @@ public class ManyToOne {
 
         Optional<Student> byId = sr.findById(1);
         Student student = byId.get();
-        System.out.println("学生是"+student.getName());
+        System.out.println("学生是" + student.getName());
         System.out.println("他的老师是" + student.getHt().getName());
 
     }
