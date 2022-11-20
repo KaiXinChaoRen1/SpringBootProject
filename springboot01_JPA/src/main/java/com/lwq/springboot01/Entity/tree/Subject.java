@@ -1,16 +1,15 @@
 package com.lwq.springboot01.Entity.tree;
 
 
-import com.sun.source.tree.IdentifierTree;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import xin.altitude.cms.common.lang.ITreeEntity;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 
 /**

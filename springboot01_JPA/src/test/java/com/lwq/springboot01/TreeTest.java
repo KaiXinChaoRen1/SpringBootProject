@@ -1,15 +1,16 @@
 package com.lwq.springboot01;
 
-import cn.hutool.core.lang.tree.TreeUtil;
-import com.lwq.springboot01.Entity.tree.Subject;
-import com.lwq.springboot01.dao.treeRepository.SubjectRepository;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.lwq.springboot01.Entity.tree.Subject;
+import com.lwq.springboot01.dao.treeRepository.SubjectRepository;
+
 import xin.altitude.cms.common.entity.TreeNode;
 import xin.altitude.cms.common.util.TreeUtils;
-
-import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class TreeTest {
