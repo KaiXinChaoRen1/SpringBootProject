@@ -16,6 +16,15 @@ public class One {
     @Commit
     @Transactional
     @Test
+    public void name7(){
+        Person p1 = Person.builder().name("lwq").age(55).build();
+        Person save = pr.save(p1);
+        save.setName("www");          //session内java对象修改会同步到数据库
+    }
+
+    @Commit
+    @Transactional
+    @Test
     public void name6(){
         Person p1 = Person.builder().name("lwq").age(55).build();
         pr.save(p1);
@@ -29,7 +38,7 @@ public class One {
     public void name5(){
         Person p1 = Person.builder().id(1).name("lwq").age(55).build();
         pr.save(p1);
-        System.out.println(p1);     //数据库的修改会同步到内存中的java对象
+        System.out.println(p1);     //数据库的修改会同步到内存中的java对象(根据id判断是更新还是保存)
         p1.setName("www");          //session内java对象修改会同步到数据库(手动加的id保存的对象就不会同步)
     }
 
