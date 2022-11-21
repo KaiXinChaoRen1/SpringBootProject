@@ -1,20 +1,19 @@
 package com.lwq.springboot01;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-
+import com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
+import com.lwq.springboot01.Entity.schoolstory.Student;
+import com.lwq.springboot01.dao.schoolRepository.HeadTeacherRepository;
+import com.lwq.springboot01.dao.schoolRepository.StudentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
-import com.lwq.springboot01.Entity.schoolstory.Student;
-import com.lwq.springboot01.dao.schoolRepository.HeadTeacherRepository;
-import com.lwq.springboot01.dao.schoolRepository.StudentRepository;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class ManyToOne {
@@ -51,8 +50,25 @@ public class ManyToOne {
         //模拟一个id一样的
         HeadTeacher ht2 = HeadTeacher.builder().id(1).name("hehe").build();
         System.out.println(ht2);
+        System.out.println(ht2.equals(ht1));
 
         Student s2 = Student.builder().name("李文强").ht(ht2).build();
+        sr.save(s2);
+        //InvalidDataAccessApiUsageException: detached entity passed to persist: com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
+
+    }
+
+    @Commit
+    @Transactional  //加上事务session不会关闭
+    @Test
+    public void name555() {
+        HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
+        Student s1 = Student.builder().name("李文强").ht(ht1).build();
+        sr.save(s1);//这里session关闭
+
+        ht1.setName("hehe");    //ht1变成游离态对象
+
+        Student s2 = Student.builder().name("李文强").ht(ht1).build();
         sr.save(s2);
         //InvalidDataAccessApiUsageException: detached entity passed to persist: com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
 
@@ -92,7 +108,33 @@ public class ManyToOne {
 
     }
 
-    //这样就报错!?
+    //自动生成的id会同步到内存的java对象中
+    @Test
+    public void name222() {
+        HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
+
+        Student s1 = Student.builder().name("李文强").ht(ht1).build();
+        Student s2 = Student.builder().name("孔令健").ht(ht1).build();
+        sr.save(s1);
+        System.out.println(s1.getId());
+        System.out.println(ht1);
+    }
+
+//    @Commit
+//    @Transactional        //这样会生成两个ht
+    public void name22() {
+        HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
+        Student s1 = Student.builder().name("李文强").ht(ht1).build();
+        sr.save(s1);
+
+        HeadTeacher ht2 = HeadTeacher.builder().name("宗清广").build();
+        Student s2 = Student.builder().name("孔令健").ht(ht2).build();
+        sr.save(s2);
+    }
+
+
+    @Commit
+    @Transactional        //不加Transactional和@Commit就报错
     @Test
     public void name2() {
         HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
@@ -115,6 +157,7 @@ public class ManyToOne {
         sr.saveAll(l);
     }
     //上面的是操作Many的一方
+    //*****************************************************************************
     //下面两个方法是操纵One的一方
 
     //类比OneToOne name222  student来维护外键,并保证确实维护了外键,即使用htr去save也生效

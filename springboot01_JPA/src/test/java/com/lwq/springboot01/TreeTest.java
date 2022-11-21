@@ -1,6 +1,6 @@
 package com.lwq.springboot01;
 
-import cn.hutool.core.lang.tree.TreeUtil;
+
 import com.lwq.springboot01.Entity.tree.Subject;
 import com.lwq.springboot01.dao.treeRepository.SubjectRepository;
 import org.junit.jupiter.api.Test;

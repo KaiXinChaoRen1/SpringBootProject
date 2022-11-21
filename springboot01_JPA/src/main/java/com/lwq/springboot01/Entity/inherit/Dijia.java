@@ -1,16 +1,12 @@
 package com.lwq.springboot01.Entity.inherit;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.*;
+//@MappedSuperclass TODO 这个还没学
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor

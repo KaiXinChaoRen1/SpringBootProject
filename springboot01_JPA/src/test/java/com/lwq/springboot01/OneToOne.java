@@ -34,12 +34,12 @@ public class OneToOne {
         // Student s2 = Student.builder().id(1).name("李文强").sid(sid1).build();
         // sr.delete(s2);
 
-        // 3.主键相同不算同一个对象所以自然不能删除,甚至还会把s2保存进去?(抽空看一下sql)
-        // Student s2 = Student.builder().id(1).build();
-        // sr.delete(s2);
+         //3.主键相同不算同一个对象所以自然不能删除,甚至还会把s2保存进去?(抽空看一下sql)
+//         Student s2 = Student.builder().id(1).build();
+//         sr.delete(s2);
 
         // 4.直接根据主键删除不就好啦
-        // sr.deleteById(1);
+         sr.deleteById(1);
 
         // 5.因为这个sid中没有设置student,所以与数据库中的不一样,所以不能删除
         // sidr.delete(sid1);
@@ -60,11 +60,10 @@ public class OneToOne {
     public void name222() {
         Student s1 = Student.builder().name("李文强").build();
         StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("其他信息").student(s1).build();
-
+        //多一步就可以
         s1.setSid(sid1);
 
         sidr.save(sid1);
-
     }
 
     // 使用放弃维护外键的一方保存
@@ -83,7 +82,12 @@ public class OneToOne {
     public void name2() {
         StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("其他信息").build();
         Student s1 = Student.builder().name("李文强").sid(sid1).build();
+        System.out.println("保存前的s1的sid:"+s1.getSid());
         sr.save(s1);
+
+        System.out.println("保存后的s1的sid:"+s1.getSid());//保存后sid生成的id也会同步到内存里的java对象
+
+
 
         // 查询学生带着学号
         Optional<Student> stuOptional = sr.findById(1);

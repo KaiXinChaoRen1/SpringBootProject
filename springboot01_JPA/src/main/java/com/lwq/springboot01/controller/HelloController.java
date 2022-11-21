@@ -1,19 +1,18 @@
 package com.lwq.springboot01.controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.lwq.springboot01.Entity.schoolstory.Person;
 import com.lwq.springboot01.Entity.yanTest.A;
 import com.lwq.springboot01.Entity.yanTest.ADao;
 import com.lwq.springboot01.Entity.yanTest.B;
 import com.lwq.springboot01.Entity.yanTest.BDao;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 
 @RestController
@@ -27,6 +26,27 @@ public class HelloController {
 
     @Autowired
     BDao bDao;
+
+//    @GetMapping("/cacheupdate")
+//    public String cacheupdate() throws InterruptedException {
+//        Person person = pr.findById(1).get();
+//        person.setName("lllllllllllll");
+//        pr.save(person);
+//        return "执行完毕";
+//    }
+//
+//    @GetMapping("/cachefind")
+//    public String cache(){
+//        System.out.println(pr.findById(1).get());
+//        return "执行完毕";
+//    }
+//
+//    @GetMapping("/cacheadd")
+//    public String cacheadd(){
+//        Person p1 = Person.builder().name("lwq").age(55).build();
+//        pr.save(p1);
+//        return "执行完毕";
+//    }
 
     @GetMapping("/")
     public String hehe() {
