@@ -22,58 +22,7 @@ public class ManyToOne {
     @Autowired
     private HeadTeacherRepository htr;
 
-    //************************ detached entity passed to persist*******************************
-    @Test
-    @Commit
-    @Transactional
-    public void name6() {
-        HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
-        Student s1 = Student.builder().name("李文强").ht(ht1).build();
-        sr.save(s1);
 
-        HeadTeacher ht2 = htr.findById(1).get();
-        ht2.setName("hehe");
-        System.out.println(ht2);
-
-        Student s2 = Student.builder().name("李文强").ht(ht2).build();
-        sr.save(s2);
-    }
-
-    @Commit
-    @Transactional
-    @Test
-    public void name5() {
-        HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
-        Student s1 = Student.builder().name("李文强").ht(ht1).build();
-        sr.save(s1);
-
-        //模拟一个id一样的
-        HeadTeacher ht2 = HeadTeacher.builder().id(1).name("hehe").build();
-        System.out.println(ht2);
-        System.out.println(ht2.equals(ht1));
-
-        Student s2 = Student.builder().name("李文强").ht(ht2).build();
-        sr.save(s2);
-        //InvalidDataAccessApiUsageException: detached entity passed to persist: com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
-
-    }
-
-    @Commit
-    @Transactional  //加上事务session不会关闭
-    @Test
-    public void name555() {
-        HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
-        Student s1 = Student.builder().name("李文强").ht(ht1).build();
-        sr.save(s1);//这里session关闭
-
-        ht1.setName("hehe");    //ht1变成游离态对象
-
-        Student s2 = Student.builder().name("李文强").ht(ht1).build();
-        sr.save(s2);
-        //InvalidDataAccessApiUsageException: detached entity passed to persist: com.lwq.springboot01.Entity.schoolstory.HeadTeacher;
-
-    }
-    //***********************************************************************************
 
 
     //先存再查的方式可能会缓存,这里直接手动在数据库写数据,直接查,记得      ddl-auto: update
