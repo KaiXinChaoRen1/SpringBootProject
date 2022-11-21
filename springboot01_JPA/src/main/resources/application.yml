@@ -22,4 +22,4 @@ spring:
       hibernate:
        show_sql: true    #输出sql语句
        format_sql: true  #格式化输出的sql，否则会一行显示
-       user_query_cache: true  #这条还没弄回
+       #user_query_cache: true  #这条还没弄回
