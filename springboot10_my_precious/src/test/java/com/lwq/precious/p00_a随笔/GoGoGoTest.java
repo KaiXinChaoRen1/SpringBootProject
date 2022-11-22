@@ -1,22 +1,30 @@
 package com.lwq.precious.p00_a随笔;
 
-import java.io.*;
-import java.util.ArrayList;
-
+import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.lwq.precious.model.CloneStudent;
+import lombok.Data;
 import lombok.ToString;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.alibaba.fastjson.JSONObject;
-
-import cn.hutool.core.util.ObjectUtil;
-import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.io.*;
+import java.util.ArrayList;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class GoGoGoTest implements Serializable {
+    /**
+     * 字符串切割获取最后一位或者前x位
+     */
+    @Test
+    public void name14() {
+        String str="aaab";
+        String substring = str.substring(str.length() - 1);
+        System.out.println(substring);
 
+        String substring2 = str.substring(0,str.length() - 1);
+        System.out.println(substring2);
+    }
 
     /**
      * lambda表达式里不能修改外部的普通变量,想要访问可以放到数组里
