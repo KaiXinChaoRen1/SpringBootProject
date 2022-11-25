@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lwq</groupId>
-    <artifactId>springboot3</artifactId>
+    <artifactId>30_springboot3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>333springboot3</name>
+    <name>30_springboot3</name>
     <description>springboot3</description>
     <properties>
         <java.version>17</java.version>
