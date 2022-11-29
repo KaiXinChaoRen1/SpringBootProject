@@ -1,19 +1,17 @@
 package com.lwq.precious.p05_Hutool;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import com.lwq.precious.model.Student;
-
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
+import com.lwq.precious.model.Student;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class HutoolTest {
@@ -38,7 +36,8 @@ public class HutoolTest {
     }
 
     /**
-     * Hutool工具类反射调用私有方法
+     * 反射
+     * Hutool工具类调用私有方法
      */
     @Test
     public void name1() {
