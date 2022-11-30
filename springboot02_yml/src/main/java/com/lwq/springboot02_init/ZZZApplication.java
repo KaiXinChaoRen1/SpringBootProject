@@ -21,8 +21,8 @@ public class ZZZApplication {
         System.out.println("直接获取容器中的bean-->Person:"+run.getBean("person"));
     }
 
-    @Value("${logName}")
-    private String  logName;
+    @Value("${neinei}")
+    private String  neinei;
 
     @PostConstruct
     public void name1(){
@@ -32,7 +32,7 @@ public class ZZZApplication {
             public void run() {
                 long l = System.currentTimeMillis();
                 String s = String.valueOf(l);
-                log.info("我是日志"+logName+s);
+                log.info("我是日志-"+neinei+"-"+s);
             }
         },1000,1000);
 

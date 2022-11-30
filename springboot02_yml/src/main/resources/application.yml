@@ -1,3 +1,5 @@
+neinei: lwq
+
 msg1: 'hhehe \n haha'       # 单引忽略转义字符
 
 msg2: "hhehe \n haha"       # 双引识别转义字符
