@@ -1,27 +1,38 @@
 package com.lwq.precious.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLEncoder;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "web环境下的文件上传下载")
 @RestController
 @RequestMapping("/file")
 public class FileController {
+
+    @ApiOperation("csv文件下载")
+    @GetMapping("/csv")
+    public void name22(HttpServletResponse response) throws IOException {
+        BufferedWriter gb2312 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\Users\\lwq\\Desktop\\a.csv"), "GB2312"));
+        gb2312.write("li,wen文,qiang强");
+        gb2312.close();
+
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=export.csv");
+
+        IOUtils.copy(new FileInputStream("C:\\Users\\lwq\\Desktop\\a.csv"),response.getOutputStream());
+        response.flushBuffer();
+    }
+
+
+
 
     @ApiOperation("文件上传")
     @PostMapping("/upload")
