@@ -25,27 +25,51 @@ public class FileController {
         gb2312.write("li,wen文,qiang强");
         gb2312.close();
 
-        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=export.csv");
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename="+ URLEncoder.encode("呵呵.csv", "UTF-8"));
 
-        IOUtils.copy(new FileInputStream("C:\\Users\\lwq\\Desktop\\a.csv"),response.getOutputStream());
+        IOUtils.copy(new FileInputStream("C:\\Users\\lwq\\Desktop\\a.csv"), response.getOutputStream());
+
         response.flushBuffer();
     }
 
+    @ApiOperation("文件下载")
+    @GetMapping("/download")
+    public String name1(HttpServletResponse response) throws IOException {
 
+        String myFileName = "呵呵.txt";
+
+        //response.setHeader("Content-Disposition", "attachment;filename="+myFileName);
+        //文件名带中文需要设置一下文件名编码
+        //Content-Disposition:来设置文件下载对话框。
+        //attachment:表示以附件形式下载(如果要在页面中打开，可以改为inline)
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(myFileName, "UTF-8"));
+
+        //告诉浏览器区分不同类型的数据(有很多很多种,用到再去查吧)
+        response.setContentType("application/octer-stream");
+
+        byte[] bytes = {-23, -69, -111, -23, -87, -84, -25, -88, -117, -27, -70, -113, -27, -111, -104};
+        ServletOutputStream outputStream = response.getOutputStream();
+        outputStream.write(bytes);
+
+        outputStream.flush();
+        outputStream.close();
+        //这里这样返回没有用
+        return "执行完毕";
+    }
 
 
     @ApiOperation("文件上传")
     @PostMapping("/upload")
     public void name(@RequestPart MultipartFile myMultipartFile) throws IOException {
-        if(myMultipartFile.isEmpty()){
+        if (myMultipartFile.isEmpty()) {
             return;
         }
         //获取流
         InputStream inputStream = myMultipartFile.getInputStream();
-        
+
         //操作流
         int b;
-        while ((b = inputStream.read())!=-1){
+        while ((b = inputStream.read()) != -1) {
             System.out.println((char) b);
         }
         //释放资源
@@ -56,13 +80,13 @@ public class FileController {
      * MultipartFile-->File工具方法(妈的,没用)
      */
     private File toFile(MultipartFile multipartFile) {
-        File file =null;
-        String fileName =multipartFile.getOriginalFilename();
-        String prefix=null;
-        if(fileName==null){
-            prefix="tempFile";
-        }else{
-            prefix=fileName.substring(fileName.lastIndexOf("."));
+        File file = null;
+        String fileName = multipartFile.getOriginalFilename();
+        String prefix = null;
+        if (fileName == null) {
+            prefix = "tempFile";
+        } else {
+            prefix = fileName.substring(fileName.lastIndexOf("."));
         }
         try {
             file = File.createTempFile(prefix, prefix);
@@ -75,23 +99,5 @@ public class FileController {
         return null;
     }
 
-    @ApiOperation("文件下载")
-    @GetMapping("/download")
-    public void name1(HttpServletResponse response) throws IOException {
-        String fileName="hehe.txt";
 
-        ServletOutputStream outputStream = response.getOutputStream();
-
-        response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode(fileName, "UTF-8"));
-        response.setContentType("application/octer-stream");
-
-        byte [] bytes = {-23, -69, -111, -23, -87, -84, -25, -88, -117, -27, -70, -113, -27, -111, -104};
-        outputStream.write(bytes);
-
-        outputStream.flush();
-        outputStream.close();
-      
-
-    }
-    
 }
