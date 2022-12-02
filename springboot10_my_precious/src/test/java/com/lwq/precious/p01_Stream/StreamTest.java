@@ -1,19 +1,13 @@
 package com.lwq.precious.p01_Stream;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * 1数据源 2数据处理 3收集结果（终结操作）
@@ -22,6 +16,27 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class StreamTest {
+
+    /**
+     * 分组groupingBy()
+     */
+    @Test
+    public void name9998(){
+        People build1 = People.builder().sex("男").name("唐三藏").build();
+        People build2 = People.builder().sex("男").name("唐三彩").build();
+        People build3 = People.builder().sex("女").name("老鼠精").build();
+        People build4 = People.builder().sex("女").name("玉兔精").build();
+        ArrayList<People> pList = new ArrayList<>();
+        pList.add(build1);
+        pList.add(build2);
+        pList.add(build3);
+        pList.add(build4);
+        //注意这里是map
+        Map<String, List<People>> collect = pList.stream().collect(Collectors.groupingBy(People::getSex));
+        System.out.println(collect);
+
+    }
+
     /**
      * 并行流
      */
