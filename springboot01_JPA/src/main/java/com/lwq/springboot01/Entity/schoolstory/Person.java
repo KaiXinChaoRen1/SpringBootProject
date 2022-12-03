@@ -6,7 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-//JPA需要实体类有空参构造,使用BUilder需要三件套:@Builder,@AllArgsConstructor,@NoArgsConstructor
+//JPA需要实体类有空参构造,使用Builder需要三件套:@Builder,@AllArgsConstructor,@NoArgsConstructor
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
