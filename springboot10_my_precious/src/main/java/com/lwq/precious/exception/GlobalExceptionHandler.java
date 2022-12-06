@@ -1,4 +1,4 @@
-package com.lwq.precious.controller;
+package com.lwq.precious.exception;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
