@@ -9,7 +9,7 @@ spring:
   #jpa相关配置(和datasource同级)
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       #ddl-auto: create
                 #none 什么也不做
                 #create: 每次运行应用程序时，都会重新创建表，所以，数据都会丢失

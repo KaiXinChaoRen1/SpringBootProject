@@ -11,6 +11,14 @@ public class One {
     @Autowired
     private PersonRepository pr;
 
+    //JPQL
+    @Test
+    public void name5() {
+        String name= pr.jpqlQuery(1);
+        System.out.println(name);
+
+    }
+
 
     @Test
     public void name4() {
