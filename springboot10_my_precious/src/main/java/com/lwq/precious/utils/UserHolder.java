@@ -9,7 +9,10 @@ import com.lwq.precious.model.SysUser;
  * 全是静态方法,不用创建对象
  */
 public class UserHolder {
+    //ThreadLocal
     private static final ThreadLocal<SysUser> tl = new ThreadLocal<>();
+
+
     //存
     public static void saveUser(SysUser user){
         tl.set(user);
