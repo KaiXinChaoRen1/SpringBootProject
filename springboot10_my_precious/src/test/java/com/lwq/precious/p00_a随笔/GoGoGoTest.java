@@ -88,7 +88,7 @@ public class GoGoGoTest implements Serializable {
     }
 
     /**
-     * ====>'%' 和 '/'
+     * ====>'%' 和 '/' 区分
      */
     @Test
     public void name4() {

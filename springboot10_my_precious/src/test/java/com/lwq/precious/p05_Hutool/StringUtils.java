@@ -6,6 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 
+/**
+ * hutool下的StrUtil
+ */
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class StringUtils {
 
@@ -13,7 +17,7 @@ public class StringUtils {
      * join 字符串数组拼接
      */
     @Test
-    public void name1(){
+    public void name1() {
         ArrayList<String> strList = new ArrayList<>();
         strList.add("1");
         strList.add("1");
