@@ -11,40 +11,39 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class MapTest {
     @Test
     public void name1() {
-        HashMap<String, String> myMap = new HashMap<String,String>();
+        HashMap<String, String> myMap = new HashMap<String, String>();
         myMap.put("1", "hehe");
         myMap.put("2", "haha");
         myMap.put("3", "xixi");
-        //获取所有key
+        //获取所有key--------->keySet()
         Set<String> keySet = myMap.keySet();
         System.out.println(keySet);
-        //获取所有value
+        //获取所有value------->values()
         Collection<String> values = myMap.values();
         System.out.println(values);
+        //内部类
         System.out.println(values.getClass());
     }
 
     @Test
     public void name2() {
-        HashMap<String, String> myMap = new HashMap<String,String>();
+        HashMap<String, String> myMap = new HashMap<String, String>();
         myMap.put("1", "hehe");
         myMap.put("2", "haha");
         myMap.put("3", "xixi");
 
-        myMap.replace("3", "--","雷霆半月斩");
+        //replace()
+        myMap.replace("3", "--", "雷霆半月斩");
         System.out.println(myMap);
-
         myMap.replace("3", "闪电旋风劈");
         System.out.println(myMap);
 
-      
+        //remove()
         myMap.remove("1");
         System.out.println(myMap);
-
-        myMap.remove("2","??");
+        myMap.remove("2", "??");
         System.out.println(myMap);
-
-        myMap.remove("2","haha");
+        myMap.remove("2", "haha");
         System.out.println(myMap);
 
 
