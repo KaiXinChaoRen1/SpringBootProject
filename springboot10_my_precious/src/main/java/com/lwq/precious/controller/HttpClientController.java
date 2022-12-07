@@ -27,12 +27,19 @@ public class HttpClientController {
         return "此次访问的ip地址是"+ipAddress;
     }
 
+    /**
+     * 通过工具方法,直接向response中写入返回内容
+     * @param response
+     */
     @GetMapping("test3")
     public void name3(HttpServletResponse response){
         ResponseUtils.write(response,"hehe");
     }
 
-
+    
+    /**
+     * 通过工具方法,在接口中调用其他地址的接口
+     */
     @GetMapping("test2")
     public String name2() throws IOException, ParseException {
 
@@ -41,8 +48,9 @@ public class HttpClientController {
         //client.setHttps(true);//支持https
 
         client.get();
+        String content = client.getContent();
 
-        return "调用其他接口返回"+client.getContent();
+        return "调用牛马接口返回"+content;
     }
 
     //牛马方法

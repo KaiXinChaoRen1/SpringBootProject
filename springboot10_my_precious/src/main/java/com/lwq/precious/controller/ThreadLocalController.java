@@ -23,7 +23,7 @@ public class ThreadLocalController {
     }
 
     /**
-     * 会获取到不一定哪个user,难道是因为线程服用?
+     * 会获取到不一定哪个user,难道是因为线程复用?
      */
     @GetMapping("/test2")
     public Object test2(){

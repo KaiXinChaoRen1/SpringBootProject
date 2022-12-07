@@ -15,6 +15,12 @@
 
 
     <dependencies>
+        <!-- 用于监控项目运行(具体咋用还没学) -->
+        <!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency> -->
+
         <!--spring-data-redis 底层默认使用lettuce-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
