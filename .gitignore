@@ -30,7 +30,9 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
+#这个可以忽略任何目录下的.vscode文件夹
 .vscode/
 
 ### 日志 ###
-/logs
+#同理
+logs/
