@@ -41,14 +41,14 @@ public class LocalDateTimeTest {
         System.out.println("2==>" + LocalDateTime.now());
 
         //根据年月日指定日期
-        System.err.println("3==>" + LocalDate.of(2019, 2, 28));
+        System.out.println("3==>" + LocalDate.of(2019, 2, 28));
 
         //根据字符串获取
         String dateStr = "2019-02-31";// 日期31号之后直接报错,31之前,如果大于当月最大,那就是当月最大那一号
-        System.err.println("4==>" + LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        System.out.println("4==>" + LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
         String dateTimeStr = "2018-07-28 14:11:15";
-        System.err.println("5==>" + LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        System.out.println("5==>" + LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     }
 
 
@@ -60,7 +60,9 @@ public class LocalDateTimeTest {
         LocalDate localDate1 = LocalDate.of(2019, 2, 8);
         LocalDate localDate2 = LocalDate.of(2019, 3, 8);
         long days = localDate2.toEpochDay() - localDate1.toEpochDay();
+        //打错了偶然学到
         System.err.println(days);
+        System.out.println(days);
     }
 
     /**
@@ -121,6 +123,7 @@ public class LocalDateTimeTest {
         LocalDateTime localDateTime = LocalDateTime.now();
         long timestamp = localDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
         System.out.println(timestamp);
+        System.out.println(System.currentTimeMillis());
     }
 
     /**
