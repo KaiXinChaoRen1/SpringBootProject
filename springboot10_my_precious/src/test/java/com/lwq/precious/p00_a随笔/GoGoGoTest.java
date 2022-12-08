@@ -1,28 +1,58 @@
 package com.lwq.precious.p00_a随笔;
 
-import cn.hutool.core.util.ObjectUtil;
-import com.alibaba.fastjson.JSONObject;
-import com.lwq.precious.model.CloneStudent;
-import lombok.Data;
-import lombok.ToString;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.*;
-import java.util.ArrayList;
+import com.alibaba.fastjson.JSONObject;
+import com.lwq.precious.model.CloneStudent;
+import com.lwq.precious.service.AsyncTaskService;
+
+import cn.hutool.core.util.ObjectUtil;
+import lombok.Data;
+import lombok.ToString;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class GoGoGoTest implements Serializable {
+
+    @Autowired
+    private AsyncTaskService asyncTaskService;
+
+    /*
+     * 测试异步任务
+     */
+    @Test
+    public void name15() throws InterruptedException, ExecutionException {
+        long begin = System.currentTimeMillis();
+        Future<String> task1 = asyncTaskService.task1();
+        Future<String> task2 = asyncTaskService.task2();
+        Future<String> task3 = asyncTaskService.task3();
+        long end = System.currentTimeMillis();
+        System.out.println("执行到这里的时间是" + (end - begin));//如果这里直接结束,会打断子线程的睡眠,那会不会打断正儿八经的任务呢
+        System.out.println(task1.get());
+        System.out.println(task2.get());
+        System.out.println(task3.get());
+    }
+
     /**
      * 字符串切割获取最后一位或者前x位
      */
     @Test
     public void name14() {
-        String str="aaab";
+        String str = "aaab";
         String substring = str.substring(str.length() - 1);
         System.out.println(substring);
 
-        String substring2 = str.substring(0,str.length() - 1);
+        String substring2 = str.substring(0, str.length() - 1);
         System.out.println(substring2);
     }
 
@@ -32,16 +62,17 @@ public class GoGoGoTest implements Serializable {
     @Test
     public void name13() {
         ArrayList<Integer> integers = new ArrayList<>();
-        integers.add(1);  //ctrl+d复制上一行
+        integers.add(1); // ctrl+d复制上一行
         integers.add(2);
         integers.add(3);
-//        boolean b=false;
-//        integers.forEach(i->{
-//            if(i==3){
-//                b=true;     //报错:Variable used in lambda expression should be final or effectively final
-//            }
-//        });
-        boolean[] b = new boolean[]{false};
+        // boolean b=false;
+        // integers.forEach(i->{
+        // if(i==3){
+        // b=true; //报错:Variable used in lambda expression should be final or
+        // effectively final
+        // }
+        // });
+        boolean[] b = new boolean[] { false };
         integers.forEach(i -> {
             if (i == 3) {
                 b[0] = true;
@@ -49,7 +80,6 @@ public class GoGoGoTest implements Serializable {
         });
         System.out.println(b[0]);
     }
-
 
     /**
      * Long包装类对比
@@ -113,8 +143,7 @@ public class GoGoGoTest implements Serializable {
         System.out.println(objects);
         System.out.println(objects.length);
 
-
-        //removeAll
+        // removeAll
         ArrayList<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
@@ -136,7 +165,8 @@ public class GoGoGoTest implements Serializable {
         CloneStudent xiaoming = new CloneStudent("小明");
         CloneStudent xiaowang = new CloneStudent("小王", xiaoming);
         // 序列化到文件
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\lwq\\Desktop\\student.bin", false));
+        ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream("C:\\Users\\lwq\\Desktop\\student.bin", false));
         oos.writeObject(xiaowang);
         oos.flush();
         oos.close();
@@ -176,14 +206,14 @@ public class GoGoGoTest implements Serializable {
      */
     @Test
     public void name10() throws Exception {
-        //hutool
+        // hutool
         User u = new User();
         u.setName("li");
         System.out.println(u);
         User u2 = ObjectUtil.cloneByStream(u);
         System.out.println(u2);
 
-        //手写
+        // 手写
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\lwq\\Desktop\\u.bin", false));
         oos.writeObject(u);
         oos.flush();
@@ -194,7 +224,6 @@ public class GoGoGoTest implements Serializable {
         ois.close();
         System.out.println(u3);
 
-
     }
 
     @Data
@@ -203,6 +232,5 @@ public class GoGoGoTest implements Serializable {
         String name;
         String age;
     }
-
 
 }
