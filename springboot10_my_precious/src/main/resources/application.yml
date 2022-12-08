@@ -13,3 +13,7 @@ spring:
         max-idle: 8
         min-idle: 0
         max-wait: 100ms
+
+logging:
+  file: 
+    name: logs/lwq.log

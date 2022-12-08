@@ -6,6 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+    @GetMapping("/testException")
+    public String testException() {
+        if(1<2){
+            throw new RuntimeException("我是异常,芜湖芜湖~~");
+        }
+        return "我家大门常打开";
+    }
+
+
     @GetMapping("/test")
     public String name() {
         System.out.println("test执行了");
