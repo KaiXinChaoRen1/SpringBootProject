@@ -20,12 +20,25 @@ import com.lwq.precious.service.AsyncTaskService;
 import cn.hutool.core.util.ObjectUtil;
 import lombok.Data;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class GoGoGoTest implements Serializable {
 
     @Autowired
     private AsyncTaskService asyncTaskService;
+
+    @Test
+    public void name16(){
+        try {
+            int i=1/0;
+        } catch (Exception e) {
+            log.info("呵呵",e);
+        }
+       
+    }
+
 
     /*
      * 测试异步任务
