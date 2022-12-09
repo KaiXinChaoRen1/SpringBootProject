@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class OptionalTest {
 
-
-
     /**
      * 构造
      */
@@ -79,11 +77,26 @@ public class OptionalTest {
         Optional<String> o9 = Optional.of("我是笨蛋");
         System.out.println(o9.orElse(method()));
         System.out.println(o9.orElseGet(() -> (method())));
+
     }
 
     private static String method() {
         System.out.println("此方法执行了");
         return "我是天才";
+    }
+
+    /**
+     * orElseThrow 完美替代我判空抛异常的写法
+     */
+    @Test
+    public void name5() {
+        Optional<String> o = Optional.of("我是笨蛋");
+        String content = o.orElseThrow(() -> new RuntimeException("数据不存在"));
+        System.out.println(content);
+        System.out.println("------------------------------------------------");
+        Optional<String> o2 = Optional.ofNullable(null);
+        String content2 = o2.orElseThrow(() -> new RuntimeException("数据不存在"));
+        System.out.println(content2);
     }
 
     @Data
