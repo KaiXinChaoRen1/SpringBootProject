@@ -1,5 +1,7 @@
 package com.lwq.precious.p00_a随笔;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -12,6 +14,7 @@ import java.util.concurrent.Future;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lwq.precious.model.CloneStudent;
@@ -29,16 +32,31 @@ public class GoGoGoTest implements Serializable {
     @Autowired
     private AsyncTaskService asyncTaskService;
 
+    /**
+     * 断言测试
+     */
     @Test
-    public void name16(){
-        try {
-            int i=1/0;
-        } catch (Exception e) {
-            log.info("呵呵",e);
-        }
-       
+    public void name17() {
+        int a = 2;
+        assertEquals(2, a);
+        System.out.println("wuhu~~~~~~~~~");
+        assertEquals(3, a);     //断言失败后不会执行后面的
+        System.out.println("wuhu~~~~~~~~~");
+        assertEquals(2, a);
     }
 
+    /**
+     * 测试log打印
+     */
+    @Test
+    public void name16() {
+        try {
+            int i = 1 / 0;
+        } catch (Exception e) {
+            log.info("呵呵", e);
+        }
+
+    }
 
     /*
      * 测试异步任务
@@ -50,7 +68,7 @@ public class GoGoGoTest implements Serializable {
         Future<String> task2 = asyncTaskService.task2();
         Future<String> task3 = asyncTaskService.task3();
         long end = System.currentTimeMillis();
-        System.out.println("执行到这里的时间是" + (end - begin));//如果这里直接结束,会打断子线程的睡眠,那会不会打断正儿八经的任务呢
+        System.out.println("执行到这里的时间是" + (end - begin));// 如果这里直接结束,会打断子线程的睡眠,那会不会打断正儿八经的任务呢
         System.out.println(task1.get());
         System.out.println(task2.get());
         System.out.println(task3.get());

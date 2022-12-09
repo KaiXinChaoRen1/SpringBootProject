@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TimerService {
 
 
-    @PostConstruct
+    //@PostConstruct
     public void hehe(){
         //指定时间
         String dateTimeStr = "2022-12-08 19:21:15";
