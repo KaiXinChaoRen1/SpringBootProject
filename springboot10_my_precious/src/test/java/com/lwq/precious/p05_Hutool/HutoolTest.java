@@ -1,5 +1,6 @@
 package com.lwq.precious.p05_Hutool;
 
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -69,6 +70,14 @@ public class HutoolTest {
         System.out.println(ObjectUtil.isBasicType(str));
         System.out.println(ObjectUtil.isBasicType(i));
         System.out.println(ObjectUtil.isBasicType(integer));
+    }
+
+    /**
+     * Assert
+     */
+    @Test
+    public void name4() {
+        Assert.notBlank("    ",()->new RuntimeException("传入字符串为空"));
     }
 
 }
