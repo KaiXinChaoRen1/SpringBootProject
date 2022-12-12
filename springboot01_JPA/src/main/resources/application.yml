@@ -2,10 +2,12 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://bj-cynosdbmysql-grp-q8gh40uo.sql.tencentcdb.com:29119/lwq_test?useSSL=false
+    url: "jdbc:mysql://bj-cynosdbmysql-grp-q8gh40uo.sql.tencentcdb.com:29119/lwq_test?\
+    useSSL=false\
+    "
+
     username: root
     password: Aa@111111
-
   #jpa相关配置(和datasource同级)
   jpa:
     hibernate:
@@ -16,9 +18,9 @@ spring:
                 #create-drop:每次运行程序时会创建表结构，然后程序结束时清空数据
                 #update: 每次运行程序没有表时会创建表，如果对象改变会更新表结构，原有数据不会清除，只会更新
                 #validate: 运行程序会校验数据与数据库的字段类型是否相同，字段不同会报错
-    open-in-view: false   # 默认为true
+    open-in-view: false   # 默认为true(不会)
     properties:
       hibernate:
        show_sql: true    #输出sql语句
        format_sql: true  #格式化输出的sql，否则会一行显示
-       #user_query_cache: true  #这条还没弄回
+       #user_query_cache: true  #这条还没弄会

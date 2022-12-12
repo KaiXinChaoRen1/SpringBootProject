@@ -2,6 +2,9 @@ package com.lwq.springboot01;
 
 import com.lwq.springboot01.Entity.schoolstory.Person;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
+
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,7 +49,7 @@ public class One {
 
     @Test
     public void name1() {
-        Person p1 = Person.builder().name("zhangfei").age(55).build();
+        Person p1 = Person.builder().name("zhangfei").age(55).birthday(LocalDateTime.now()).build();
         pr.save(p1);
     }
 }

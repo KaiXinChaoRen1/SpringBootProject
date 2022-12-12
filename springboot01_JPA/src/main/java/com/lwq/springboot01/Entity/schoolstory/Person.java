@@ -3,6 +3,7 @@ package com.lwq.springboot01.Entity.schoolstory;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -24,6 +25,9 @@ public class Person {
 
     @Column(name = "age")
     private Integer age;
+
+    @Column(name = "birthday")
+    private LocalDateTime birthday;
 
     public Person(String name){
         this.name=name;
