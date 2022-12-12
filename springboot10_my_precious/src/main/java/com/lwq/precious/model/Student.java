@@ -1,5 +1,7 @@
 package com.lwq.precious.model;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -7,8 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,5 +29,8 @@ public class Student {
 
     private void cry() {
         System.out.println("我在狗叫,芜湖~");
+    }
+    public void learning() {
+        System.out.println("我叫"+name+"我在学习,芜湖~");
     }
 }
