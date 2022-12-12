@@ -11,14 +11,14 @@ spring:
   #jpa相关配置(和datasource同级)
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       #ddl-auto: create
                 #none 什么也不做
                 #create: 每次运行应用程序时，都会重新创建表，所以，数据都会丢失
                 #create-drop:每次运行程序时会创建表结构，然后程序结束时清空数据
                 #update: 每次运行程序没有表时会创建表，如果对象改变会更新表结构，原有数据不会清除，只会更新
                 #validate: 运行程序会校验数据与数据库的字段类型是否相同，字段不同会报错
-    open-in-view: false   # 默认为true(不会)
+    open-in-view: false   # 默认为true(是指延时加载的一些属性数据，可以在页面展现的时候，保持session不关闭，从而保证能在页面进行延时加载?)
     properties:
       hibernate:
        show_sql: true    #输出sql语句

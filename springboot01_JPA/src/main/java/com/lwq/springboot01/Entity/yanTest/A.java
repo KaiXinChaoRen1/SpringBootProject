@@ -1,5 +1,6 @@
 package com.lwq.springboot01.Entity.yanTest;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,15 +35,18 @@ public class A {
     @JoinColumn
     private String name;
 
-    @OneToMany(mappedBy = "a",fetch = FetchType.EAGER)
-    private Set<B> bSet;
+    @Builder.Default
+    @OneToMany(mappedBy = "a")
+    private Set<B> bSet=new HashSet<>();
 
+    //下面两个用于多层级测试
     //把A当作目录,则A拥有其他子A
-    @OneToMany(mappedBy = "parentA",fetch = FetchType.EAGER)
-    private Set<A> childrenA;
+    @Builder.Default
+    @OneToMany(mappedBy = "parentA")
+    private Set<A> childrenA=new HashSet<>();
 
     //把A当作目录,则A拥有一个父A
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn
     private  A  parentA;
 }

@@ -15,9 +15,6 @@ public class RunApplication {
         //run就是IOC容器
         ConfigurableApplicationContext run = SpringApplication.run(RunApplication.class, args);
 
-        System.out.println(run.getBean("p1"));
-        System.out.println("项目已启动~~~~~~~~~~");
-
 
     }
 }
