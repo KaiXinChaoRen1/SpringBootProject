@@ -12,7 +12,7 @@ import xin.altitude.cms.common.util.TreeUtils;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class TreeTest {
+public class TreeUtilsTest {
 
     @Autowired
     private SubjectRepository sr;

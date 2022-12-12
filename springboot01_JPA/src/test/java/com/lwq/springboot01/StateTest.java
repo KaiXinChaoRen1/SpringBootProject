@@ -29,9 +29,9 @@ public class StateTest {
 
 
 
-    //************************ detached entity passed to persist*******************************
+    //*********************下面的内容前提是id自动生成*****************************
     @Commit
-    @Transactional  //如果不加事务,刚从数据库中拿出来session关闭又成游离对象了
+    @Transactional
     @Test
     public void name6() {
         HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
@@ -52,7 +52,7 @@ public class StateTest {
     public void name5() {
         HeadTeacher ht1 = HeadTeacher.builder().name("宗清广").build();
         Student s1 = Student.builder().name("李文强").ht(ht1).build();
-
+        sr.save(s1);
         //即使在session中也有可能出现这个错误,比如前端传入的,或者放在缓存集合中的游离对象
         //模拟一个id一样的,作为游离对象而不是瞬时对象
         HeadTeacher ht2 = HeadTeacher.builder().id(1).name("hehe").build();
@@ -76,41 +76,42 @@ public class StateTest {
     }
     //***********************************************************************************
 
+
+
+
+
+    //********************************下面是持久态相关问题*************************************
     @Commit
     @Transactional
     @Test
     public void name33() {
         //创建对象加入id
-        Person p1 = Person.builder().id(1).name("lwq").age(55).build();
-        //接收持久对象
-        pr.save(p1);
-        p1.setName("www");
-        pr.save(p1);        //保存单个游离对象不会报错
+        Person p1 = Person.builder().id(11111).name("lwqq").age(55).build();
+        pr.save(p1);   //id相同算修改,id不同算新增    
     }
-
 
     @Commit
     @Transactional
     @Test
     public void name3() {
         //创建对象加入id
-        Person p1 = Person.builder().id(1).name("lwq").age(55).build();
-        //接收持久对象
+        Person p1 = Person.builder().id(10086).name("lwq").age(55).build();
+        //接收持久对象,又可以同步了
         Person p2 = pr.save(p1);
         System.out.println(p1);
         p2.setName("www");
     }
 
-
+    
     @Commit
     @Transactional
     @Test
-    public void name2() {
-        //创建对象加入id
-        Person p1 = Person.builder().id(1).name("lwq").age(55).build();
+    public void name111() {
+        //创建对象的时候添加上id,同步就不行了,而且如果设置了自动生成id,你在给加上id居然覆盖不了
+        Person p1 = Person.builder().id(199).name("lwq").age(55).build();
         pr.save(p1);
-        System.out.println(p1);
-        p1.setName("www");
+        System.out.println(p1);         
+        p1.setName("www");        
     }
 
     @Commit
@@ -120,7 +121,7 @@ public class StateTest {
         Person p1 = Person.builder().name("lwq").age(55).build();
         pr.save(p1);
         System.out.println(p1);
-        p1.setName("www");              //这里就同步到数据库了
+        p1.setName("www");              //这里就同步到数据库了,而不是方法的最后
         Person p2 = pr.findById(1).get();
         System.out.println(p2);
     }
@@ -132,7 +133,7 @@ public class StateTest {
     public void name1() {
         Person p1 = Person.builder().name("lwq").age(55).build();
         pr.save(p1);
-        System.out.println(p1);     //数据库的修改会同步到内存中的java对象
+        System.out.println(p1);          //数据库的修改会同步到内存中的java对象
         p1.setName("www");          //session内java对象修改会同步到数据库
     }
 }
