@@ -35,4 +35,14 @@ public class ListTest {
     }
 
 
+    /**
+     * List.contains()
+     */
+    @Test
+    void name3() {
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList("我", "是", "你", "爸", "爸"));
+        System.out.println(arrayList.contains("我")); 
+    }
+
+
 }
