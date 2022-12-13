@@ -15,6 +15,7 @@ import java.util.concurrent.FutureTask;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.lwq.precious.model.CloneStudent;
@@ -35,6 +36,13 @@ public class GoGoGoTest implements Serializable {
 
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
+
+    
+    @Test
+    public void name() {
+        Assert.notNull(null, "数据为null"); 
+    }
+
 
     /**
      * 断言测试

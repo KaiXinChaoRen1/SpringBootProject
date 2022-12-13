@@ -7,12 +7,24 @@ import java.io.IOException;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StopWatch;
 import org.springframework.util.StreamUtils;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class MyUtils {
+
+    /**
+     * Spring断言工具类
+     */
+    @Test
+    public void name19() {
+        Assert.notNull(null, "数据为null");
+        Assert.hasLength("    ", "字符串没有长度");
+        Assert.hasText("    ", "字符串没有内容");
+    }
+
     /**
      * StopWatch--代码用时分析
      */
