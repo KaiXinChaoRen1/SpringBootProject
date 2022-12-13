@@ -1,18 +1,22 @@
 package com.lwq.precious.p05_Hutool;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.ReflectionUtils;
+
+import com.lwq.precious.model.Student;
+
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
-import com.lwq.precious.model.Student;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class HutoolTest {
@@ -37,14 +41,30 @@ public class HutoolTest {
     }
 
     /**
-     * 反射
-     * Hutool工具类调用私有方法
+     * Hutool反射工具类
+     * 设置对象属性
+     * 调用私有方法
      */
     @Test
     public void name1() {
         Method method = ReflectUtil.getMethod(Student.class, "cry");
         Student newInstance = ReflectUtil.newInstance(Student.class);
+        ReflectUtil.setFieldValue(newInstance, "name", "hehe");
         ReflectUtil.invoke(newInstance, method, null);
+    }
+
+    /**
+     * Spring反射工具类
+     */
+    @Test
+    public void name11() {
+        Student student = new Student();
+        Method method = ReflectionUtils.findMethod(Student.class, "cry");
+        ReflectionUtils.makeAccessible(method);
+        Field field = ReflectionUtils.findField(student.getClass(), "name");
+        ReflectionUtils.makeAccessible(field);
+        ReflectionUtils.setField(field, student, "成龙");
+        ReflectionUtils.invokeMethod(method, student);
     }
 
     /**
@@ -77,7 +97,7 @@ public class HutoolTest {
      */
     @Test
     public void name4() {
-        Assert.notBlank("    ",()->new RuntimeException("传入字符串为空"));
+        Assert.notBlank("    ", () -> new RuntimeException("传入字符串为空"));
     }
 
 }
