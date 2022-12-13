@@ -10,15 +10,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.lwq.precious.model.CloneStudent;
 import com.lwq.precious.service.AsyncTaskService;
+import com.lwq.precious.service.AsyncTaskService2;
 
 import cn.hutool.core.util.ObjectUtil;
 import lombok.Data;
@@ -32,6 +33,9 @@ public class GoGoGoTest implements Serializable {
     @Autowired
     private AsyncTaskService asyncTaskService;
 
+    @Autowired
+    private AsyncTaskService2 asyncTaskService2;
+
     /**
      * 断言测试
      */
@@ -40,7 +44,7 @@ public class GoGoGoTest implements Serializable {
         int a = 2;
         assertEquals(2, a);
         System.out.println("wuhu~~~~~~~~~");
-        assertEquals(3, a);     //断言失败后不会执行后面的
+        assertEquals(3, a); // 断言失败后不会执行后面的
         System.out.println("wuhu~~~~~~~~~");
         assertEquals(2, a);
     }
@@ -62,11 +66,27 @@ public class GoGoGoTest implements Serializable {
      * 测试异步任务
      */
     @Test
-    public void name15() throws InterruptedException, ExecutionException {
+    public void name155() throws InterruptedException, ExecutionException {
         long begin = System.currentTimeMillis();
         Future<String> task1 = asyncTaskService.task1();
         Future<String> task2 = asyncTaskService.task2();
         Future<String> task3 = asyncTaskService.task3();
+        long end = System.currentTimeMillis();
+        System.out.println("执行到这里的时间是" + (end - begin));// 如果这里直接结束,会打断子线程的睡眠,那会不会打断正儿八经的任务呢
+        System.out.println(task1.get());
+        System.out.println(task2.get());
+        System.out.println(task3.get());
+    }
+
+    /*
+     * 测试手写异步任务2
+     */
+    @Test
+    public void name15() throws InterruptedException, ExecutionException {
+        long begin = System.currentTimeMillis();
+        FutureTask<String> task1 = asyncTaskService2.task1();
+        FutureTask<String> task2 = asyncTaskService2.task2();
+        FutureTask<String> task3 = asyncTaskService2.task3();
         long end = System.currentTimeMillis();
         System.out.println("执行到这里的时间是" + (end - begin));// 如果这里直接结束,会打断子线程的睡眠,那会不会打断正儿八经的任务呢
         System.out.println(task1.get());
