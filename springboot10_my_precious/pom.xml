@@ -15,6 +15,13 @@
 
 
     <dependencies>
+        <!-- 使jackson支持java8时间格式 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+
         <!-- fastjson2 -->
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
