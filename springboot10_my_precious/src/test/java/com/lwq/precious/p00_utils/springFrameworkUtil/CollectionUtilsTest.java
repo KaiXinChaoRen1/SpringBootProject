@@ -12,6 +12,21 @@ import org.springframework.util.CollectionUtils;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class CollectionUtilsTest {
 
+    @Test
+    public void name2() {
+        boolean containsAnyFlag = CollectionUtils.containsAny(new ArrayList<>(Arrays.asList(1, 2, 3)),
+                null);
+        System.out.println(containsAnyFlag);
+
+        boolean containsAnyFlag2 = CollectionUtils.containsAny(new ArrayList<>(Arrays.asList(1, 2, 3)),
+                new ArrayList<>());
+        System.out.println(containsAnyFlag2);
+
+        boolean containsAnyFlag3 = CollectionUtils.containsAny(null,
+                new ArrayList<>());
+        System.out.println(containsAnyFlag3);
+    }
+
     /**
      * import org.springframework.util.CollectionUtils;
      */
