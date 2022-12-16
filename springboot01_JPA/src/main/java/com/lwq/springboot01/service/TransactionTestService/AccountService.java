@@ -16,10 +16,12 @@ public class AccountService {
     private UserService userService;
 
     @Transactional
-    public void addAccount() {
+    public void addAccount() throws Exception {
+        //这里try-catch之后不会回滚
         Account newAccount = Account.builder().id(1L).accountNum(1001L).build();
         accountRepository.save(newAccount);
         userService.addUser();
+
     }
 
 }

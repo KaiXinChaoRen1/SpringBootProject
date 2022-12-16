@@ -41,7 +41,7 @@ public class TransactionTestController {
             List<User> allUser = userRepository.findAll();
             accountRepository.deleteAll();
             userRepository.deleteAll();
-            return "注册账户的数量为" + allAccount.size() + ",用户的数量为" + allUser.size()+",but,现在都删除了";
+            return "注册账户的数量为" + allAccount.size() + ",用户的数量为" + allUser.size() + ",but,现在都删除了";
         } catch (Exception e) {
             return e.getMessage();
         }
