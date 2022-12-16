@@ -1,4 +1,4 @@
-package com.lwq.springboot01.Entity.tree;
+package com.lwq.springboot01.Entity.treeUtils;
 
 
 import javax.persistence.Entity;
