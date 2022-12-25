@@ -11,7 +11,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser() throws Exception{
+    public void addUser(){
         User newUser = User.builder().id(1L).name("黄春").build();
         //int i = 1 / 0;
         userRepository.save(newUser);

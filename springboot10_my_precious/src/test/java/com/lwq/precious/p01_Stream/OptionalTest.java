@@ -47,7 +47,7 @@ public class OptionalTest {
 
     /**
      * flatMap,当mapping
-     * function返回的是Optional类型的数据时，可以直接使用flatMap，flatMap直接返回该Optional
+     * function返回的是Optional类型的数据时，可以直接使用flatMap，flatMap直接返回Optional
      */
     @Test
     public void name3() {

@@ -2,7 +2,9 @@ package com.lwq.springboot01.controller;
 
 import java.util.List;
 
+import com.lwq.springboot01.service.TransactionTestService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +24,11 @@ public class TransactionTestController {
     private AccountRepository accountRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private TransactionTemplate transactionTemplate;
 
     @GetMapping("/add")
     public String add() {
@@ -32,6 +39,24 @@ public class TransactionTestController {
             return e.getMessage();
         }
 
+    }
+
+    /**
+     * 编程式事务
+     */
+    @GetMapping("/add2")
+    public String add2() {
+        try {
+            transactionTemplate.execute(t->{
+                Account newAccount = Account.builder().id(1L).accountNum(1001L).build();
+                accountRepository.save(newAccount);
+                userService.addUser();
+                return null;
+            });
+            return "添加成功";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     @GetMapping("/get")
