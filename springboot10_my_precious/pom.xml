@@ -15,6 +15,36 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.core</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.template</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.30</version>
+        </dependency>
         <!-- 使jackson支持java8时间格式 -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
@@ -48,13 +78,12 @@
         </dependency>
 
 
-
-<!--        &lt;!&ndash;jedis&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>redis.clients</groupId>-->
-<!--            <artifactId>jedis</artifactId>-->
-<!--            <version>3.7.0</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash;jedis&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>redis.clients</groupId>-->
+        <!--            <artifactId>jedis</artifactId>-->
+        <!--            <version>3.7.0</version>-->
+        <!--        </dependency>-->
 
         <!--编写httpclientUtils的依赖-->
         <dependency>
@@ -62,7 +91,7 @@
             <artifactId>httpclient</artifactId>
         </dependency>
 
-         <dependency>
+        <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
@@ -81,7 +110,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-       
+
         <!--web依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -118,8 +147,6 @@
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
         </dependency>
-
-   
 
 
     </dependencies>
