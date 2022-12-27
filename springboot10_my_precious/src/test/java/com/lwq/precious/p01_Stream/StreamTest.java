@@ -18,6 +18,27 @@ import java.util.stream.Stream;
 class StreamTest {
 
     /**
+     * toMap:value不能为null
+     *       key有覆盖问题时需要加后面的(V1,V2)->V1)覆盖规则
+     */
+    @Test
+    public void name99981() {
+        People build1 = People.builder().sex("男").name("唐三藏").build();
+        People build2 = People.builder().sex("男").name("唐三彩").build();
+        People build3 = People.builder().sex("女").name("老鼠精").build();
+        People build4 = People.builder().sex("女").name("玉兔精").build();
+        ArrayList<People> pList = new ArrayList<>();
+        pList.add(build1);
+        pList.add(build2);
+        pList.add(build3);
+        pList.add(build4);
+        
+        Map<String, String> collect = pList.stream().collect(Collectors.toMap(People::getSex, People::getName,(V1,V2)->V1));
+        System.out.println(collect);
+
+    }
+
+    /**
      * 分组groupingBy(),返回map
      */
     @Test
