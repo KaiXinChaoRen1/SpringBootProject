@@ -19,7 +19,7 @@ class StreamTest {
 
     /**
      * toMap:value不能为null
-     *       key有覆盖问题时需要加后面的(V1,V2)->V1)覆盖规则
+     * key有覆盖问题时需要加后面的(V1,V2)->V1)覆盖规则
      */
     @Test
     public void name99981() {
@@ -32,8 +32,9 @@ class StreamTest {
         pList.add(build2);
         pList.add(build3);
         pList.add(build4);
-        
-        Map<String, String> collect = pList.stream().collect(Collectors.toMap(People::getSex, People::getName,(V1,V2)->V1));
+
+        Map<String, String> collect = pList.stream()
+                .collect(Collectors.toMap(People::getSex, People::getName, (V1, V2) -> V1));
         System.out.println(collect);
 
     }

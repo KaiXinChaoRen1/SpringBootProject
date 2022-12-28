@@ -33,28 +33,28 @@ public class WordController {
     public void exportWord(HttpServletResponse response) throws Exception {
         OutputStream out = null;
 
-        //获取Word模板
-        InputStream ins = new FileInputStream("C:\\Users\\lwq\\Desktop\\a.xml");
-        //注册xdocreport实例并加载FreeMarker模板引擎
+        // 获取Word模板
+        InputStream ins = new FileInputStream("C:\\Users\\lwq\\Desktop\\a.docx");
+        // 注册xdocreport实例并加载FreeMarker模板引擎
         IXDocReport report = XDocReportRegistry.getRegistry().loadReport(ins, TemplateEngineKind.Freemarker);
-        //创建xdocreport上下文对象
+        // 创建xdocreport上下文对象
         IContext context;
         context = report.createContext();
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
         HashMap<String, String> stringstringHashMap = new HashMap<String, String>();
-        stringstringHashMap.put("haha","哈哈");
+        stringstringHashMap.put("haha", "哈哈");
         HashMap<String, String> stringstringHashMap2 = new HashMap<String, String>();
-        stringstringHashMap2.put("haha","哈哈2");
+        stringstringHashMap2.put("haha", "哈哈2");
         dataList.add(stringstringHashMap);
         dataList.add(stringstringHashMap2);
 
         context.put("hehe", "呵呵");
         context.put("dataList", dataList);
 
-
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/msword");
-        response.setHeader("Content-Disposition", "attachment; filename=".concat(String.valueOf(URLEncoder.encode("美国重大时间.docx", "UTF-8"))));
+        response.setHeader("Content-Disposition",
+                "attachment; filename=".concat(String.valueOf(URLEncoder.encode("美国重大时间.docx", "UTF-8"))));
         out = response.getOutputStream();
         report.process(context, out);
         out.flush();
@@ -62,4 +62,3 @@ public class WordController {
 
     }
 }
-
