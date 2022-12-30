@@ -75,6 +75,23 @@ public class InsertTest {
         System.out.println("表里共"+count+"条数据");
     }
 
+    /**
+     * 雪花算法
+     */
+    @Test
+    public void name4() {
+        ArrayList<Subject> arrayList = new ArrayList<>();
+        for (int i = 0; i < 500000; i++) {
+            arrayList.add(Subject.builder().uuid(snowflake.nextIdStr()).build());
+        }
+        long begin = System.currentTimeMillis();
+        batchInsert(arrayList);
+        long end = System.currentTimeMillis();
+        System.out.println("用时"+(end-begin)/1000+"秒");
+        long count = sr.count();
+        System.out.println("表里共"+count+"条数据");
+    }
+
 
 
     @Autowired
