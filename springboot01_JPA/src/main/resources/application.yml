@@ -4,15 +4,15 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://bj-cynosdbmysql-grp-q8gh40uo.sql.tencentcdb.com:29119/lwq_test?\
     useSSL=false\
-    "
+    &rewriteBatchedStatements=true"
 
     username: root
     password: Aa@111111
   #jpa相关配置(和datasource同级)
   jpa:
     hibernate:
-      ddl-auto: update
-      #ddl-auto: create
+      #ddl-auto: update
+      ddl-auto: create
                 #none 什么也不做
                 #create: 每次运行应用程序时，都会重新创建表，所以，数据都会丢失
                 #create-drop:每次运行程序时会创建表结构，然后程序结束时清空数据
@@ -21,6 +21,12 @@ spring:
     open-in-view: false   # 默认为true(是指延时加载的一些属性数据，可以在页面展现的时候，保持session不关闭，从而保证能在页面进行延时加载?)
     properties:
       hibernate:
-       show_sql: true    #输出sql语句
-       format_sql: true  #格式化输出的sql，否则会一行显示
+       #show_sql: true    #输出sql语句
+       #format_sql: true  #格式化输出的sql，否则会一行显示
        #user_query_cache: true  #这条还没弄会
+        jdbc: 
+          batch_size: 500
+          batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
+       
