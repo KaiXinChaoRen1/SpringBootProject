@@ -25,7 +25,8 @@ spring:
        #format_sql: true  #格式化输出的sql，否则会一行显示
        #user_query_cache: true  #这条还没弄会
         jdbc: 
-          batch_size: 500
+          fetch_size: 100
+          batch_size: 100
           batch_versioned_data: true
         order_inserts: true
         order_updates: true
