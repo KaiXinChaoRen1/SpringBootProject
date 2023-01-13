@@ -60,12 +60,13 @@ public class FileController {
 
     @ApiOperation("文件上传")
     @PostMapping("/upload")
-    public void name(@RequestPart MultipartFile myMultipartFile) throws IOException {
-        if (myMultipartFile.isEmpty()) {
+    public void name(@RequestPart MultipartFile[] myMultipartFile) throws IOException {
+        MultipartFile  m=myMultipartFile[0];
+        if (m.isEmpty()) {
             return;
         }
         //获取流
-        InputStream inputStream = myMultipartFile.getInputStream();
+        InputStream inputStream = m.getInputStream();
 
         //操作流
         int b;
