@@ -46,7 +46,7 @@ public class HelloController {
     // private ArrayList<Person> myList;
 
     @Autowired
-    private Environment env; // 注入这一个对象后就可以调用配置文件中的属性了
+    private Environment env; // 注入这一个对象后就可以获取到配置文件中的内容了
 
     @Autowired
     private Person person; // 为该对象注入配置文件中属性的步骤去person上找

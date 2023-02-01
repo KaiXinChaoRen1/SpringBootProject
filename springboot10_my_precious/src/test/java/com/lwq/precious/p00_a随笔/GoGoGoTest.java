@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
@@ -37,15 +38,49 @@ public class GoGoGoTest implements Serializable {
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
 
-    
+    /**
+     * Set存储String
+     */
     @Test
-    public void name() {
-        Assert.notNull(null, "数据为null"); 
+    public void name2221() {
+        String s1 = "111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        String s2 = "111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        System.out.println(s1.equals(s2));
+        HashSet<String> hashSet = new HashSet<>();
+        hashSet.add(s2);
+        hashSet.add(s1);
+        System.out.println(hashSet.size());
     }
 
+    /**
+     * 字符串分割
+     */
+    @Test
+    public void name222() {
+        String s = "1;2;3;";
+        String[] split = s.split(";");
+        System.out.println(split.length);
+        for (int i = 0; i < split.length; i++) {
+            System.out.println(split[i]);
+        }
+
+    }
 
     /**
-     * 断言测试
+     * org.springframework.util.Assert断言,否则抛出错误
+     */
+    @Test
+    public void name() {
+        try {
+            Assert.notNull(null, "数据为null");
+        } catch (Exception e) {
+           log.error("",  e);
+        }
+        
+    }
+
+    /**
+     * 断言测试,Test里带的断言
      */
     @Test
     public void name17() {
