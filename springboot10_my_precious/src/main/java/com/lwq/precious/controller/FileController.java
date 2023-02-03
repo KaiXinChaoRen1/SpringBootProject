@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,6 +33,20 @@ public class FileController {
         response.flushBuffer();
     }
 
+
+    @ApiOperation("文件预览")
+    @GetMapping("/yulan")
+    public void yulan(HttpServletResponse response) throws IOException {    
+        response.setHeader("Content-Disposition", "inline;filename=bbb.png");
+        response.setContentType("image/png");
+        //读取文件
+        FileInputStream fis = new FileInputStream("C:\\Users\\wenqiang.li1\\Desktop\\aaa.png");
+        
+        ServletOutputStream outputStream = response.getOutputStream();
+        //写入返回
+        StreamUtils.copy(fis, outputStream);
+    }
+
     @ApiOperation("文件下载")
     @GetMapping("/download")
     public String name1(HttpServletResponse response) throws IOException {
@@ -41,8 +56,10 @@ public class FileController {
         //response.setHeader("Content-Disposition", "attachment;filename="+myFileName);
         //文件名带中文需要设置一下文件名编码
         //Content-Disposition:来设置文件下载对话框。
-        //attachment:表示以附件形式下载(如果要在页面中打开，可以改为inline)
+        //attachment:表示以附件形式下载(如果要在页面中打开，可以改为inline,详见文件预览接口)
         response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(myFileName, "UTF-8"));
+        //response.setHeader("Content-Disposition", "inline");
+
 
         //告诉浏览器区分不同类型的数据(有很多很多种,用到再去查吧)
         response.setContentType("application/octer-stream");
