@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -74,9 +75,9 @@ public class GoGoGoTest implements Serializable {
         try {
             Assert.notNull(null, "数据为null");
         } catch (Exception e) {
-           log.error("",  e);
+            log.error("", e);
         }
-        
+
     }
 
     /**
