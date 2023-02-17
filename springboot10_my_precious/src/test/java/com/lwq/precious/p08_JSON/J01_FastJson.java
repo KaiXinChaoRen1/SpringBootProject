@@ -13,19 +13,22 @@ import com.lwq.precious.model.Student;
 public class J01_FastJson {
     @Test
     void name() {
-        // Java对象->Json字符串
+        // Object->JSONString
         HashMap<Object, Object> hashMap = new HashMap<>();
         hashMap.put("name", "李文强");
         hashMap.put("school", "清华大学");
         String jsonString = JSON.toJSONString(hashMap);
         System.out.println(jsonString);
 
-        // 字符串->JSON对象
+        // JSONString->JSONObject
         JSONObject parseObject = JSON.parseObject(jsonString);
-        // 操作JSON对象
+        // JSONObject->JSONString
+        String str = parseObject.toString();
+        System.out.println("JSONObject.toString()和对象直接转换的JSONString是否相等: " + str.equals(jsonString));
+        // 操作JSONObject
         System.out.println(parseObject.getString("name"));
 
-        // JSON字符串->Java对象
+        // JSONString->Java对象
         HashMap parseMap = JSON.parseObject(jsonString, HashMap.class);
         System.out.println(parseMap);
         parseMap.put("money", "$9999999999");
@@ -37,8 +40,10 @@ public class J01_FastJson {
     void name1() {
         Student build = Student.builder().name("李文强").build();
         String jsonString = JSON.toJSONString(build);
-        Student parseObject = JSON.parseObject(jsonString, Student.class);
-        parseObject.learning();
+        System.out.println(jsonString);
+        String replace = jsonString.replace("李文强", "孙悟空");
+        Student student = JSON.parseObject(replace, Student.class);
+        student.learning();
     }
 
 }
