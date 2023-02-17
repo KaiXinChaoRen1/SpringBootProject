@@ -13,22 +13,22 @@ import com.lwq.precious.model.Student;
 public class J01_FastJson {
     @Test
     void name() {
-        //Java对象->Json字符串
+        // Java对象->Json字符串
         HashMap<Object, Object> hashMap = new HashMap<>();
         hashMap.put("name", "李文强");
         hashMap.put("school", "清华大学");
         String jsonString = JSON.toJSONString(hashMap);
         System.out.println(jsonString);
 
-        //字符串->JSON对象
+        // 字符串->JSON对象
         JSONObject parseObject = JSON.parseObject(jsonString);
-        //操作JSON对象
+        // 操作JSON对象
         System.out.println(parseObject.getString("name"));
 
-        //JSON字符串->Java对象
+        // JSON字符串->Java对象
         HashMap parseMap = JSON.parseObject(jsonString, HashMap.class);
         System.out.println(parseMap);
-        parseMap.put("money","$9999999999");
+        parseMap.put("money", "$9999999999");
         System.out.println(parseMap);
 
     }

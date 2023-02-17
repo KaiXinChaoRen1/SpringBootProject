@@ -12,17 +12,18 @@ public class StringUtilsTest {
      */
     @Test
     public void name() {
-        System.out.println(StringUtils.hasText("    "));
-        System.out.println(StringUtils.hasLength("    "));
+        System.out.println(StringUtils.hasText("    "));    //空格不算Text
+        System.out.println(StringUtils.hasLength("    "));  //空格算长度
         // 去除前后空格
         String str = "  什 么 鬼   ";
         String trimWhitespace = StringUtils.trimWhitespace(str);
         System.out.println(trimWhitespace);
         String str2 = "  什 么 鬼   ";
+        System.out.println(str==str2);//true
         String trim = str2.trim();
         System.out.println(trim);
-        System.out.println(trimWhitespace.equals(trim));
-        System.out.println(trimWhitespace == trim);
+        System.out.println(trimWhitespace.equals(trim));        //String重写了equals
+        System.out.println(trimWhitespace == trim);             //地址值不一样
         // 去除所有空格
         String trimAllWhitespace = StringUtils.trimAllWhitespace(str);
         System.out.println(trimAllWhitespace);

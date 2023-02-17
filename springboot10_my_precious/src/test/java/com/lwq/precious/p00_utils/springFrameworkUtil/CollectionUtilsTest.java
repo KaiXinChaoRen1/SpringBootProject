@@ -82,6 +82,26 @@ public class CollectionUtilsTest {
         // <T> T findValueOfType(Collection<?> collection, Class<T> type)
         // // 返回 List/Set 中指定类型的元素。如果第一种类型未找到，则查找第二种类型，以此类推
         // Object findValueOfType(Collection<?> collection, Class<?>[] types)
+        
+        
         // // 返回 List/Set 中元素的类型
         // Class<?> findCommonElementType(Collection<?> collection)
+        @Test
+        public void nam2e() {
+                ArrayList<String> arrayList = new ArrayList<>();
+                arrayList.add("数据");
+                Class<?> classType = CollectionUtils.findCommonElementType(arrayList);
+                System.out.println("集合中元素的类型是"+classType);
+                ArrayList<String> arrayList2 = new ArrayList<String>();
+                Class<?> classType2 = CollectionUtils.findCommonElementType(arrayList2);
+                System.out.println("空集合中元素的类型是"+classType2);
+
+                ArrayList<Object> arrayList3 = new ArrayList<>();
+                //arrayList3.add("数据");
+                arrayList3.add(1123);   //类型不一样返回null
+                Class<?> classType3 = CollectionUtils.findCommonElementType(arrayList3);
+                System.out.println("集合中元素的类型是"+classType3);
+        }
+        
+        
 }

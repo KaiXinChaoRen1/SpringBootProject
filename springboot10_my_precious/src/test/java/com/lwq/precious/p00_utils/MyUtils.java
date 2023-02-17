@@ -21,7 +21,9 @@ public class MyUtils {
     @Test
     public void name19() {
         Assert.notNull(null, "数据为null");
+
         Assert.hasLength("    ", "字符串没有长度");
+        // 空格不算内容
         Assert.hasText("    ", "字符串没有内容");
     }
 
@@ -49,8 +51,8 @@ public class MyUtils {
     }
 
     /**
-     * org.apache.commons.io
-     * copy()
+     * org.apache.commons.io.IOUtils
+     * copy()方法
      * 追加在原有数据的后面
      */
     @Test

@@ -24,7 +24,7 @@ public class Swagger3Config {
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
-                //.groupName("无敌破坏王李文强的组")
+                //.groupName("无敌破坏王李文强的组") 
                 .build();
     }
 
