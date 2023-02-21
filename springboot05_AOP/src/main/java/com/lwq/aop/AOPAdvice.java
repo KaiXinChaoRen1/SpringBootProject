@@ -21,13 +21,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class AOPAdvice {
+
     // ********************************************注解AOP*****************
     @Pointcut("@annotation(com.lwq.annotation.LWQJudgment)") // 根据包名 ==>任意返回类型,com.lwq包及其子包,任意类,任意方法,任意参数
     public void pt2() {
     }
 
     @Before("pt2()")
-    public void before2(JoinPoint jp) {
+    public void before2(JoinPoint jp) { // 当我们使用 环绕通知 @Around 作为通知类型时，会使用ProceedingJoinPoint这个连接点
         Object[] args = jp.getArgs();
         if (args[0] instanceof String) {
             System.out.println("入参是字符串类型");
@@ -41,7 +42,7 @@ public class AOPAdvice {
     // @Pointcut("execution(* name1(..))") //根据方法名 ==>任意返回类型,方法名为name1,任意参数
     // @Pointcut("execution(* com.lwq.service.TestService.*(..))") //根据类名
     // ==>任意返回类型,TestService类,任意方法,任意参数
-    @Pointcut("execution(* com.lwq.service..*.*(..))") // 根据包名 ==>任意返回类型,com.lwq包及其子包,任意类,任意方法,任意参数
+    @Pointcut("execution(* com.lwq.service..*.*(..))") // 根据包名 ==>任意返回类型,com.lwq.service包及其子包,任意类,任意方法,任意参数
     public void pt() {
     }
 
