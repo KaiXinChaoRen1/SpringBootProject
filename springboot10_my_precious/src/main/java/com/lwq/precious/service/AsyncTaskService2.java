@@ -21,7 +21,7 @@ public class AsyncTaskService2 {
             long begin = System.currentTimeMillis();
             Thread.sleep(1000);
             long end = System.currentTimeMillis();
-            return "task1执行完毕,执行时间是" + (end - begin);
+            return  "task1执行完毕,执行时间是" + (end - begin);
         });
         threadPool1.execute(futureTask);
         return futureTask;
@@ -33,7 +33,7 @@ public class AsyncTaskService2 {
             long begin = System.currentTimeMillis();
             Thread.sleep(1500);
             long end = System.currentTimeMillis();
-            return "task1执行完毕,执行时间是" + (end - begin);
+            return "task2执行完毕,执行时间是" + (end - begin);
         });
         threadPool1.execute(futureTask);
         return futureTask;
@@ -45,7 +45,7 @@ public class AsyncTaskService2 {
             long begin = System.currentTimeMillis();
             Thread.sleep(2000);
             long end = System.currentTimeMillis();
-            return "task1执行完毕,执行时间是" + (end - begin);
+            return "task3执行完毕,执行时间是" + (end - begin);
         });
         threadPool1.execute(futureTask);
         return futureTask;
