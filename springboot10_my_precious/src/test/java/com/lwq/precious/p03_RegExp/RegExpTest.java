@@ -10,6 +10,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class RegExpTest {
 
     /**
+     * 匹配第一个.之后第三个_之前的所有字符
+     */
+    @Test
+    public void name6() {
+        String str = "aaa....bbb_阿..s_d._..斯_顿as_xxx是的是的_aa";
+        Pattern pattern = Pattern.compile("(?<=\\.)[^_]*_[^_]*_[^_]*(?=_)");
+        Matcher matcher = pattern.matcher(str);
+        while (matcher.find()) {
+            System.out.println("找到" + matcher.group());
+        }
+    }
+
+    /**
      * '*' 匹配前面的子表达式零次或多次。例如，zo* 能匹配 "z" 以及 "zoo"。要匹配 * 字符，请使用 \*。
      * '+' 匹配前面的子表达式一次或多次。例如，zo+ 能匹配 "zo" 以及 "zoo"。要匹配 + 字符，请使用 \+。
      * '?' 匹配前面的子表达式零次或一次。例如，do(es)? 可以匹配 "do" 、 "does"、 "doxy" 中的 "do" 。
