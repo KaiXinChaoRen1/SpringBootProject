@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StreamUtils;
 
+/**
+ * IO流工具类
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class StreamUtilsTest {
 
