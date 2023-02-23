@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lwq.springboot01.Entity.yanTest.A;
 import com.lwq.springboot01.Entity.yanTest.ADao;
 import com.lwq.springboot01.Entity.yanTest.BDao;
 import com.lwq.springboot01.service.LayersService;
@@ -22,6 +23,8 @@ public class HelloController {
 
     @GetMapping("/")
     public String hehe() {
+        A build = A.builder().id(12).name("aaa").build();
+        aDao.save(build);
         return "我家大门常打开,开放怀抱等你";
     }
 
