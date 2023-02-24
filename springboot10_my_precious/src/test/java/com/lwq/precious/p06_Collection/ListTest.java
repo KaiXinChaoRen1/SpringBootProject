@@ -3,7 +3,9 @@ package com.lwq.precious.p06_Collection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,29 @@ import com.lwq.precious.model.MyJsonUser;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class ListTest {
+
+    /**
+     * Stream流进行sort排序
+     */
+    @Test
+    void name5() {
+        MyJsonUser user1 = MyJsonUser.builder().name("李文强").age(23).build();
+        MyJsonUser user2 = MyJsonUser.builder().name("文强李").age(24).build();
+        MyJsonUser user3 = MyJsonUser.builder().name("士大夫").age(25).build();
+        MyJsonUser user4 = MyJsonUser.builder().name("士发给第三方大夫").age(26).build();
+        HashSet<MyJsonUser> hashSet = new HashSet<>();
+
+        hashSet.add(user4);
+        hashSet.add(user3);
+        hashSet.add(user2);
+        hashSet.add(user1);
+        // 直接打印
+        System.out.println(hashSet);
+        // 升序排序
+        List<MyJsonUser> collect = hashSet.stream().sorted(Comparator.comparing(MyJsonUser::getAge))
+                .collect(Collectors.toList());
+        System.out.println(collect);
+    }
 
     /**
      * list进行sort排序

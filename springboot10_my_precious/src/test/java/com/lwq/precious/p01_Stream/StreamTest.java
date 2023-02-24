@@ -1,18 +1,26 @@
 package com.lwq.precious.p01_Stream;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
 /**
  * 1数据源 2数据处理 3收集结果（终结操作）
  * 流对象是一次性的,只能进行一次终结操作
- * 原数据不会被影响
+ * 
+ * **原数据不会被影响
+ * 数据量大的时候foreach效率更高
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class StreamTest {
