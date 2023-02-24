@@ -1,17 +1,26 @@
 package com.lwq.precious.p00_a随笔;
 
+import java.net.UnknownHostException;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.lwq.precious.model.MyJsonUser;
+import com.lwq.precious.utils.SigarUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class GoGoGoTest2 {
+
+
+    @Test
+    public void name5() throws UnknownHostException {
+        System.out.println("heh");
+        SigarUtils.property();
+    }
 
     @Test
     public void name4() {

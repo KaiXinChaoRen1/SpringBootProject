@@ -15,6 +15,12 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.fusesource</groupId>
+            <artifactId>sigar</artifactId>
+            <version>1.6.4</version>
+            </dependency>
         <dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.core</artifactId>
