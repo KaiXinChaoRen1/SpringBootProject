@@ -3,6 +3,7 @@ package com.lwq.precious.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lwq.precious.exception.PromptException;
 import com.lwq.precious.model.EnumVo;
 import com.lwq.precious.model.Season;
 
@@ -82,6 +83,14 @@ public class TestController {
         return "我家大门常打开";
     }
 
+
+    @GetMapping("/testException2")
+    public String testException2() {
+        if (1 < 2) {
+            throw new PromptException("我是异常,芜湖芜湖~~");
+        }
+        return "我家大门常打开";
+    }
     @GetMapping("/test")
     public String name() {
         System.out.println("test执行了");
