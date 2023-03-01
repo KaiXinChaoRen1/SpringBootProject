@@ -10,6 +10,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class RegExpTest {
 
     /**
+     * 匹配最后一个数字,$代表从行尾匹配第一个,^代表从开头匹配第一个
+     */
+    @Test
+    public void name7() {
+        String str = "aaa....bbb_阿..s_d._..斯_顿as_xxx是1234\n山东分公司2344梵蒂冈_aa2345";
+        System.out.println(str);
+        System.out.println("--------------------------------------");
+        Pattern pattern = Pattern.compile("(\\d+)$");
+        Matcher matcher = pattern.matcher(str);
+        while (matcher.find()) {
+            System.out.println("找到" + matcher.group());
+        }
+    }
+
+    /**
      * 匹配第一个.之后第三个_之前的所有字符
      */
     @Test
