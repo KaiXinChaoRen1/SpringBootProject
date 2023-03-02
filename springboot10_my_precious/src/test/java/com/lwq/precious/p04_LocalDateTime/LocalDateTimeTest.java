@@ -1,5 +1,6 @@
 package com.lwq.precious.p04_LocalDateTime;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,15 +16,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class LocalDateTimeTest {
 
     /*
-     * 比较LocalDate
+     * 时间戳转换时间字符串
      */
     @Test
     public void name11() {
-        String dateTimeStr = "2018-07-15 14:11:15";
-        LocalDateTime localDateTime = LocalDateTime.parse(dateTimeStr,
-                DateTimeFormatter.ofPattern("HH:mm:ss"));
-        System.out.println(localDateTime);
-
+        long currentTimeMillis = System.currentTimeMillis();
+        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm-ss").format(currentTimeMillis);
+        System.out.println("年-月-日 时-分-秒: " + currentTime);
+        String currentTime2 = new SimpleDateFormat("HH-mm-ss").format(currentTimeMillis);
+        System.out.println("时-分-秒: " + currentTime2);
     }
 
     /*
