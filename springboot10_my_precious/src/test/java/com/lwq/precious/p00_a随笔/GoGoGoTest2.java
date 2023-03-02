@@ -15,6 +15,23 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class GoGoGoTest2 {
 
+    @Test
+    public void name7() throws UnknownHostException {
+        System.out.println(System.currentTimeMillis());
+    }
+
+    @Test
+    public void name6() throws UnknownHostException {
+        try {
+            throw new RuntimeException("出现异常了");
+        } catch (Exception e) {
+            System.out.println("----------------------------------------"); 
+            e.printStackTrace();
+            System.out.println("----------------------------------------");
+            log.error("全局异常捕获", e);
+        }
+        SigarUtils.property();
+    }
 
     @Test
     public void name5() throws UnknownHostException {
