@@ -16,6 +16,19 @@ import com.lwq.precious.model.MyJsonUser;
 public class ListTest {
 
     /**
+     * 不要再循环中删除集合元素
+     */
+    @Test
+    public void name6() {
+        ArrayList<String> arrayList = new ArrayList<String>();
+        arrayList.add("a");
+        arrayList.add("ab");
+        arrayList.add("ac");
+        arrayList.removeIf(o -> o.contains("a"));
+        System.out.println(arrayList);
+    }
+
+    /**
      * Stream流进行sort排序
      */
     @Test
