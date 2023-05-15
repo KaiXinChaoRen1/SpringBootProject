@@ -24,6 +24,8 @@ public class Person {
     private Map<String,String>  map1;
     private Map<String,List<Pet>> map2;
     private Map<String,List<Pet>> map3;
+    private List<Pet> listPet;
+
 
 
 }

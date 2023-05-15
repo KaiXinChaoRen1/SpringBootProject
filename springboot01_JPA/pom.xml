@@ -48,11 +48,11 @@
         </dependency>
 
         <!--devtools热部署Ctrl+F9-->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
-        </dependency>
+        </dependency> -->
 
         <!--yml编写提示(打包时可以排除)-->
         <dependency>

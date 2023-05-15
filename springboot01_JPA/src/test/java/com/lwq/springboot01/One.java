@@ -4,6 +4,10 @@ import com.lwq.springboot01.Entity.schoolstory.Person;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class One {
     @Autowired
     private PersonRepository pr;
+
+
+    @Test
+    public void name6() {
+        List<Map<String, Object>> dataList =new ArrayList<>();
+        HashMap<String, Object> hashMap = new HashMap<String,Object>();
+        hashMap.put("id", "111");
+        hashMap.put("name","aaa" );
+        HashMap<String, Object> hashMap2 = new HashMap<String,Object>();
+        hashMap.put("id", "222");
+        hashMap.put("name","bbb" );
+        dataList.add(hashMap);
+        dataList.add(hashMap2);
+        pr.insertMap(dataList);
+
+
+    }
+
 
     //JPQL
     @Test

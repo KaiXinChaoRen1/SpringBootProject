@@ -2,8 +2,10 @@ package com.lwq.precious.p06_Collection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +16,44 @@ import com.lwq.precious.model.MyJsonUser;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class ListTest {
+
+
+
+    /**
+     * 反转
+     */
+    @Test
+    public void name8() {
+        long time1 = System.currentTimeMillis();
+        //List<Long> list = new ArrayList<>();
+        List<Long> list = new LinkedList<>();
+        for (Long i = 0L; i < 1000000L; i++) {
+            list.add(i);
+        }
+        long time2 = System.currentTimeMillis();
+        Collections.reverse(list);
+        long time3 = System.currentTimeMillis();
+
+        System.out.println("添加数据耗时"+(time2-time1));
+        System.out.println("反转耗时"+(time3-time2));
+
+        
+    }
+
+
+        /**
+     * List截取并添加自己
+     */
+    @Test
+    public void name7() {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        arrayList.add(1);
+        arrayList.add(2);
+        arrayList.add(3);
+        List<Integer> subList = arrayList.subList(1, 3);
+        subList.addAll(subList);
+        System.out.println(subList);
+    }
 
     /**
      * 不要再循环中删除集合元素

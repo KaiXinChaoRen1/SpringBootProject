@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -38,6 +37,11 @@ public class GoGoGoTest implements Serializable {
 
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
+
+    @Test
+    public void name22s213() {
+        System.out.println("" + null);
+    }
 
     /**
      * Set存储String
@@ -177,17 +181,18 @@ public class GoGoGoTest implements Serializable {
     }
 
     /**
-     * Long包装类对比
+     * Long包装类对比(包装类与基本类型运算时会自动转换为基本类型)
      */
     @Test
     public void name1() {
-        Long l = 100L;
+        Long l = 200L;
 
-        System.out.println(l == 100);
-        System.out.println(l.equals(100));
-        System.out.println(l.longValue() == 100);
+        System.out.println(l == 200L);
+        System.out.println(l.equals(200));
+        System.out.println(l.longValue() == 200);
 
-        Long l2 = 100L;
+        Long l2 = 200L;
+        // 阿里巴巴规范:包装类之间比较必须用equals
         System.out.println(l.equals(l2));
     }
 

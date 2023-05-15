@@ -16,15 +16,56 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class LocalDateTimeTest {
 
     /*
-     * 时间戳转换时间字符串
+     * 时间戳转换时间'字符串'
      */
     @Test
     public void name11() {
         long currentTimeMillis = System.currentTimeMillis();
-        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm-ss").format(currentTimeMillis);
-        System.out.println("年-月-日 时-分-秒: " + currentTime);
+        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(currentTimeMillis);
+        System.out.println("年-月-日 时-分-秒-毫秒: " + currentTime);
+        String currentTime1 = new SimpleDateFormat("yyyy-MM-dd HH:mm-ss").format(currentTimeMillis);
+        System.out.println("年-月-日 时-分-秒: " + currentTime1);
         String currentTime2 = new SimpleDateFormat("HH-mm-ss").format(currentTimeMillis);
         System.out.println("时-分-秒: " + currentTime2);
+    }
+
+    /**
+     * 转换为时间戳
+     */
+    @Test
+    public void name6() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        long timestamp = localDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+        System.out.println("LocalDateTime转换时间戳=>" + timestamp);
+        System.out.println("直接获取时间戳==========>" + System.currentTimeMillis());
+    }
+
+    /**
+     * 获取LocalDate(LocalDate系,不是Date系)
+     */
+    @Test
+    public void name() {
+        // 获取当前时间或日期
+        System.out.println("1==>" + LocalDate.now());
+        System.out.println("2==>" + LocalDateTime.now());
+
+        // 根据年月日指定日期
+        LocalDate of = LocalDate.of(2019, 2, 28);
+        System.out.println("3==>" + of);
+        // 指定时间(最后是纳秒)
+        LocalDateTime of2 = LocalDateTime.of(2023, 5, 15, 16, 15, 59, 1000000);
+        System.out.println("4==>" + of2);
+
+        // 根据字符串获取
+        // 日期31号之后直接报错,31之前,如果大于当月最大,那就是当月最大那一号
+        String dateStr = "2019-02-31";
+        LocalDate localDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        System.out.println("5==>" + localDate);
+
+        String dateTimeStr = "2018-07-28 14:11:15";
+        LocalDateTime localDateTime = LocalDateTime.parse(dateTimeStr,
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("6==>" + localDateTime);
     }
 
     /*
@@ -45,27 +86,6 @@ public class LocalDateTimeTest {
 
         System.out.println(localDateTime1.isBefore(localDateTime2));
         System.out.println(localDateTime1.isEqual(localDateTime2));
-    }
-
-    /**
-     * 获取LocalDate
-     */
-    @Test
-    public void name() {
-        // 获取当前时间或日期
-        System.out.println("1==>" + LocalDate.now());
-        System.out.println("2==>" + LocalDateTime.now());
-
-        // 根据年月日指定日期
-        System.out.println("3==>" + LocalDate.of(2019, 2, 28));
-
-        // 根据字符串获取
-        String dateStr = "2019-02-31";// 日期31号之后直接报错,31之前,如果大于当月最大,那就是当月最大那一号
-        System.out.println("4==>" + LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-
-        String dateTimeStr = "2018-07-28 14:11:15";
-        System.out
-                .println("5==>" + LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     }
 
     /**
@@ -133,17 +153,6 @@ public class LocalDateTimeTest {
         LocalDateTime localDateTime = LocalDateTime.parse(dateTimeStr, dateTimeFormatter);
         System.out.println(localDateTime);
 
-    }
-
-    /**
-     * 转换为时间戳
-     */
-    @Test
-    public void name6() {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        long timestamp = localDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
-        System.out.println(timestamp);
-        System.out.println(System.currentTimeMillis());
     }
 
     /**

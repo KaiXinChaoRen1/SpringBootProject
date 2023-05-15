@@ -43,6 +43,17 @@ person:
         name: mimi
       - species: cat
         name: miaomiao
+  list-pet:
+      # - {species: cat,name: mimi}
+      # - {species: cat,name: miaomiao}
+
+      # - species: cat
+      #   name: mimi
+      # - species: cat
+      #   name: miaomiao
+
+      [{species: cat,name: mimi},{species: cat,name: miaomiao}]
+
 
   
 
