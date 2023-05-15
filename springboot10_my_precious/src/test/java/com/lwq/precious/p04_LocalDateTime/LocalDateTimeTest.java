@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -66,6 +67,9 @@ public class LocalDateTimeTest {
         LocalDateTime localDateTime = LocalDateTime.parse(dateTimeStr,
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         System.out.println("6==>" + localDateTime);
+
+        LocalTime localTime = LocalTime.of(1, 0, 0, 0);
+        System.out.println("7==>"+localTime);
     }
 
     /*
