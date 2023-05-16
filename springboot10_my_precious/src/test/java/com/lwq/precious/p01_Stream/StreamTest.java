@@ -166,6 +166,7 @@ class StreamTest {
         peopleList.add(new People("李文强", 17, 6666));
         peopleList.add(new People("孙文腾", 19, 5555));
         peopleList.add(new People("屈百琛", 20, 4444));
+        peopleList.add(new People("666", 20, 3333));
 
         peopleList.stream()
                 .sorted((p1, p2) -> p2.getAge() - p1.getAge())

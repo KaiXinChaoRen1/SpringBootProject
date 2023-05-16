@@ -64,7 +64,7 @@ public class XMLTest {
         bookElement.addElement("price").setText("10");
 
         FileOutputStream fos = new FileOutputStream(
-                new File("D:\\lwq-git-demo\\public-resource\\react-springboot-template\\springboot-server\\book.xml"));
+                new File("C:\\Users\\wenqiang.li1\\Desktop\\新建文件夹 (2)\\book.xml"));
         OutputFormat outputFormat = new OutputFormat("\t", true, "UTF-8");
         XMLWriter xmlWriter = new XMLWriter(fos, outputFormat);
         xmlWriter.write(doc);

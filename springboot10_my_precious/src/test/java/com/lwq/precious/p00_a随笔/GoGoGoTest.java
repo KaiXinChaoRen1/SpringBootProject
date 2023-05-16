@@ -1,6 +1,7 @@
 package com.lwq.precious.p00_a随笔;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Answers.values;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,6 +38,29 @@ public class GoGoGoTest implements Serializable {
 
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
+
+
+
+    @Test
+    public void name22s21311() {
+
+        Double double1 = new Double(444/1000000.0);
+        System.out.println(double1);
+
+        String valueOf = String.valueOf(new Double(444/1000000.0));
+        System.out.println(valueOf);
+
+        String valueOf1 = String.valueOf(new Double(0.000444));
+        System.out.println(valueOf1);
+       
+    }
+
+    @Test
+    public void name22s2131() {
+
+        String rootPath = System.getProperty("user.dir");
+        System.out.println(rootPath);
+    }
 
     @Test
     public void name22s213() {
