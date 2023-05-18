@@ -2,9 +2,14 @@ package com.lwq.springboot20_webflux.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.lwq.springboot20_webflux.service.TestService;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -18,6 +23,18 @@ import java.util.stream.IntStream;
 @RestController
 @Slf4j
 public class TestController {
+
+    @Autowired
+    TestService testService;
+
+    // @GetMapping("/zip")
+    // public Mono<String> name() {
+    //     //没有jdk17的问题?
+    //     return Mono.zip(testService.serviceMethod1(),testService.serviceMethod2()).map(o->o.get1+"+++"+o.get2);
+    // }
+
+
+
 
 
     // 阻塞5秒钟

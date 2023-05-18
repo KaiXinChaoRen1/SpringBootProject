@@ -12,10 +12,10 @@ import reactor.core.publisher.Mono;
  */
 @Component
 public class HelloHandler {
-
+    //用于处理请求,返回响应
     public Mono<ServerResponse> helloWorld(ServerRequest request) {
 
         return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
-                .body(BodyInserters.fromObject("Hello,WebFlux"));
+                .body(Mono.just("HelloWorld"),String.class);
     }
 }

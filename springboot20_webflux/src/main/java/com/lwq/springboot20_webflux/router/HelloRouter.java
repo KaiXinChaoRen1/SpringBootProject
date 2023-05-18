@@ -14,12 +14,13 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class HelloRouter {
 
     @Autowired
-    private HelloHandler helloHandler;  //报红不用管
+    private HelloHandler helloHandler; // 报红不用管
+
     @Bean
     public RouterFunction<ServerResponse> routeCity() {
-        return RouterFunctions
-                .route(RequestPredicates.GET("/hello")
-                                .and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
-                        helloHandler::helloWorld);
+        return RouterFunctions.route()
+                .GET("/hello", helloHandler::helloWorld)
+                .build();
+
     }
 }

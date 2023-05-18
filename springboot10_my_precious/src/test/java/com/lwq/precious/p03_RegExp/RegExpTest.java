@@ -15,8 +15,9 @@ public class RegExpTest {
     @Test
     public void name7() {
         String str = "aaa....bbb_阿..s_d._..斯_顿as_xxx是1234\n山东分公司2344梵蒂冈_aa2345";
+        System.out.println("---------先打印字符串--------------------");
         System.out.println(str);
-        System.out.println("--------------------------------------");
+        System.out.println("-------------END-------------------------");
         Pattern pattern = Pattern.compile("(\\d+)$");
         Matcher matcher = pattern.matcher(str);
         while (matcher.find()) {
