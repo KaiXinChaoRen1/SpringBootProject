@@ -32,7 +32,7 @@ public class StreamUtilsTest {
     /**
      * StreamUtils.drain()
      */
-    @Test
+    @Test               
     public void name10() throws IOException {
 
         FileInputStream fis = new FileInputStream("C:\\Users\\wenqiang.li1\\Desktop\\新建文件夹\\a.txt");

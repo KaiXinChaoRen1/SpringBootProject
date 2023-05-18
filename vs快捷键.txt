@@ -1,1 +1,3 @@
-  Ctrl +hift +L 选中所有
+  Ctrl + shift +L 选中所有
+  Ctrl + j    打开/关闭终端
+  Ctrl + b    隐藏左边目录导航树

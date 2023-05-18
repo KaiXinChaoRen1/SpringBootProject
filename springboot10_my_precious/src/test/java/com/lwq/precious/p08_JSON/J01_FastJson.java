@@ -13,12 +13,19 @@ import com.lwq.precious.model.Student;
 public class J01_FastJson {
     @Test
     void name() {
-        // Object->JSONString
+
         HashMap<Object, Object> hashMap = new HashMap<>();
         hashMap.put("name", "李文强");
         hashMap.put("school", "清华大学");
+        // Object->JSONObject
+        JSONObject json =  (JSONObject) JSON.toJSON(hashMap);
+        System.out.println(json.get("name"));
+
+        // Object->JSONString
         String jsonString = JSON.toJSONString(hashMap);
         System.out.println(jsonString);
+
+
 
         // JSONString->JSONObject
         JSONObject parseObject = JSON.parseObject(jsonString);
@@ -26,6 +33,7 @@ public class J01_FastJson {
         String str = parseObject.toString();
         System.out.println("JSONObject.toString()和对象直接转换的JSONString是否相等: " + str.equals(jsonString));
         // 操作JSONObject
+        //getString
         System.out.println(parseObject.getString("name"));
 
         // JSONString->Java对象

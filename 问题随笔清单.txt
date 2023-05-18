@@ -9,5 +9,3 @@
         -f: 实时刷新
     2.cat nohup.out 			
         查看所有
-4.javax和spring的 @Transactional
-    使用Spring的

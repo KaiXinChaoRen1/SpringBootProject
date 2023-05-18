@@ -22,16 +22,18 @@ public class LocalDateTimeTest {
     @Test
     public void name11() {
         long currentTimeMillis = System.currentTimeMillis();
-        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(currentTimeMillis);
-        System.out.println("年-月-日 时-分-秒-毫秒: " + currentTime);
-        String currentTime1 = new SimpleDateFormat("yyyy-MM-dd HH:mm-ss").format(currentTimeMillis);
-        System.out.println("年-月-日 时-分-秒: " + currentTime1);
-        String currentTime2 = new SimpleDateFormat("HH-mm-ss").format(currentTimeMillis);
-        System.out.println("时-分-秒: " + currentTime2);
+        String currentTimeStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(currentTimeMillis);
+        System.out.println("年-月-日 时-分-秒-毫秒: " + currentTimeStr);
+
+        String currentTime1Str = new SimpleDateFormat("yyyy-MM-dd HH:mm-ss").format(currentTimeMillis);
+        System.out.println("年-月-日 时-分-秒: " + currentTime1Str);
+
+        String currentTime2Str = new SimpleDateFormat("HH-mm-ss").format(currentTimeMillis);
+        System.out.println("时-分-秒: " + currentTime2Str);
     }
 
     /**
-     * 转换为时间戳
+     * localDateTime 转换为时间戳(long)
      */
     @Test
     public void name6() {
@@ -50,10 +52,10 @@ public class LocalDateTimeTest {
         System.out.println("1==>" + LocalDate.now());
         System.out.println("2==>" + LocalDateTime.now());
 
-        // 根据年月日指定日期
+        // API传参 指定日期LocalDate
         LocalDate of = LocalDate.of(2019, 2, 28);
         System.out.println("3==>" + of);
-        // 指定时间(最后是纳秒)
+        // API传参 指定日期+时间(最后是纳秒)LocalDateTime
         LocalDateTime of2 = LocalDateTime.of(2023, 5, 15, 16, 15, 59, 1000000);
         System.out.println("4==>" + of2);
 
@@ -67,13 +69,13 @@ public class LocalDateTimeTest {
         LocalDateTime localDateTime = LocalDateTime.parse(dateTimeStr,
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         System.out.println("6==>" + localDateTime);
-
+        // API传参 指定时间LocalTime
         LocalTime localTime = LocalTime.of(1, 0, 0, 0);
-        System.out.println("7==>"+localTime);
+        System.out.println("7==>" + localTime);
     }
 
     /*
-     * 比较LocalDate
+     * 比较LocalDateTime
      */
     @Test
     public void name10() {
@@ -81,7 +83,9 @@ public class LocalDateTimeTest {
         LocalDateTime localDateTime1 = LocalDateTime.parse(dateTimeStr,
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        String dateTimeStr2 = "2018-07-15 14:11:15";
+        // String dateTimeStr2 = "2018-07-15 14:11:15"; //0
+        // String dateTimeStr2 = "2018-07-17 14:11:15"; //-2
+        String dateTimeStr2 = "2018-08-17 14:11:15"; // -1
         LocalDateTime localDateTime2 = LocalDateTime.parse(dateTimeStr2,
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
@@ -100,7 +104,7 @@ public class LocalDateTimeTest {
         LocalDate localDate1 = LocalDate.of(2019, 2, 8);
         LocalDate localDate2 = LocalDate.of(2019, 3, 8);
         long days = localDate2.toEpochDay() - localDate1.toEpochDay();
-        // 打错了偶然学到
+        // 打错了偶然学到(System.err.println)
         System.err.println(days);
         System.out.println(days);
     }
@@ -110,19 +114,30 @@ public class LocalDateTimeTest {
      */
     @Test
     public void name3() {
-        // LoaclDate转换Date
-        LocalDate localDate = LocalDate.now();
-        System.out.println(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
         // LoaclDateTime转换Date
         LocalDateTime localDateTime = LocalDateTime.now();
         System.out.println(Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()));
 
+        // LoaclDate转换Date
+        LocalDate localDate = LocalDate.now();
+        System.out.println(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
+        // 在 Java 中，Date 类表示的是一个日期和时间的组合，不能单独表示时间或日期。
+        // 但是，您可以使用 SimpleDateFormat 类将 Date 对象格式化为指定的字符串，并且只显示时间部分，而不显示日期部分。
+
+        // 下面是一个将 Date 格式化为只显示时间部分的示例代码：
+        // public class TimeFormatter {
+        // public static String format(Date date) {
+        // SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        // return sdf.format(date);
+        // }
+        // }
+
     }
 
     /**
-     * Date转LocalDateTime
-     * Date转LocalDate
+     * 'Date'  转LocalDateTime，LocalDate，LocalTime，时间戳
      */
     @Test
     public void name33() {
@@ -130,6 +145,9 @@ public class LocalDateTimeTest {
         Date date = new Date();
         System.out.println("LocalDateTime==>" + date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
         System.out.println("LocalDate======>" + date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        System.out.println("LocalTime======>" + date.toInstant().atZone(ZoneId.systemDefault()).toLocalTime());
+        System.out.println("时间戳（s）======>" + date.toInstant().atZone(ZoneId.systemDefault()).toEpochSecond());//1970年开始的秒数
+        System.out.println("时间戳（ms）======>" + date.getTime());//1970年开始的毫秒
     }
 
     /**
@@ -160,16 +178,19 @@ public class LocalDateTimeTest {
     }
 
     /**
-     * 时间戳转换LocalDate & LocalDateTime
+     * 时间戳 ==> LocalDate & LocalDateTime & LocalTime
      */
     @Test
     public void name7() {
         long timestamp = System.currentTimeMillis();
         System.out.println(timestamp);
+
         LocalDate localDate = Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDateTime localDateTime = Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalTime localTime = Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalTime();
         System.out.println(localDate);
         System.out.println(localDateTime);
+        System.out.println(localTime);
     }
 
     /**
