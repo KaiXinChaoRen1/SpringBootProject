@@ -6,6 +6,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lwq.springboot02_init.model.Person;
+
 import javax.annotation.PostConstruct;
 
 @RestController
