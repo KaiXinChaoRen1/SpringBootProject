@@ -1,6 +1,5 @@
 package com.lwq.springboot20_webflux.controller;
 
-
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +26,13 @@ public class TestController {
     @Autowired
     TestService testService;
 
-    // @GetMapping("/zip")
-    // public Mono<String> name() {
-    //     //没有jdk17的问题?
-    //     return Mono.zip(testService.serviceMethod1(),testService.serviceMethod2()).map(o->o.get1+"+++"+o.get2);
-    // }
+    //zip
+    @GetMapping("/zip")
+    public Mono<String> name() {
 
-
-
-
+        return Mono.zip(testService.serviceMethod1(), testService.serviceMethod2())
+                .map(o -> o.getT1() + o.getT2()+"333444555");
+    }
 
     // 阻塞5秒钟
     private String createStr() {
@@ -46,7 +43,6 @@ public class TestController {
         return "heheheheh~~~~~~~~~~";
     }
 
-
     // 普通的SpringMVC方法
     @GetMapping("/1")
     private String get1() {
@@ -56,7 +52,7 @@ public class TestController {
         return result;
     }
 
-    // WebFlux(注意返回值 返回的是Mono ，注意控制台打印的日志时间)
+    // WebFlux(注意返回值 返回的是Mono ，注意控制台打印的日志时间,直接打印end,说明是异步处理)
     @GetMapping("/2")
     private Mono<String> get2() {
         log.info("get2 start");
@@ -64,7 +60,6 @@ public class TestController {
         log.info("get2 end.");
         return result;
     }
-
 
     /**
      * Flux : 返回0-n个元素
@@ -86,6 +81,5 @@ public class TestController {
                 }));
         return result;
     }
-
 
 }
