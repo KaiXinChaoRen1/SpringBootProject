@@ -45,6 +45,10 @@ class StreamTest {
                 .collect(Collectors.toMap(People::getSex, People::getName, (V1, V2) -> V1));
         System.out.println(collect);
 
+        Map<String, String> collect2 = pList.stream()
+                .collect(Collectors.toMap(People::getSex, People::getName, (V1, V2) -> V2));
+        System.out.println(collect2);
+
     }
 
     /**
@@ -145,15 +149,15 @@ class StreamTest {
     @Test
     public void name10() {
         ArrayList<People> peopleList = new ArrayList<People>();
-        peopleList.add(new People("李文强", 17, 6666));
-        peopleList.add(new People("孙文腾", 19, 5555));
+        peopleList.add(new People("李文强", 20, 6666));
+        peopleList.add(new People("孙文腾", 20, 5555));
         peopleList.add(new People("屈百琛", 20, 4444));
 
-        Integer reduce = peopleList.stream()
+        Integer res = peopleList.stream()
                 .map(p -> p.getAge())
-                .reduce(0, (result, element) -> result + element);
+                .reduce(10, (result, element) -> result + element);
 
-        System.out.println(reduce);
+        System.out.println(res);
     }
 
     /**
