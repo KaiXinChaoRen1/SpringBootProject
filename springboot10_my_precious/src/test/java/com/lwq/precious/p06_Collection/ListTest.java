@@ -17,32 +17,43 @@ import com.lwq.precious.model.MyJsonUser;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class ListTest {
 
-
+    /**
+     * 指定大小防止频繁扩容
+     */
+    @Test
+    public void name9() {
+        long time1 = System.currentTimeMillis();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        // ArrayList<Integer> arrayList = new ArrayList<>(5000000);
+        for (int i = 0; i < 5000000; i++) {
+            arrayList.add(66);
+        }
+        long time2 = System.currentTimeMillis();
+        System.out.println("运行时间为" + (time2 - time1) + "ms");
+    }
 
     /**
-     * 反转
+     * 反转耗时很少,Arraylist就是快
      */
     @Test
     public void name8() {
         long time1 = System.currentTimeMillis();
-        //List<Long> list = new ArrayList<>();
-        List<Long> list = new LinkedList<>();
-        for (Long i = 0L; i < 1000000L; i++) {
+        List<Integer> list = new ArrayList<>();
+        // List<Integer> list = new LinkedList<>();
+        for (int i = 0; i < 5000000; i++) {
             list.add(i);
         }
         long time2 = System.currentTimeMillis();
         Collections.reverse(list);
         long time3 = System.currentTimeMillis();
 
-        System.out.println("添加数据耗时"+(time2-time1));
-        System.out.println("反转耗时"+(time3-time2));
+        System.out.println("添加数据耗时" + (time2 - time1));
+        System.out.println("反转耗时" + (time3 - time2));
 
-        
     }
 
-
-        /**
-     * List截取并添加自己
+    /**
+     * subList
      */
     @Test
     public void name7() {
@@ -50,9 +61,18 @@ public class ListTest {
         arrayList.add(1);
         arrayList.add(2);
         arrayList.add(3);
+
+        System.out.println(arrayList);
+        // 截取(subListde的结果类型是Arrayslist的一个内部类,不是普通的Arraylist,对subList的后续操作会反应到原先的ArrayList上)
         List<Integer> subList = arrayList.subList(1, 3);
+        System.out.println(subList);
+        // 自己addAll自己
         subList.addAll(subList);
         System.out.println(subList);
+        System.out.println("对subList的后续操作会反应到原先的ArrayList上");
+        System.out.println(arrayList);
+
+
     }
 
     /**
