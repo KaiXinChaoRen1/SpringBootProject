@@ -40,6 +40,14 @@ public class GoGoGoTest implements Serializable {
     private AsyncTaskService2 asyncTaskService2;
 
 
+    @Test
+    public void name22s2131111() {
+
+      double a=100.0;
+      double b =a/1000.0;
+      System.out.println(b);
+       
+    }
 
     @Test
     public void name22s21311() {
