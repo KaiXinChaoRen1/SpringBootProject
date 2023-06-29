@@ -1,1 +1,2 @@
 我不按套路出牌
+docker compose整一个mysql读写分离
