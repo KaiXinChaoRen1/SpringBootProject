@@ -16,6 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 public class GoGoGoTest2 {
 
     @Test
+    public void name9() {
+        Double double1 = new Double(100);
+        System.out.println(double1);
+        System.out.println(double1.equals(100.0));
+    }
+
+    @Test
     public void name8() throws UnknownHostException {
         String a = null;
         a = a + "hehe";

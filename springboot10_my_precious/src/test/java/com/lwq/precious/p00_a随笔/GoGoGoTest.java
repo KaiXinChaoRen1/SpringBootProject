@@ -9,11 +9,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
+import javax.swing.SpringLayout;
+
+import org.apache.poi.hpsf.Array;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,28 +45,118 @@ public class GoGoGoTest implements Serializable {
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
 
+     @Test
+    public void currentTimeMillis() {
+        System.out.println(System.currentTimeMillis());
+    }
+
+    @Test
+    public void stringConcat1() {
+       
+
+        ArrayList<String> arrayList = new ArrayList<>(20000000);
+         long time1 = System.currentTimeMillis();
+        for (int i = 0; i < 20000000; i++) {
+            arrayList.add("a" + "b" + "c");
+
+        }
+        long time2 = System.currentTimeMillis();
+        System.out.println((time2 - time1) + "ms");
+    }
+
+    @Test
+    public void stringConcat2() {
+       
+
+        ArrayList<String> arrayList = new ArrayList<>(20000000);
+         long time1 = System.currentTimeMillis();
+        for (int i = 0; i < 20000000; i++) {
+            arrayList.add("ab" + "c");
+
+        }
+        long time2 = System.currentTimeMillis();
+        System.out.println((time2 - time1) + "ms");
+    }
+
+    @Test
+    public void stringConcat3() {
+       
+        ArrayList<String> arrayList = new ArrayList<>(20000000);
+        final String str="ab";
+         long time1 = System.currentTimeMillis();
+        for (int i = 0; i < 20000000; i++) {
+                arrayList.add(str + "c");
+        }
+        long time2 = System.currentTimeMillis();
+        System.out.println((time2 - time1) + "ms");
+    }
+
+        @Test
+    public void stringConcat4() {
+         StringBuilder sb = new StringBuilder("ab");
+        sb.append("c");
+        System.out.println(sb.toString());
+        
+    }
+
+    @Test
+    public void name22s213111112() {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        arrayList.add(1);
+        arrayList.add(2);
+        arrayList.add(3);
+        HashMap<String, String> hashMap = new HashMap<String, String>();
+        hashMap.put("1", "1");
+        hashMap.put("2", "2");
+        hashMap.put("3", "3");
+        for (Integer integer : arrayList) {
+            if (integer == 1) {
+                hashMap.remove("1");
+            } else {
+                hashMap.remove("2");
+            }
+
+        }
+        System.out.println(hashMap);
+
+    }
+
+    @Test
+    public void name22s21311111() {
+
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        for (int i = 0; i < 15248; i++) {
+            arrayList.add(1);
+        }
+        System.out.println(arrayList.size());
+        int size = arrayList.size() % 1500;
+        for (int i = 0; i < size; i++) {
+
+        }
+        System.out.println(arrayList.size());
+    }
 
     @Test
     public void name22s2131111() {
 
-      double a=100.0;
-      double b =a/1000.0;
-      System.out.println(b);
-       
+        double a = 100.0;
+        double b = a / 1000.0;
+        System.out.println(b);
+
     }
 
     @Test
     public void name22s21311() {
 
-        Double double1 = new Double(444/1000000.0);
+        Double double1 = new Double(444 / 1000000.0);
         System.out.println(double1);
 
-        String valueOf = String.valueOf(new Double(444/1000000.0));
+        String valueOf = String.valueOf(new Double(444 / 1000000.0));
         System.out.println(valueOf);
 
         String valueOf1 = String.valueOf(new Double(0.000444));
         System.out.println(valueOf1);
-       
+
     }
 
     @Test
