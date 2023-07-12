@@ -1,0 +1,2 @@
+select version();       查看版本
+show variables like 'character_set%';       可以查看MySQL数据库中关于字符集的相关设置

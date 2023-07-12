@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,106 +46,21 @@ public class GoGoGoTest implements Serializable {
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
 
-     @Test
-    public void currentTimeMillis() {
-        System.out.println(System.currentTimeMillis());
-    }
-
-    @Test
-    public void stringConcat1() {
-       
-
-        ArrayList<String> arrayList = new ArrayList<>(20000000);
-         long time1 = System.currentTimeMillis();
-        for (int i = 0; i < 20000000; i++) {
-            arrayList.add("a" + "b" + "c");
-
-        }
-        long time2 = System.currentTimeMillis();
-        System.out.println((time2 - time1) + "ms");
-    }
-
-    @Test
-    public void stringConcat2() {
-       
-
-        ArrayList<String> arrayList = new ArrayList<>(20000000);
-         long time1 = System.currentTimeMillis();
-        for (int i = 0; i < 20000000; i++) {
-            arrayList.add("ab" + "c");
-
-        }
-        long time2 = System.currentTimeMillis();
-        System.out.println((time2 - time1) + "ms");
-    }
-
-    @Test
-    public void stringConcat3() {
-       
-        ArrayList<String> arrayList = new ArrayList<>(20000000);
-        final String str="ab";
-         long time1 = System.currentTimeMillis();
-        for (int i = 0; i < 20000000; i++) {
-                arrayList.add(str + "c");
-        }
-        long time2 = System.currentTimeMillis();
-        System.out.println((time2 - time1) + "ms");
-    }
-
-        @Test
-    public void stringConcat4() {
-         StringBuilder sb = new StringBuilder("ab");
-        sb.append("c");
-        System.out.println(sb.toString());
-        
-    }
-
-    @Test
-    public void name22s213111112() {
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(3);
-        HashMap<String, String> hashMap = new HashMap<String, String>();
-        hashMap.put("1", "1");
-        hashMap.put("2", "2");
-        hashMap.put("3", "3");
-        for (Integer integer : arrayList) {
-            if (integer == 1) {
-                hashMap.remove("1");
-            } else {
-                hashMap.remove("2");
-            }
-
-        }
-        System.out.println(hashMap);
-
-    }
-
-    @Test
-    public void name22s21311111() {
-
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        for (int i = 0; i < 15248; i++) {
-            arrayList.add(1);
-        }
-        System.out.println(arrayList.size());
-        int size = arrayList.size() % 1500;
-        for (int i = 0; i < size; i++) {
-
-        }
-        System.out.println(arrayList.size());
-    }
-
+    /**
+     * 超过3位使用科学计数法
+     */
     @Test
     public void name22s2131111() {
 
         double a = 100.0;
-        double b = a / 1000.0;
+        double b = a / 1000000.0;
         System.out.println(b);
 
     }
 
+    /**
+     * 科学计数法
+     */
     @Test
     public void name22s21311() {
 
@@ -157,32 +73,30 @@ public class GoGoGoTest implements Serializable {
         String valueOf1 = String.valueOf(new Double(0.000444));
         System.out.println(valueOf1);
 
+        Double valueOf2 = Double.valueOf("4.44E-4");
+        System.out.println(valueOf2);
+
+        BigDecimal bigDecimal = new BigDecimal("4.44E-4");
+        System.out.println(bigDecimal);
+
     }
 
+    /**
+     * System.getProperty("user.dir")
+     */
     @Test
     public void name22s2131() {
-
         String rootPath = System.getProperty("user.dir");
         System.out.println(rootPath);
     }
 
+    /**
+     * "" + null
+     */
     @Test
     public void name22s213() {
         System.out.println("" + null);
-    }
-
-    /**
-     * Set存储String
-     */
-    @Test
-    public void name2221() {
-        String s1 = "111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        String s2 = "111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        System.out.println(s1.equals(s2));
-        HashSet<String> hashSet = new HashSet<>();
-        hashSet.add(s2);
-        hashSet.add(s1);
-        System.out.println(hashSet.size());
+        System.out.println(null + "");
     }
 
     /**
