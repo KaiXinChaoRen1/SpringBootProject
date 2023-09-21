@@ -3,12 +3,15 @@ package com.lwq.precious.p00_a随笔;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Answers.values;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,6 +48,103 @@ public class GoGoGoTest implements Serializable {
 
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
+
+
+    @Test
+    public void test921() throws InterruptedException {
+        //创建并开启1000个线程
+        for (int i = 0; i < 1000; i++) {
+            //每个线程每10ms写入一次数据
+            new Thread(()->{
+                try {
+                    //数据写入(每个线程写入100不同的key)
+
+
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+
+        Thread.sleep(1000000);
+
+    }
+    
+   void  writeRedis(){
+
+    }
+
+
+
+    @Test
+    public void nsd() {
+Double.valueOf("2").doubleValue();
+
+    }
+
+
+    @Test
+    public void name22s2131111123() {
+        int[][] arr =new int[2][3];
+        //System.out.println(arr);
+        System.out.println(arr.length);
+        System.out.println("hehe");
+
+    }
+
+    @Test
+    public void name22s21311111() {
+
+        String valueOf = String.valueOf("/L");
+        System.out.println(valueOf);
+
+        int i = 0;
+        i++;
+        System.out.println(i);
+        System.out.println(1.7E3);
+
+        // int parseInt = Integer.decode("aa");
+        int parseInt2 = Integer.decode("0xaa");
+        int parseInt3 = Integer.parseInt("aa", 16);
+        // int parseInt4 = Integer.parseInt("0xaa", 16);
+
+        // System.out.println(parseInt);
+        System.out.println(parseInt2);
+        System.out.println(parseInt3);
+        // System.out.println(parseInt4);
+
+    }
+
+    private String getOneDecimalDouble(String s) {
+        Double valueOf = Double.valueOf(s);
+        BigDecimal setScale = BigDecimal.valueOf(valueOf).setScale(1, RoundingMode.HALF_UP);
+
+        return setScale.toString();
+
+    }
+
+    // 保留一位小数
+    @Test
+    public void name22s21311112() {
+
+        String a = "100";
+
+        String b = "100.4";
+
+        String c = "100.5";
+
+        String d = "100.51";
+
+        String e = "100.56";
+
+        System.out.println(getOneDecimalDouble(a));
+        System.out.println(getOneDecimalDouble(b));
+        System.out.println(getOneDecimalDouble(c));
+        System.out.println(getOneDecimalDouble(d));
+        System.out.println(getOneDecimalDouble(e));
+
+    }
 
     /**
      * 超过3位使用科学计数法
