@@ -1,29 +1,19 @@
 package com.lwq.precious.p00_a随笔;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Answers.values;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
-import javax.swing.SpringLayout;
-
-import org.apache.poi.hpsf.Array;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,7 +24,6 @@ import com.lwq.precious.model.CloneStudent;
 import com.lwq.precious.service.AsyncTaskService;
 import com.lwq.precious.service.AsyncTaskService2;
 
-import cn.hutool.core.util.ObjectUtil;
 import lombok.Data;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -49,16 +38,21 @@ public class GoGoGoTest implements Serializable {
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
 
+    @Test
+    public void test9211() {
+        String str = "123";
+        String substring = str.substring(0, str.length() - 1);
+        System.out.println(substring);
+    }
 
     @Test
     public void test921() throws InterruptedException {
-        //创建并开启1000个线程
+        // 创建并开启1000个线程
         for (int i = 0; i < 1000; i++) {
-            //每个线程每10ms写入一次数据
-            new Thread(()->{
+            // 每个线程每10ms写入一次数据
+            new Thread(() -> {
                 try {
-                    //数据写入(每个线程写入100不同的key)
-
+                    // 数据写入(每个线程写入100不同的key)
 
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -70,24 +64,21 @@ public class GoGoGoTest implements Serializable {
         Thread.sleep(1000000);
 
     }
-    
-   void  writeRedis(){
+
+    void writeRedis() {
 
     }
-
-
 
     @Test
     public void nsd() {
-Double.valueOf("2").doubleValue();
+        Double.valueOf("2").doubleValue();
 
     }
 
-
     @Test
     public void name22s2131111123() {
-        int[][] arr =new int[2][3];
-        //System.out.println(arr);
+        int[][] arr = new int[2][3];
+        // System.out.println(arr);
         System.out.println(arr.length);
         System.out.println("hehe");
 
@@ -425,20 +416,20 @@ Double.valueOf("2").doubleValue();
         System.out.println(xiaowang2);
     }
 
-    /**
-     * Hutool序列化深拷贝
-     */
-    @Test
-    public void name9() {
-        CloneStudent xiaoming = new CloneStudent("小明");
-        CloneStudent xiaowang = new CloneStudent("小王", xiaoming);
-        CloneStudent xiaowang2 = ObjectUtil.cloneByStream(xiaowang);
-        System.out.println(xiaowang);
-        System.out.println(xiaowang2);
-        xiaowang.getFavoriteClassmate().setName("小小明");
-        System.out.println(xiaowang);
-        System.out.println(xiaowang2);
-    }
+    // /**
+    // * Hutool序列化深拷贝
+    // */
+    // @Test
+    // public void name9() {
+    // CloneStudent xiaoming = new CloneStudent("小明");
+    // CloneStudent xiaowang = new CloneStudent("小王", xiaoming);
+    // CloneStudent xiaowang2 = ObjectUtil.cloneByStream(xiaowang);
+    // System.out.println(xiaowang);
+    // System.out.println(xiaowang2);
+    // xiaowang.getFavoriteClassmate().setName("小小明");
+    // System.out.println(xiaowang);
+    // System.out.println(xiaowang2);
+    // }
 
     /**
      * 普通内部类不能直接序列化,
@@ -446,27 +437,29 @@ Double.valueOf("2").doubleValue();
      * 或者改成静态内部类
      * 才可以序列化
      */
-    @Test
-    public void name10() throws Exception {
-        // hutool
-        User u = new User();
-        u.setName("li");
-        System.out.println(u);
-        User u2 = ObjectUtil.cloneByStream(u);
-        System.out.println(u2);
+    // @Test
+    // public void name10() throws Exception {
+    // // hutool
+    // User u = new User();
+    // u.setName("li");
+    // System.out.println(u);
+    // User u2 = ObjectUtil.cloneByStream(u);
+    // System.out.println(u2);
 
-        // 手写
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\lwq\\Desktop\\u.bin", false));
-        oos.writeObject(u);
-        oos.flush();
-        oos.close();
-        // 反序列化到对象
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\lwq\\Desktop\\u.bin"));
-        User u3 = (User) ois.readObject();
-        ois.close();
-        System.out.println(u3);
+    // // 手写
+    // ObjectOutputStream oos = new ObjectOutputStream(new
+    // FileOutputStream("C:\\Users\\lwq\\Desktop\\u.bin", false));
+    // oos.writeObject(u);
+    // oos.flush();
+    // oos.close();
+    // // 反序列化到对象
+    // ObjectInputStream ois = new ObjectInputStream(new
+    // FileInputStream("C:\\Users\\lwq\\Desktop\\u.bin"));
+    // User u3 = (User) ois.readObject();
+    // ois.close();
+    // System.out.println(u3);
 
-    }
+    // }
 
     @Data
     @ToString
