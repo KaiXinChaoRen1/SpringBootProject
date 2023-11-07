@@ -1,0 +1,12 @@
+Dockerfile 同级目录下 执行
+	$$$  docker  build -t   <name>:<tag> .
+利用dockerfile,制作镜像
+
+
+	$$$ docker save -o  <xxx.tar(要打出包的名字)>   <imageName>:<tag>
+将镜像保存为文件
+
+
+
+	$$$ docker load -i xxx.tar
+将文件加载成镜像

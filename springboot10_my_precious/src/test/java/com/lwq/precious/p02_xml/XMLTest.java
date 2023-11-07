@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 import org.dom4j.Document;
+import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.OutputFormat;
@@ -52,22 +53,22 @@ public class XMLTest {
     // 写出到xml文件
     @Test
     public void test2() throws Exception {
-        SAXReader saxReader = new SAXReader();
-        File file = new File("book.xml");
-        Document doc = saxReader.read(file);
-        Element rootElement = doc.getRootElement();
-        // 创建节点
-        Element bookElement = rootElement.addElement("book");
-        bookElement.addAttribute("category", "古典长篇小说");
+
+        DocumentFactory documentFactory = new DocumentFactory();
+        Document createDocument = documentFactory.createDocument();
+        Element bookElement = createDocument.addElement("book");
+        bookElement.addAttribute("页数", "999");
+        bookElement.addAttribute("封皮", "硬封");
+
         bookElement.addElement("title").setText("红楼梦");
         bookElement.addElement("author").setText("曹雪芹");
         bookElement.addElement("price").setText("10");
 
         FileOutputStream fos = new FileOutputStream(
-                new File("C:\\Users\\wenqiang.li1\\Desktop\\新建文件夹 (2)\\book.xml"));
+                new File("C:\\Users\\wenqiang.li1\\Desktop\\xmldoc\\book.xml"));
         OutputFormat outputFormat = new OutputFormat("\t", true, "UTF-8");
         XMLWriter xmlWriter = new XMLWriter(fos, outputFormat);
-        xmlWriter.write(doc);
+        xmlWriter.write(createDocument);
         fos.close();
 
     }

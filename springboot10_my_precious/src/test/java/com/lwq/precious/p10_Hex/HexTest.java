@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class HexTest {
 
     /**
+     * 常见的udp报文,会有byte 或者 十六进制  两种展示形式
      * byte->十六进制
      * 也就是
      * -128~127范围内的十进制->两位十六进制数
