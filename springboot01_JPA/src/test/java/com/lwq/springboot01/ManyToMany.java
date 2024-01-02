@@ -9,9 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lwq.springboot01.Entity.schoolstory.Course;
-import com.lwq.springboot01.Entity.schoolstory.Student;
 import com.lwq.springboot01.dao.schoolRepository.StudentRepository;
+import com.lwq.springboot01.entity.schoolstory.Course;
+import com.lwq.springboot01.entity.schoolstory.Student;
 
 @SpringBootTest
 public class ManyToMany {

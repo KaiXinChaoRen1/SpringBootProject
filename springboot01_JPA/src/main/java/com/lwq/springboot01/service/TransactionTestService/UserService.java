@@ -3,8 +3,8 @@ package com.lwq.springboot01.service.TransactionTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lwq.springboot01.Entity.TransactionTestEntity.User;
 import com.lwq.springboot01.dao.TransactionTestRepository.UserRepository;
+import com.lwq.springboot01.entity.transactionTestEntity.User;
 
 @Service
 public class UserService {

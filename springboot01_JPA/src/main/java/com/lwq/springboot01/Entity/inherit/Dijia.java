@@ -1,4 +1,4 @@
-package com.lwq.springboot01.Entity.inherit;
+package com.lwq.springboot01.entity.inherit;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

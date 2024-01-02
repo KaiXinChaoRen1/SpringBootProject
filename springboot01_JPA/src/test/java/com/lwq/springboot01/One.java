@@ -1,7 +1,7 @@
 package com.lwq.springboot01;
 
-import com.lwq.springboot01.Entity.schoolstory.Person;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
+import com.lwq.springboot01.entity.schoolstory.Person;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

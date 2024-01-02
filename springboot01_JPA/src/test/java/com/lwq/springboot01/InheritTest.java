@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.lwq.springboot01.Entity.inherit.Color;
-import com.lwq.springboot01.Entity.inherit.Dijia;
-import com.lwq.springboot01.Entity.inherit.FastDijia;
-import com.lwq.springboot01.Entity.inherit.StrongDijia;
 import com.lwq.springboot01.dao.inheritRepository.ColorRepository;
 import com.lwq.springboot01.dao.inheritRepository.DijiaRepository;
 import com.lwq.springboot01.dao.inheritRepository.FastDijiaRepository;
 import com.lwq.springboot01.dao.inheritRepository.StrongDijiaRepository;
+import com.lwq.springboot01.entity.inherit.Color;
+import com.lwq.springboot01.entity.inherit.Dijia;
+import com.lwq.springboot01.entity.inherit.FastDijia;
+import com.lwq.springboot01.entity.inherit.StrongDijia;
 
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;

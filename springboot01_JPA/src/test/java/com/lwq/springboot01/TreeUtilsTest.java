@@ -1,8 +1,9 @@
 package com.lwq.springboot01;
 
 
-import com.lwq.springboot01.Entity.treeUtils.Subject;
 import com.lwq.springboot01.dao.treeRepository.SubjectRepository;
+import com.lwq.springboot01.entity.treeUtils.Subject;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

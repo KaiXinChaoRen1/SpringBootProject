@@ -1,4 +1,4 @@
-package com.lwq.springboot01.Entity.yanTest;
+package com.lwq.springboot01.entity.yanTest;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

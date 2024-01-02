@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lwq.springboot01.Entity.yanTest.A;
-import com.lwq.springboot01.Entity.yanTest.ADao;
+import com.lwq.springboot01.entity.yanTest.A;
+import com.lwq.springboot01.entity.yanTest.ADao;
 
 /**
  * 层次结构测试

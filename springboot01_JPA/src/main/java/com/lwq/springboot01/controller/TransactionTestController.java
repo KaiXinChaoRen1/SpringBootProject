@@ -2,18 +2,20 @@ package com.lwq.springboot01.controller;
 
 import java.util.List;
 
-import com.lwq.springboot01.service.TransactionTestService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lwq.springboot01.Entity.TransactionTestEntity.Account;
-import com.lwq.springboot01.Entity.TransactionTestEntity.User;
 import com.lwq.springboot01.dao.TransactionTestRepository.AccountRepository;
 import com.lwq.springboot01.dao.TransactionTestRepository.UserRepository;
+import com.lwq.springboot01.entity.transactionTestEntity.Account;
+import com.lwq.springboot01.entity.transactionTestEntity.User;
 import com.lwq.springboot01.service.TransactionTestService.AccountService;
+import com.lwq.springboot01.service.TransactionTestService.UserService;
+
+
 
 @RestController
 @RequestMapping("tran")
@@ -47,7 +49,7 @@ public class TransactionTestController {
     @GetMapping("/add2")
     public String add2() {
         try {
-            transactionTemplate.execute(t->{
+            transactionTemplate.execute(t -> {
                 Account newAccount = Account.builder().id(1L).accountNum(1001L).build();
                 accountRepository.save(newAccount);
                 userService.addUser();

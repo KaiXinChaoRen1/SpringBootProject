@@ -1,4 +1,4 @@
-package com.lwq.springboot01.Entity.TransactionTestEntity;
+package com.lwq.springboot01.entity.transactionTestEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

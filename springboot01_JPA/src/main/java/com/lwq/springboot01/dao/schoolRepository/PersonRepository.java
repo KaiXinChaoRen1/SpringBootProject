@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lwq.springboot01.Entity.schoolstory.Person;
+import com.lwq.springboot01.entity.schoolstory.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Integer>, JpaSpecificationExecutor<Person> {
     @Query("Select p.name from Person as p where p.id=:id")

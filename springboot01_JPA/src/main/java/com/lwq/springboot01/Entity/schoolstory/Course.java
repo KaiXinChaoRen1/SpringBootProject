@@ -1,4 +1,4 @@
-package com.lwq.springboot01.Entity.schoolstory;
+package com.lwq.springboot01.entity.schoolstory;
 
 import java.util.Set;
 

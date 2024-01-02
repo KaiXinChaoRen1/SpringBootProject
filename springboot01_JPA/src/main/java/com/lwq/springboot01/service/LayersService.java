@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lwq.springboot01.Entity.yanTest.A;
-import com.lwq.springboot01.Entity.yanTest.ADao;
+import com.lwq.springboot01.entity.yanTest.A;
+import com.lwq.springboot01.entity.yanTest.ADao;
 
 @Service
 public class LayersService {

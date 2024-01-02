@@ -16,8 +16,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lwq.springboot01.Entity.treeUtils.Subject;
 import com.lwq.springboot01.dao.treeRepository.SubjectRepository;
+import com.lwq.springboot01.entity.treeUtils.Subject;
 
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.lang.UUID;

@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lwq.springboot01.Entity.yanTest.A;
-import com.lwq.springboot01.Entity.yanTest.ADao;
-import com.lwq.springboot01.Entity.yanTest.BDao;
+import com.lwq.springboot01.entity.yanTest.A;
+import com.lwq.springboot01.entity.yanTest.ADao;
+import com.lwq.springboot01.entity.yanTest.BDao;
 import com.lwq.springboot01.service.LayersService;
 
 @RestController

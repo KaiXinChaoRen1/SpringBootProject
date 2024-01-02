@@ -1,0 +1,10 @@
+logging:
+  file: 
+    name: logs/lwq.log
+  level:
+    root: info
+
+
+
+
+

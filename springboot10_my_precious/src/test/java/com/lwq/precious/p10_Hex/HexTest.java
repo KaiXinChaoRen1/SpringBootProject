@@ -71,7 +71,7 @@ public class HexTest {
     @Test
     public void name22222() {
         byte[] hex2ByteArr = Hex2ByteArr("58 02");
-        byte[] long2ByteArr = long2ByteArr(22530l);
+        byte[] long2ByteArr = long2ByteArr(225304545l);
         String long2Binary = long2Binary(22530l, 16);
         String byteArr2Bin = byteArr2Bin(long2ByteArr);
         String byteArr2Hex = byteArr2Hex(long2ByteArr);
@@ -211,5 +211,8 @@ public class HexTest {
         hexString = hexString.toUpperCase();// 将16进制字符串中的字母大写
         return hexString;
     }
+
+
+   
 
 }

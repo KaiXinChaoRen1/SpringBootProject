@@ -10,8 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import com.lwq.springboot01.Entity.schoolstory.Person;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
+import com.lwq.springboot01.entity.schoolstory.Person;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class PaginationQuery {
