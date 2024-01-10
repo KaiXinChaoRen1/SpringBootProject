@@ -22,10 +22,10 @@ public class RunApplication {
     }
 
     @Value("${neinei}")
-    private String  neinei;
+    private String  neinei ="12";
 
     @PostConstruct
-    public void name1(){
+    private void name1(){
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override

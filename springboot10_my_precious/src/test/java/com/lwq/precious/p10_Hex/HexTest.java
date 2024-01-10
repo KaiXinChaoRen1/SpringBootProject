@@ -2,10 +2,9 @@ package com.lwq.precious.p10_Hex;
 
 import java.math.BigInteger;
 
-import org.checkerframework.checker.units.qual.h;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -99,12 +98,25 @@ public class HexTest {
 
     }
 
+    /**
+     * 十六进制转byte数组
+     * 十六进制转bit
+     * 十六进制转无符号数
+     */
     @Test
     public void name3() {
-        String hexString = "aa 55 18 00 c0 a8 00 06 01 00 0a 00 6e 65 77 5f 73 65 72 69 65 73 ff ff ";
+        String hexString = "17 05 08 09 0A 3B 00 01";
         byte[] byteArr = Hex2ByteArr(hexString);
         String binary = byteArr2Bin(byteArr);
+
+        String byteArr2Unsigned = byteArr2Unsigned(byteArr);
+        for (int i = 0; i < byteArr.length; i++) {
+            System.out.print(byteArr[i]);
+        }
         System.out.println(binary);
+        System.out.println(byteArr2Unsigned);
+        
+
 
     }
 
@@ -211,8 +223,5 @@ public class HexTest {
         hexString = hexString.toUpperCase();// 将16进制字符串中的字母大写
         return hexString;
     }
-
-
-   
 
 }

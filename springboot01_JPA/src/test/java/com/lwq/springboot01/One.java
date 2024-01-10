@@ -30,7 +30,7 @@ public class One {
         hashMap.put("name","bbb" );
         dataList.add(hashMap);
         dataList.add(hashMap2);
-        pr.insertMap(dataList);
+       // pr.insertMap(dataList);
 
 
     }

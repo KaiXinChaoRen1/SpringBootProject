@@ -17,10 +17,10 @@ public interface PersonRepository extends JpaRepository<Person, Integer>, JpaSpe
     @Query("Select p.name from Person as p where p.id=:id")
     String jpqlQuery(int id);
 
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO table_name (id, name) VALUES (:id, :name)", nativeQuery = true)
-    void insertMap(List<Map<String, Object>> dataList);
+    // @Modifying
+    // @Transactional
+    // @Query(value = "INSERT INTO table_name (id, name) VALUES (:id, :name)", nativeQuery = true)
+    // void insertMap(List<Map<String, Object>> dataList);
 
     // @Transactional
     // @Modifying
