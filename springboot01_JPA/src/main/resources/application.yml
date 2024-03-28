@@ -8,28 +8,51 @@ spring:
     #   &useSSL=false\                    配置不使用证书令牌等校验,只用账号密码
     #   &serverTimezone=UTC"
     url:
-     "jdbc:mysql://101.43.149.161:3306/hehe_db\
-      ?allowPublicKeyRetrieval=true\
+      "jdbc:mysql://${MYSQL_HOST:101.43.149.161}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:hehe_db}?\
+      createDatabaseIfNotExist=true\
       &useUnicode=true\
-      &characterEncoding=UTF-8\           
+      &characterEncoding=UTF-8\
+      &autoReconnect=true\
       &useSSL=false\
-      &serverTimezone=GMT%2B8"
+      &nullCatalogMeansCurrent=true\
+      &serverTimezone=UTC\
+      &useLegacyDatetimeCode=false\
+      &cachePrepStmts=true\
+      &useServerPrepStmts=true\
+      &rewriteBatchedStatements=true"
     username: root
-    password: Aa@111111
+    password: 123456
   #jpa相关配置(和datasource同级)
+  # jpa:
+  #   database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  #这个参数是在建表的时候，将默认的存储引擎切换为 InnoDB 用的
+  #   ddl-auto: create
+  #   open-in-view: false   # 默认为true(是指延时加载的一些属性数据，可以在页面展现的时候，保持session不关闭，从而保证能在页面进行延时加载?)
+  #   show_sql: true    #输出sql语句
+  #   format_sql: true  #格式化输出的sql，否则会一行显示
+  #   user_query_cache: true  #这条还没弄会
+  #   properties:
+  #     hibernate:
+  #       jdbc: 
+  #         fetch_size: 100
+  #         batch_size: 100
+  #         batch_versioned_data: true
+  #       order_inserts: true
+  #       order_updates: true
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  #这个参数是在建表的时候，将默认的存储引擎切换为 InnoDB 用的
-    ddl-auto: create
-    open-in-view: false   # 默认为true(是指延时加载的一些属性数据，可以在页面展现的时候，保持session不关闭，从而保证能在页面进行延时加载?)
-    show_sql: true    #输出sql语句
-    format_sql: true  #格式化输出的sql，否则会一行显示
-    user_query_cache: true  #这条还没弄会
+    show-sql: false
+    generate-ddl: true # 需要加上这个才能自动生成数据库表
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       hibernate:
-        jdbc: 
-          fetch_size: 100
-          batch_size: 100
+        enable_lazy_load_no_trans: true
+        jdbc:
+          batch_size: 1000
           batch_versioned_data: true
         order_inserts: true
         order_updates: true
+        cache:
+          use_query_cache: false
+          use_second_level_cache: false
        

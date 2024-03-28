@@ -4,4 +4,8 @@ show variables like 'character_set%';        可以查看MySQL数据库中关于
 
 Linux离线安装Mysql5.7 
 
+https://blog.csdn.net/qq_33967499/article/details/109146685
+
+
+
 Win 离线安装Mysql5.7
