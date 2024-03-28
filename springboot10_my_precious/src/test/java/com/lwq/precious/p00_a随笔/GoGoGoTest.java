@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
@@ -38,11 +39,21 @@ public class GoGoGoTest implements Serializable {
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
 
+
+    @Test
+    public void test92111() {
+        Double valueOf = Double.valueOf("3.14");
+        System.out.println(valueOf);
+
+        Double valueOf1 = Double.valueOf("180000000");
+        System.out.println(valueOf1);
+
+    }
+
     @Test
     public void test9211() {
-        String str = "123";
-        String substring = str.substring(0, str.length() - 1);
-        System.out.println(substring);
+         long nowTime =System.currentTimeMillis();
+        System.out.println( nowTime - ((nowTime + TimeZone.getDefault().getRawOffset()) % (24 * 60 * 60 * 1000L)));
     }
 
     @Test

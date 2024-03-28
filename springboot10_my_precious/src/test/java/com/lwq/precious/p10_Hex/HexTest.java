@@ -1,6 +1,7 @@
 package com.lwq.precious.p10_Hex;
 
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -71,7 +72,7 @@ public class HexTest {
     public void name22222() {
         byte[] hex2ByteArr = Hex2ByteArr("58 02");
         byte[] long2ByteArr = long2ByteArr(225304545l);
-        String long2Binary = long2Binary(22530l, 16);
+
         String byteArr2Bin = byteArr2Bin(long2ByteArr);
         String byteArr2Hex = byteArr2Hex(long2ByteArr);
         String byteArr2Unsigned = byteArr2Unsigned(long2ByteArr);
@@ -105,19 +106,36 @@ public class HexTest {
      */
     @Test
     public void name3() {
-        String hexString = "17 05 08 09 0A 3B 00 01";
+        String hexString = "00 0e a6 00";
         byte[] byteArr = Hex2ByteArr(hexString);
         String binary = byteArr2Bin(byteArr);
+        String byteArr2Hex = byteArr2Hex(byteArr);
+        System.out.println(byteArr2Hex);
 
         String byteArr2Unsigned = byteArr2Unsigned(byteArr);
+
+        ByteBuffer buffer = ByteBuffer.wrap(byteArr);  
+        int result = buffer.getInt();  
+
+        System.out.println("byte->有符号数"+result);
         for (int i = 0; i < byteArr.length; i++) {
             System.out.print(byteArr[i]);
         }
         System.out.println(binary);
         System.out.println(byteArr2Unsigned);
         
+    }
 
-
+    /**
+     * 无符号数转byte
+     */
+        @Test
+    public void name333() {
+        String long2Binary = long2Binary(2101254, 32);
+        byte[] long2ByteArr = long2ByteArr(201006);
+        String byteArr2Hex = byteArr2Hex(long2ByteArr);
+        
+        System.out.println(byteArr2Hex);
     }
 
     public byte[] Hex2ByteArr(String inHex) {
@@ -168,15 +186,15 @@ public class HexTest {
     // return res;
     // }
 
-    public String long2Binary(Long num, Integer bitWise) {
-        if (num < 0) {
+    public String long2Binary(int k, Integer bitWise) {
+        if (k < 0) {
             throw new RuntimeException("参数为负,请输入无符号数");
         }
         char[] res = new char[bitWise];
         for (int i = 0; i < res.length; i++) {
             res[i] = '0';
         }
-        String s = Long.toBinaryString(num);
+        String s = Long.toBinaryString(k);
         char[] chars = s.toCharArray();
 
         int j = res.length - 1;
