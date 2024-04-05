@@ -1,12 +1,21 @@
-Dockerfile 同级目录下 执行
-	$$$  docker  build -t   <name>:<tag> .
-利用dockerfile,制作镜像
+Dockerfile 同级目录下 执行(.代表当前目录)
+		  docker  build -t   <name>:<tag> .
 
-
-	$$$ docker save -o  <xxx.tar(要打出包的名字)>   <imageName>:<tag>
 将镜像保存为文件
+		 docker save -o  <xxx.tar(要打出包的名字)>   <imageName>:<tag>
 
-
-
-	$$$ docker load -i xxx.tar
 将文件加载成镜像
+		docker load -i xxx.tar
+
+查看容器日志 （-f代表持续查看）
+		docker log -f xxx
+
+安装docker-compose
+	mv docker-compose-linux-x86_64 /usr/local/bin/docker-compose
+设置权限
+	chmod +x /usr/local/bin/docker-compose
+查看版本
+	docker-compose  -v
+
+
+
