@@ -24,14 +24,14 @@ public class RunApplication {
     @Value("${neinei}")
     private String  neinei ="12";
 
-    @PostConstruct
+   //@PostConstruct
     private void name1(){
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 String s = String.valueOf(System.currentTimeMillis());
-                log.info("我是日志-"+neinei+"-"+s);
+                log.info("我不？---是日志-"+neinei+"-"+s);
             }
         },1000,1000);
 

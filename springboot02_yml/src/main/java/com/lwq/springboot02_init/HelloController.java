@@ -1,5 +1,7 @@
 package com.lwq.springboot02_init;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -8,12 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lwq.springboot02_init.model.Person;
 
-import javax.annotation.PostConstruct;
-
 @RestController
 public class HelloController {
 
-    //*************************配置静态变量******************************
+    // *************************配置静态变量******************************
     public static String APP_ID;
 
     @Value("${appid}")
@@ -23,8 +23,7 @@ public class HelloController {
     public void getStaticEnvironment() {
         APP_ID = appId;
     }
-    //******************************END********************************
-
+    // ******************************END********************************
 
     @Value("直接写入值")
     private String message;
@@ -54,9 +53,9 @@ public class HelloController {
     private Person person; // 为该对象注入配置文件中属性的步骤去person上找
 
     @RequestMapping("/")
-    public Person hehe1() {
+    public String hehe1() {
         System.out.println(APP_ID);
-        return person;
+        return APP_ID;
     }
 
     /**
@@ -67,9 +66,9 @@ public class HelloController {
     public String test2() {
         System.out.println(env.getProperty("person.name"));
         System.out.println(env.getProperty("person.age"));
-        System.out.println(env.getProperty("person.title"));//null
+        System.out.println(env.getProperty("person.title"));// null
         System.out.println(env.getProperty("person.title[0]"));
-        System.out.println(env.getProperty("person.list"));//null
+        System.out.println(env.getProperty("person.list"));// null
         System.out.println(env.getProperty("person.list[0]"));
         return "看控制台！";
     }
@@ -81,8 +80,8 @@ public class HelloController {
         System.out.println(myAge);
         System.out.println(petName);
 
-        //System.out.println(myTitles);
-        //System.out.println(myList);
+        // System.out.println(myTitles);
+        // System.out.println(myList);
         return "看控制台！";
     }
 

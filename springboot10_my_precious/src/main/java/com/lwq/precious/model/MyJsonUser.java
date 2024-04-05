@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,7 +16,7 @@ import lombok.Singular;
 public class MyJsonUser {
     private String name;
     private int age;
-    @Singular("addHobby")
+    //@Singular("addHobby")
     private List<String> hobby;
     private LocalDateTime  birthday;
 }
