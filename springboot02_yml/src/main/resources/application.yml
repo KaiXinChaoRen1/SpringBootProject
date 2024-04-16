@@ -1,8 +1,10 @@
+server:
+  port: 9090
 neinei: lwq
 
-msg1: 'hhehe \n haha'       # 单引忽略转义字符
+msg1: 'hhehe \n haha' # 单引忽略转义字符
 
-msg2: "hhehe \n haha"       # 双引识别转义字符
+msg2: "hhehe \n haha" # 双引识别转义字符
 
 iphone: 18Pro
 
@@ -13,7 +15,7 @@ person:
   name: lwq
   age: 23
   birth: 1999/12/12 20:20:20
-  title: 
+  title:
     - 龙族盟友
     - 传说
   pet:
@@ -27,11 +29,11 @@ person:
     math: good
   map2:
     dog:
-      - {species: dog,name: ahuang}
-      - {species: dog,name: alv}
+      - { species: dog, name: ahuang }
+      - { species: dog, name: alv }
     cat:
-      - {species: cat,name: mimi}
-      - {species: cat,name: miaomiao}
+      - { species: cat, name: mimi }
+      - { species: cat, name: miaomiao }
   map3:
     dog:
       - species: dog
@@ -44,25 +46,18 @@ person:
       - species: cat
         name: miaomiao
   list-pet:
-      # - {species: cat,name: mimi}
-      # - {species: cat,name: miaomiao}
+    # - {species: cat,name: mimi}
+    # - {species: cat,name: miaomiao}
 
-      # - species: cat
-      #   name: mimi
-      # - species: cat
-      #   name: miaomiao
+    # - species: cat
+    #   name: mimi
+    # - species: cat
+    #   name: miaomiao
 
-      [{species: cat,name: mimi},{species: cat,name: miaomiao}]
+    [{ species: cat, name: mimi }, { species: cat, name: miaomiao }]
 
-
-  
 logging:
-  file: 
+  file:
     name: logs/lwq.log
   level:
     root: info
-
-
-
-
-

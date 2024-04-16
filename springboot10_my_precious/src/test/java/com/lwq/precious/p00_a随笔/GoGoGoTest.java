@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
@@ -38,6 +39,36 @@ public class GoGoGoTest implements Serializable {
 
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
+
+    @Test
+    public void test92111sds22( ) {
+        int i=23;
+        byte be=(byte)i;
+        System.out.println(be);
+
+        String s="111";
+        System.out.println(Byte.valueOf(s ));
+    }
+
+    @Test
+    public void test9211122( ) {
+        
+
+        ByteBuffer bytebuffer = ByteBuffer.allocate(2);
+        bytebuffer.putShort((short)500);
+         byte[] array = bytebuffer.array();
+
+        byte[] bytes = {23, 4, 7, 4, 5, 6, 0, 0}; 
+
+        bytes[6]=array[0];
+        bytes[7]=array[1];
+
+
+        ByteBuffer bytebuffer2 = ByteBuffer.wrap(bytes);
+
+        System.out.println(bytebuffer2.getLong());
+
+    }
 
 
     @Test
