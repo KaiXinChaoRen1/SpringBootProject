@@ -106,7 +106,12 @@ public class HexTest {
      */
     @Test
     public void name3() {
-        String hexString = "00 0e a6 00";
+        // String hexString = "00 0e a6 00";
+        // String hexString = "18 05 07 0c 04 2a 00 de";
+
+        String hexString = "00 01 2a 04 0c 07 05 18";
+
+        // String hexString = "18 05 07 0c 04 2a de 00";
         byte[] byteArr = Hex2ByteArr(hexString);
         String binary = byteArr2Bin(byteArr);
         String byteArr2Hex = byteArr2Hex(byteArr);
@@ -114,27 +119,27 @@ public class HexTest {
 
         String byteArr2Unsigned = byteArr2Unsigned(byteArr);
 
-        ByteBuffer buffer = ByteBuffer.wrap(byteArr);  
-        int result = buffer.getInt();  
+        ByteBuffer buffer = ByteBuffer.wrap(byteArr);
+        int result = buffer.getInt();
 
-        System.out.println("byte->有符号数"+result);
+        System.out.println("byte->有符号数" + result);
         for (int i = 0; i < byteArr.length; i++) {
             System.out.print(byteArr[i]);
         }
         System.out.println(binary);
         System.out.println(byteArr2Unsigned);
-        
+
     }
 
     /**
      * 无符号数转byte
      */
-        @Test
+    @Test
     public void name333() {
         String long2Binary = long2Binary(2101254, 32);
         byte[] long2ByteArr = long2ByteArr(201006);
         String byteArr2Hex = byteArr2Hex(long2ByteArr);
-        
+
         System.out.println(byteArr2Hex);
     }
 
