@@ -2,6 +2,7 @@ package com.lwq.precious.p10_Hex;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,36 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest
 public class HexTest {
+
+    @Test
+    public void name12323443() {
+        HashMap<Object, Object> hashMap = new HashMap<>();
+        hashMap.containsKey(null);
+    }
+
+    @Test
+    public void name12323() {
+        char[] binaryArray = { '1', '1' };
+        String hexString = binaryToHex(new String(binaryArray));
+        System.out.println("0x" + hexString);
+    }
+
+    public static String binaryToHex(String binary) {
+        // 确保字符串长度为偶数
+        if (binary.length() % 2 != 0) {
+            binary = '0' + binary; // 在前面添加一个'0'
+        }
+
+        StringBuilder hex = new StringBuilder();
+        for (int i = 0; i < binary.length(); i += 2) {
+            String binarySubStr = binary.substring(i, i + 2);
+            // 将二进制子串转换为十进制整数
+            int decimal = Integer.parseInt(binarySubStr);
+            // 将十进制整数转换为十六进制字符
+            hex.append(Integer.toHexString(decimal));
+        }
+        return hex.toString();
+    }
 
     /**
      * 常见的udp报文,会有byte 或者 十六进制 两种展示形式

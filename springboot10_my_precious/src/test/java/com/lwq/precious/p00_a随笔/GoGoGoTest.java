@@ -41,35 +41,76 @@ public class GoGoGoTest implements Serializable {
     private AsyncTaskService2 asyncTaskService2;
 
     @Test
-    public void test92111sds22( ) {
-        int i=23;
-        byte be=(byte)i;
-        System.out.println(be);
+    public void test92111sds22() {
+        char[] charArray = { '1', '0', '1', '0' };
+        int result = bitsToUnsignedDecimal(charArray);
+        System.out.println("The unsigned decimal number is: " + result);
 
-        String s="111";
-        System.out.println(Byte.valueOf(s ));
     }
 
     @Test
-    public void test9211122( ) {
-        
+    public void test92111sds222() {
+        String incrementLastNumber = incrementLastNumber("12hehe459");
+        System.out.println(incrementLastNumber);
+
+    }
+
+    public static String incrementLastNumber(String input) {
+        if (input == null || input.isEmpty()) {
+            return input; // 或者返回空字符串、抛出异常等
+        }
+
+        // 从后向前查找第一个非数字字符的索引
+        int lastIndex = input.length() - 1;
+        while (lastIndex >= 0 && Character.isDigit(input.charAt(lastIndex))) {
+            lastIndex--;
+        }
+
+        // 如果没有找到非数字字符（整个字符串都是数字）
+        if (lastIndex == -1) {
+            // 直接将字符串转换为整数加一并返回
+            return String.valueOf(Integer.parseInt(input) + 1);
+        }
+
+        // 提取末尾的数字部分
+        String numberStr = input.substring(lastIndex + 1);
+        int number = Integer.parseInt(numberStr);
+
+        // 将数字加一并转换为字符串
+        String incrementedNumberStr = String.valueOf(number + 1);
+
+        // 如果原始字符串包含非数字字符，将它们与新的数字字符串拼接起来
+        return input.substring(0, lastIndex + 1) + incrementedNumberStr;
+    }
+
+    public static int bitsToUnsignedDecimal(char[] charArray) {
+        int decimalNumber = 0;
+        for (char c : charArray) {
+            // 将字符 '0' 或 '1' 转换为对应的整数值 0 或 1
+            int bitValue = c - '0';
+            // 将当前位的值加到结果上，注意这里使用了位移操作来避免溢出
+            decimalNumber = (decimalNumber << 1) | bitValue;
+        }
+        return decimalNumber;
+    }
+
+    @Test
+    public void test9211122() {
 
         ByteBuffer bytebuffer = ByteBuffer.allocate(2);
-        bytebuffer.putShort((short)500);
-         byte[] array = bytebuffer.array();
+        bytebuffer.putShort((short) 500);
+        byte[] array = bytebuffer.array();
 
-        byte[] bytes = {23, 4, 7, 4, 5, 6, 0, 0}; 
+        byte[] bytes = { 23, 4, 7, 4, 5, 6, 0, 0 };
 
-        bytes[6]=array[0];
-        bytes[7]=array[1];
-
+        bytes[6] = array[0];
+        bytes[7] = array[1];
 
         ByteBuffer bytebuffer2 = ByteBuffer.wrap(bytes);
 
         System.out.println(bytebuffer2.getLong());
 
     }
-
 
     @Test
     public void test92111() {
@@ -83,8 +124,8 @@ public class GoGoGoTest implements Serializable {
 
     @Test
     public void test9211() {
-         long nowTime =System.currentTimeMillis();
-        System.out.println( nowTime - ((nowTime + TimeZone.getDefault().getRawOffset()) % (24 * 60 * 60 * 1000L)));
+        long nowTime = System.currentTimeMillis();
+        System.out.println(nowTime - ((nowTime + TimeZone.getDefault().getRawOffset()) % (24 * 60 * 60 * 1000L)));
     }
 
     @Test

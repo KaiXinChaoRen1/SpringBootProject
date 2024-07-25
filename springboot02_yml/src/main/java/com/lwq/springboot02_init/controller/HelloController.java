@@ -1,4 +1,4 @@
-package com.lwq.springboot02_init;
+package com.lwq.springboot02_init.controller;
 
 import javax.annotation.PostConstruct;
 

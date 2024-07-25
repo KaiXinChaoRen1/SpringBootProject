@@ -3,4 +3,18 @@
 select version();       查看版本
 show variables like 'character_set%';        可以查看MySQL数据库中关于字符集的相关设置
 
+数据库备份
 
+mysqldump -u root -p xxxxx>/home/xxxxx.sql;
+然后输入你登录数据库的密码就ok啦。
+xxxxx：为你要备份的数据库名字
+/home：是你存放备份文件的路径
+xxxxx.sql：备份文件的名字，后缀名不要错（.sql）
+回车后,如果无报错,可以再指定路径下找到.sql文件就说明备份成功
+
+
+
+
+create database xxx;
+use  xxx;
+source /home/xxxxx.sql;

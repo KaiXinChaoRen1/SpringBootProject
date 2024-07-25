@@ -17,6 +17,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TestController {
 
+    @ApiOperation("测试controller层并发控制2")
+    @GetMapping("/test8")
+    public synchronized void name8() throws InterruptedException {
+        for (int i = 0; i < 5; i++) {
+            Thread.sleep(1000);
+            System.out.println("test8-->" + i);
+        }
+    }
+
+    @ApiOperation("测试controller层并发控制")
+    @GetMapping("/test7")
+    public synchronized void name7() throws InterruptedException {
+        for (int i = 0; i < 5; i++) {
+            Thread.sleep(1000);
+            System.out.println("test7-->" + i);
+        }
+    }
+
     @ApiOperation("Vo封装枚举类传参")
     @GetMapping("/test6")
     public void name6(@RequestBody EnumVo enumVo) {
@@ -24,7 +42,7 @@ public class TestController {
         System.out.println(season);
         System.out.println(season.toString());
         System.out.println(season.getClass());
-        
+
         System.out.println(season.getSeasonName());
         System.out.println(enumVo.getStr());
     }
@@ -67,34 +85,6 @@ public class TestController {
             // return "111";
         }
         return "2222222"; // 看上去和111差不多
-    }
-
-    @GetMapping("/test2")
-    public String name2() {
-        System.out.println("test2执行了");
-        return "我家大门常打开";
-    }
-
-    @GetMapping("/testException")
-    public String testException() {
-        if (1 < 2) {
-            throw new RuntimeException("我是异常,芜湖芜湖~~");
-        }
-        return "我家大门常打开";
-    }
-
-
-    @GetMapping("/testException2")
-    public String testException2() {
-        if (1 < 2) {
-            throw new PromptException("我是异常,芜湖芜湖~~");
-        }
-        return "我家大门常打开";
-    }
-    @GetMapping("/test")
-    public String name() {
-        System.out.println("test执行了");
-        return "我家大门常打开";
     }
 
 }
