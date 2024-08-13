@@ -1,0 +1,9 @@
+cat  /etc/shells              查看系统支持的shell
+
+cat /etc/passwd           查看用户登陆后分配的shell
+
+
+history                       查看使用过的命令(1000条上限)
+!xxx	                  执行history中第xx条命令
+
+\+回车			指令换行
