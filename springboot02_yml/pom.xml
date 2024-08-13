@@ -21,6 +21,12 @@
     </properties>
 
     <dependencies>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <!-- optional=true 防止将devtools依赖传递到其他模块中 -->
         <!-- <dependency>
             <groupId>org.springframework.boot</groupId>

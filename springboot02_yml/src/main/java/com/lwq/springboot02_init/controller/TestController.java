@@ -3,10 +3,11 @@ package com.lwq.springboot02_init.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/test")
+@RestController
+@RequestMapping("/test")
 public class TestController {
 
-    @RequestMapping("/")
+    @RequestMapping("/hahah")
     public String hehe1() {
         return "";
     }
