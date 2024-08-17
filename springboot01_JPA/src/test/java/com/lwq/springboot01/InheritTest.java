@@ -15,9 +15,6 @@ import com.lwq.springboot01.entity.inherit.Dijia;
 import com.lwq.springboot01.entity.inherit.FastDijia;
 import com.lwq.springboot01.entity.inherit.StrongDijia;
 
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.util.IdUtil;
-
 /**
  * 当JPA遇到继承
  */
@@ -33,42 +30,42 @@ public class InheritTest {
     ColorRepository cr;
 
     // 雪花算法生成uuid的Hutool工具类
-    private static Snowflake snowflake = IdUtil.getSnowflake(1, 1);
+    // private static Snowflake snowflake = IdUtil.getSnowflake(1, 1);
 
-    @Test
-    public void value1() {
+    // @Test
+    // public void value1() {
 
-        StrongDijia sd = StrongDijia.builder().uuid(snowflake.nextIdStr()).power(100).speed(80).skill("迪拉修姆光流")
-                .favorite(true).build();
-        FastDijia fd = FastDijia.builder().uuid(snowflake.nextIdStr()).power(80).speed(100).skill("兰帕尔特光弹").build();
+    //     StrongDijia sd = StrongDijia.builder().uuid(snowflake.nextIdStr()).power(100).speed(80).skill("迪拉修姆光流")
+    //             .favorite(true).build();
+    //     FastDijia fd = FastDijia.builder().uuid(snowflake.nextIdStr()).power(80).speed(100).skill("兰帕尔特光弹").build();
 
-        Color blue = Color.builder().uuid(snowflake.nextIdStr()).value("蓝色").dijia(fd).build();
-        Color red = Color.builder().uuid(snowflake.nextIdStr()).value("红色").dijia(sd).build();
+    //     Color blue = Color.builder().uuid(snowflake.nextIdStr()).value("蓝色").dijia(fd).build();
+    //     Color red = Color.builder().uuid(snowflake.nextIdStr()).value("红色").dijia(sd).build();
 
-        // color和dijia的数据都会添加,但不会添加外键
-        cr.save(blue);
-        cr.save(red);
+    //     // color和dijia的数据都会添加,但不会添加外键
+    //     cr.save(blue);
+    //     cr.save(red);
 
-    }
+    // }
 
-    @Test
-    public void value2() {
+    // @Test
+    // public void value2() {
 
-        Dijia d = Dijia.builder().uuid(snowflake.nextIdStr()).power(90).speed(90).build();
-        dr.save(d);
+    //     Dijia d = Dijia.builder().uuid(snowflake.nextIdStr()).power(90).speed(90).build();
+    //     dr.save(d);
 
-        Color blue = Color.builder().uuid(snowflake.nextIdStr()).value("蓝色").build();
-        Color red = Color.builder().uuid(snowflake.nextIdStr()).value("红色").build();
+    //     Color blue = Color.builder().uuid(snowflake.nextIdStr()).value("蓝色").build();
+    //     Color red = Color.builder().uuid(snowflake.nextIdStr()).value("红色").build();
 
-        StrongDijia sd = StrongDijia.builder().uuid(snowflake.nextIdStr()).power(100).speed(80).skill("迪拉修姆光流")
-                .favorite(true).color(red).build();
-        FastDijia fd = FastDijia.builder().uuid(snowflake.nextIdStr()).power(80).speed(100).skill("兰帕尔特光弹").color(blue)
-                .build();
+    //     StrongDijia sd = StrongDijia.builder().uuid(snowflake.nextIdStr()).power(100).speed(80).skill("迪拉修姆光流")
+    //             .favorite(true).color(red).build();
+    //     FastDijia fd = FastDijia.builder().uuid(snowflake.nextIdStr()).power(80).speed(100).skill("兰帕尔特光弹").color(blue)
+    //             .build();
 
-        sr.save(sd);
-        fr.save(fd);
+    //     sr.save(sd);
+    //     fr.save(fd);
 
-    }
+    // }
 
     @Test
     public void value3() {

@@ -18,6 +18,14 @@
 
     <dependencies>
 
+        <!--引入Knife4j的官方start包,该指南选择Spring
+        Boot版本<3.0,开发者需要注意-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
         <!--web依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,11 +76,11 @@
         </dependency>
 
         <!-- hutool 工具类 -->
-        <dependency>
+        <!-- <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.18</version>
-        </dependency>
+        </dependency> -->
 
         <!--devtools热部署Ctrl+F9-->
         <!-- <dependency>

@@ -3,7 +3,7 @@ package com.lwq.springboot01;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,9 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lwq.springboot01.dao.treeRepository.SubjectRepository;
 import com.lwq.springboot01.entity.treeUtils.Subject;
 
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.lang.UUID;
-import cn.hutool.core.util.IdUtil;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class InsertTest {
@@ -36,7 +33,7 @@ public class InsertTest {
     private EntityManager entityManager;
 
     // 雪花算法生成uuid的Hutool工具类
-    private static Snowflake snowflake = IdUtil.getSnowflake(1, 1);
+    //private static Snowflake snowflake = IdUtil.getSnowflake(1, 1);
 
     public void batchInsert(List<Subject> list) {
         String sql = "insert into tree_subject(uuid, subject_name , father_uuid) values(?, ?, ?)";
@@ -114,19 +111,19 @@ public class InsertTest {
     /**
      * 雪花算法
      */
-    @Test
-    public void name2() {
-        ArrayList<Subject> arrayList = new ArrayList<>();
-        for (int i = 0; i < 1000; i++) {
-            arrayList.add(Subject.builder().uuid(snowflake.nextIdStr()).build());
-        }
-        long begin = System.currentTimeMillis();
-        sr.saveAll(arrayList);
-        long end = System.currentTimeMillis();
-        System.out.println("用时" + (end - begin) / 1000 + "秒");
-        long count = sr.count();
-        System.out.println("表里共" + count + "条数据");
-    }
+    // @Test
+    // public void name2() {
+    //     ArrayList<Subject> arrayList = new ArrayList<>();
+    //     for (int i = 0; i < 1000; i++) {
+    //         arrayList.add(Subject.builder().uuid(snowflake.nextIdStr()).build());
+    //     }
+    //     long begin = System.currentTimeMillis();
+    //     sr.saveAll(arrayList);
+    //     long end = System.currentTimeMillis();
+    //     System.out.println("用时" + (end - begin) / 1000 + "秒");
+    //     long count = sr.count();
+    //     System.out.println("表里共" + count + "条数据");
+    // }
 
     @Test
     public void name3() {
