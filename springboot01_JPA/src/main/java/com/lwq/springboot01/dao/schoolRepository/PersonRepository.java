@@ -1,8 +1,7 @@
 package com.lwq.springboot01.dao.schoolRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -16,6 +15,13 @@ import com.lwq.springboot01.entity.schoolstory.Person;
 public interface PersonRepository extends JpaRepository<Person, Integer>, JpaSpecificationExecutor<Person> {
     @Query("Select p.name from Person as p where p.id=:id")
     String jpqlQuery(int id);
+
+    //1
+    //Person findByName(String name);
+    //2
+    Optional<Person> findByName(String name);
+
+
 
     // @Modifying
     // @Transactional

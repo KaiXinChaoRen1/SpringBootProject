@@ -122,4 +122,14 @@ public class One {
         Person p1 = Person.builder().name("zhangfei").age(55).birthday(LocalDateTime.now()).build();
         pr.save(p1);
     }
+
+    @Test
+    public void name112() {
+       //Person byName = pr.findByName("zhangfei");
+       Optional<Person> byNameOptional = pr.findByName("zhangfei");
+       System.out.println("=======================");
+       System.out.println(byNameOptional);
+       System.out.println("=======================");
+
+    }
 }
