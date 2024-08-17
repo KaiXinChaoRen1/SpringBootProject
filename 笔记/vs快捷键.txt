@@ -1,3 +1,12 @@
   Ctrl + shift +L 选中所有
   Ctrl + j    打开/关闭终端
   Ctrl + b    隐藏左边目录导航树
+
+
+
+MacOS：
+整理 import     option +shift+ o    
+
+保存             command +  s       
+
+代码格式化：         shift + option + F  
