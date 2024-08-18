@@ -41,6 +41,24 @@ public class GoGoGoTest implements Serializable {
     private AsyncTaskService2 asyncTaskService2;
 
     @Test
+    public void test92111sds222() {
+        long startTime = System.currentTimeMillis();
+        int iterations = 1000000;
+        for (int i = 0; i < iterations; i++) {
+            double result = doComplexMath();
+        }
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        System.out.println("执行 " + iterations + " 次复杂数学运算共耗时：" + elapsedTime + " 毫秒");
+    }
+
+    public double doComplexMath() {
+        return Math.exp(Math.cos(Math.sin(Math.PI * 5)));
+    }
+
+    
+
+    @Test
     public void test92111sds22() {
         char[] charArray = { '1', '0', '1', '0' };
         int result = bitsToUnsignedDecimal(charArray);
