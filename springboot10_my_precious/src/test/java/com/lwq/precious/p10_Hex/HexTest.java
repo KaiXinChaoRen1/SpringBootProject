@@ -113,10 +113,17 @@ public class HexTest {
 
     @Test
     public void name2222() {
-        String hexString = "58 02";
+        // String hexString = "58 02";
+
+        String hexString = "00 0a 01 02";
         byte[] byteArr = Hex2ByteArr(hexString);
+        System.out.println("十六进制转换成byte数组为->");
+        for (int i = 0; i < byteArr.length; i++) {
+            System.out.print(byteArr[i] + ",");
+        }
+        System.out.println("-----------------------------------");
         String binary = byteArr2Bin(byteArr);
-        System.out.println(binary);
+        System.out.println("byte数组转换成二进制->" + binary);
         String convertToUnsigned = byteArr2Unsigned(byteArr);
         System.out.println(convertToUnsigned);
     }
