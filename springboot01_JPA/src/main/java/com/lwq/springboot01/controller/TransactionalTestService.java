@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
 import com.lwq.springboot01.entity.schoolstory.Person;
@@ -67,6 +70,52 @@ public class TransactionalTestService {
         transactionalTestService2.add1NESTED();
         Person p1 = Person.builder().name("hehe").age(55).birthday(LocalDateTime.now()).build();
         pr.save(p1);
+    }
+
+    @Autowired
+    PlatformTransactionManager transactionManager;
+
+    public void addtest() {
+        TransactionDefinition def = new DefaultTransactionDefinition();
+        TransactionStatus status = transactionManager.getTransaction(def);
+        try {
+            Person p1 = Person.builder().name("hehe").age(55).birthday(LocalDateTime.now()).build();
+            pr.save(p1);
+            transactionManager.commit(status);
+        } catch (Exception e) {
+            transactionManager.rollback(status);
+            throw e;
+        }
+    }
+
+    public void addtest2() {
+        TransactionDefinition def = new DefaultTransactionDefinition();
+        TransactionStatus status = transactionManager.getTransaction(def);
+        try {
+            Person p1 = Person.builder().name("hehe").age(55).birthday(LocalDateTime.now()).build();
+            pr.save(p1);
+            transactionManager.commit(status);
+            throw new RuntimeException();
+        } catch (Exception e) {
+            transactionManager.rollback(status);
+            throw e;
+        }
+    }
+
+    public void addtest3() {
+        TransactionDefinition def = new DefaultTransactionDefinition();
+        TransactionStatus status = transactionManager.getTransaction(def);
+        try {
+            Person p1 = Person.builder().name("hehe").age(55).birthday(LocalDateTime.now()).build();
+            pr.save(p1);
+            if (1 == 1) {
+                throw new RuntimeException();
+            }
+            transactionManager.commit(status);
+        } catch (Exception e) {
+            transactionManager.rollback(status);
+            throw e;
+        }
     }
 
 }

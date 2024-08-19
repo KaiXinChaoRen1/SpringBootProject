@@ -61,4 +61,31 @@ public class TransactionalTestController {
         return ResponseEntity.ok("添加成功");
     }
 
+    @ApiOperation(value = "编程式事务测试 ")
+    @GetMapping("/test1")
+    public ResponseEntity<String> test1() {
+
+        transactionalTestService.addtest();
+
+        return ResponseEntity.ok("success");
+    }
+
+    @ApiOperation(value = "编程式事务测试(先提交再抛出异常) ")
+    @GetMapping("/test2")
+    public ResponseEntity<String> test2() {
+
+        transactionalTestService.addtest2();
+
+        return ResponseEntity.ok("success");
+    }
+
+    @ApiOperation(value = "编程式事务测试(先抛出异常) ")
+    @GetMapping("/test3")
+    public ResponseEntity<String> test3() {
+
+        transactionalTestService.addtest3();
+
+        return ResponseEntity.ok("success");
+    }
+
 }
