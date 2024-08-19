@@ -41,7 +41,7 @@ public class GoGoGoTest implements Serializable {
     private AsyncTaskService2 asyncTaskService2;
 
     @Test
-    public void test92111sds222() {
+    public void test92111sds2223() {
         long startTime = System.currentTimeMillis();
         int iterations = 1000000;
         for (int i = 0; i < iterations; i++) {
@@ -55,8 +55,6 @@ public class GoGoGoTest implements Serializable {
     public double doComplexMath() {
         return Math.exp(Math.cos(Math.sin(Math.PI * 5)));
     }
-
-    
 
     @Test
     public void test92111sds22() {
