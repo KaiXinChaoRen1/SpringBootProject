@@ -88,4 +88,13 @@ public class TransactionalTestController {
         return ResponseEntity.ok("success");
     }
 
+    @ApiOperation(value = "编程式事务一部分提交,一部分回滚) ")
+    @GetMapping("/test4")
+    public ResponseEntity<String> test4(boolean isException) {
+
+        transactionalTestService.addtest4(isException);
+
+        return ResponseEntity.ok("success");
+    }
+
 }

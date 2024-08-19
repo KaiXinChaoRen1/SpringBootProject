@@ -1,6 +1,7 @@
 package com.lwq.springboot01.controller;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -114,6 +115,31 @@ public class TransactionalTestService {
             transactionManager.commit(status);
         } catch (Exception e) {
             transactionManager.rollback(status);
+            throw e;
+        }
+    }
+
+    public void addtest4(boolean isException) {
+        TransactionDefinition def = new DefaultTransactionDefinition();
+        TransactionStatus status = transactionManager.getTransaction(def);
+
+        ArrayList<Person> arrayList = new ArrayList<>();
+        arrayList.add(Person.builder().name("111").age(111).birthday(LocalDateTime.now()).build());
+        arrayList.add(Person.builder().name("222").age(222).birthday(LocalDateTime.now()).build());
+
+        pr.saveAll(arrayList);
+        transactionManager.commit(status);
+        // 新开一个事务
+        TransactionStatus newStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
+        try {
+            Person p1 = Person.builder().name("333").age(333).birthday(LocalDateTime.now()).build();
+            pr.save(p1);
+            if (isException) {
+                throw new RuntimeException();
+            }
+            transactionManager.commit(newStatus);
+        } catch (Exception e) {
+            transactionManager.rollback(newStatus);
             throw e;
         }
     }
