@@ -56,22 +56,31 @@ public class One2OneService {
     // s1中有sid就可以维护外键关系,即使用sidr(放弃维护一方的Repository)去保存也可以正常维护,
     // 但要保证sid中有s1,这样才能在存sid的时候存s1,而s1维护了外键关系
     // 说明维护外键关系靠得不是用谁的Repository,而是维护外键的对象本身是否定义了与另一个对象的关系
-
-    public void name222() {
-        Student s1 = Student.builder().name("李文强").build();
-        StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("其他信息").student(s1).build();
+    public void save3() {
+        Student s1 = Student.builder().name("lwq").build();
+        StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("hahah").student(s1).build();
         // 多一步就可以
         s1.setSid(sid1);
 
         sidr.save(sid1);
     }
 
+    @Transactional
+    public void save1() {
+
+        StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("hahhah").build();
+        Student s1 = Student.builder().name("lwq").sid(sid1).build();
+        sr.save(s1);
+
+    }
+
     // 使用放弃维护外键的一方保存
     // sid中有s1所以s1也存入库,但是sid放弃维护关系,所以没有外键关系
 
-    public void name22() {
-        Student s1 = Student.builder().name("李文强").build();
-        StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("其他信息").student(s1).build();
+    @Transactional
+    public void save2() {
+        Student s1 = Student.builder().name("lwq").build();
+        StudentId sid1 = StudentId.builder().StudentIdNumber(202201).other("hahhah").student(s1).build();
 
         sidr.save(sid1);
 

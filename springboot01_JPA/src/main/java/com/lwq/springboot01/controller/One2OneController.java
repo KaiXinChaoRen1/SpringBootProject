@@ -44,4 +44,25 @@ public class One2OneController {
         one2OneService.find();
         return ResponseEntity.ok("addAndFind");
     }
+
+    @ApiOperation(value = "维护外键的一方保存")
+    @GetMapping("/save1")
+    public ResponseEntity<String> save1() {
+        one2OneService.save1();
+        return ResponseEntity.ok("success");
+    }
+
+    @ApiOperation(value = "放弃维护外键的一方保存")
+    @GetMapping("/save2")
+    public ResponseEntity<String> save2() {
+        one2OneService.save2();
+        return ResponseEntity.ok("success");
+    }
+
+    @ApiOperation(value = "放弃维护外键的一方保存2")
+    @GetMapping("/save3")
+    public ResponseEntity<String> save3() {
+        one2OneService.save3();
+        return ResponseEntity.ok("success");
+    }
 }

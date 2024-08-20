@@ -1,31 +1,29 @@
 package com.lwq.springboot01.dao.schoolRepository;
 
-import java.util.*;
+import java.util.Optional;
 
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.lwq.springboot01.entity.schoolstory.Person;
+import com.lwq.springboot01.entity.schoolstory.Student;
 
 public interface PersonRepository extends JpaRepository<Person, Integer>, JpaSpecificationExecutor<Person> {
     @Query("Select p.name from Person as p where p.id=:id")
     String jpqlQuery(int id);
 
-    //1
-    //Person findByName(String name);
-    //2
+    // 1
+    // Person findByName(String name);
+    // 2
     Optional<Person> findByName(String name);
-
-
 
     // @Modifying
     // @Transactional
-    // @Query(value = "INSERT INTO table_name (id, name) VALUES (:id, :name)", nativeQuery = true)
+    // @Query(value = "INSERT INTO table_name (id, name) VALUES (:id, :name)",
+    // nativeQuery = true)
     // void insertMap(List<Map<String, Object>> dataList);
 
     // @Transactional
