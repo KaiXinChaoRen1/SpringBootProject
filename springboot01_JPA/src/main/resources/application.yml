@@ -8,7 +8,7 @@ spring:
     #   &useSSL=false\                    配置不使用证书令牌等校验,只用账号密码
     #   &serverTimezone=UTC"
     url:
-      "jdbc:mysql://${MYSQL_HOST:101.200.149.98}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:hehe1_db}?\
+      "jdbc:mysql://${MYSQL_HOST:101.200.149.98}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:lwq_test}?\
       createDatabaseIfNotExist=true\
       &useUnicode=true\
       &characterEncoding=UTF-8\
@@ -42,7 +42,7 @@ spring:
     show-sql: false
     generate-ddl: true # 需要加上这个才能自动生成数据库表
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       hibernate:

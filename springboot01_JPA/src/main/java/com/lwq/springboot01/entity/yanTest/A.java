@@ -24,12 +24,14 @@ import lombok.ToString;
 @Builder
 @Entity
 @Data
-@Table(name="t_a")
-@ToString(exclude = {"bSet","childrenA"})
-@EqualsAndHashCode(exclude = {"bSet","childrenA"})
+@Table(name = "t_a")
+// @ToString(exclude = { "bSet", "childrenA" })
+// @EqualsAndHashCode(exclude = { "bSet", "childrenA" })
+@ToString(exclude = { "parentA" })
+@EqualsAndHashCode(exclude = { "parentA" })
 public class A {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JoinColumn
@@ -37,16 +39,13 @@ public class A {
 
     @Builder.Default
     @OneToMany(mappedBy = "a")
-    private Set<B> bSet=new HashSet<>();
+    private Set<B> bSet = new HashSet<>();
 
-    //下面两个用于多层级测试
-    //把A当作目录,则A拥有其他子A
     @Builder.Default
-    @OneToMany(mappedBy = "parentA")
-    private Set<A> childrenA=new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parentA", cascade = CascadeType.ALL)
+    private Set<A> childrenA = new HashSet<>();
 
-    //把A当作目录,则A拥有一个父A
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private  A  parentA;
+    private A parentA;
 }

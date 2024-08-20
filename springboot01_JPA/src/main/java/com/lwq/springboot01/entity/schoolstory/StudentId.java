@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -22,6 +23,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "lwq_student_id")
+@ToString(exclude = { "student" })
 public class StudentId {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,18 +35,9 @@ public class StudentId {
     @Column
     private String other;
 
-    // optional = false,学生证必须有对应的学生
-    // @OneToOne(cascade = CascadeType.ALL, mappedBy = "sid", optional =false)
+    // @OneToOne(cascade = CascadeType.ALL)
+    // //如果不配置mappedBy,则会在lwq_student_id表中自动创建一个外键,指向Student表
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "sid")
     private Student student;
 
-    // @Override
-    // public String toString() {
-    // return "StudentId{" +
-    // "id=" + id +
-    // ", StudentIdNumber=" + StudentIdNumber +
-    // ", other='" + other + '\'' +
-    // ", Student='"+student.getName()+
-    // '}';
-    // }
 }

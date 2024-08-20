@@ -10,9 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
 import com.lwq.springboot01.entity.schoolstory.Person;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 用于事务测试 多层调用,防止同类方法调用事务失效
  */
+@Slf4j
 @Service
 public class TransactionalTestService2 {
     @Autowired

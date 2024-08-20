@@ -14,6 +14,9 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
 import com.lwq.springboot01.entity.schoolstory.Person;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class TransactionalTestService {
 
