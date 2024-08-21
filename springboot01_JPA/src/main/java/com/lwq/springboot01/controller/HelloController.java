@@ -25,6 +25,13 @@ public class HelloController {
     @Autowired
     BDao bDao;
 
+    @ApiOperation(value = "测试热部署")
+    @GetMapping("/hehe5222")
+    public String hehe2225() {
+
+        return "haha111222";
+    }
+
     /**
      * JPA父子结构
      * 保存数据

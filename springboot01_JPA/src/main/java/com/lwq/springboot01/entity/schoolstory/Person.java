@@ -1,6 +1,5 @@
 package com.lwq.springboot01.entity.schoolstory;
 
-
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -29,9 +28,13 @@ public class Person {
     @Column(name = "birthday")
     private LocalDateTime birthday;
 
-    public Person(String name){
-        this.name=name;
+    public Person(String name) {
+        this.name = name;
     }
 
+    public Person(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lwq.springboot01.dao.mySpecification.MySpecifications;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
 import com.lwq.springboot01.entity.schoolstory.Person;
 
@@ -33,7 +34,7 @@ public class BasicSQLStatementsController {
 
         List<Person> arrayList = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
-            Person person = new Person("lwq" + i);
+            Person person = new Person("lwq" + i, i);
             personRepository.save(person);
             arrayList.add(person);
         }
@@ -84,6 +85,36 @@ public class BasicSQLStatementsController {
         Specification<Person> spec = (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get(filterProperty),
                 filterValue);
         Page<Person> all = personRepository.findAll(spec, pageable);
+
+        return all;
+    }
+
+    @ApiOperation(value = "Specification进阶")
+    @GetMapping("/specificationAdvanced ")
+    public Object specificationAdvanced(@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "name") String sortProperty,
+            @RequestParam(defaultValue = "asc") String sortDirection,
+            @RequestParam(defaultValue = "name") String likeProperty,
+            @RequestParam(defaultValue = "lwq") String likeValue,
+            @RequestParam(defaultValue = "age") String lessProperty,
+            @RequestParam(defaultValue = "18") String lessValue) {
+
+        Sort.Direction direction = Sort.Direction.ASC;
+        if (sortDirection.equals("desc")) {
+            direction = Sort.Direction.DESC;
+        }
+
+        Sort sort = Sort.by(direction, sortProperty);
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Specification<Person> andSpecification = Specification
+                .where(MySpecifications.like(likeProperty, likeValue))
+
+                .or(MySpecifications.lessThan(lessProperty, lessValue));
+
+        Page<Person> all = personRepository.findAll(andSpecification, pageable);
 
         return all;
     }
