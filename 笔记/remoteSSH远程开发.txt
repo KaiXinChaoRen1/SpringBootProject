@@ -1,0 +1,16 @@
+安装git,jdk,maven
+
+配置maven镜像源
+<mirror>
+  <id>nexus-aliyun</id>
+  <mirrorOf>central</mirrorOf>
+  <name>Nexus aliyun</name>
+  <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+</mirror>
+
+配置vscode远程settings.json
+{
+    "java.jdt.ls.java.home": "/usr/java/jdk-17",  #jdk安装位置
+    "java.configuration.maven.userSettings": "/usr/share/maven/conf/settings.xml",
+    "java.configuration.maven.globalSettings": "/usr/share/maven/conf/settings.xml"
+}

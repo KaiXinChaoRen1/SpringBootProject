@@ -18,6 +18,17 @@
     ps -p  xxx -o  ppid=      | 查询一个进程的父进程:  
 
     ls -l /proc/xxx        | 查看xxx进程号,对应相关信息,包括位置等
+
+
+
+安装jdk:
+
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+
+sudo yum -y install ./jdk-17_linux-x64_bin.rpm
+
+java -version
+
         
         
         
