@@ -5,12 +5,18 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lwq.springboot02_init.model.Person;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+
+@Api(tags = "HelloController")
 @RestController
+@Slf4j
 public class HelloController {
 
     // *************************配置静态变量******************************
@@ -19,10 +25,10 @@ public class HelloController {
     @Value("${appid}")
     private String appId;
 
-    @PostConstruct
-    public void getStaticEnvironment() {
-        APP_ID = appId;
-    }
+    // @PostConstruct
+    // public void getStaticEnvironment() {
+    // APP_ID = appId;
+    // }
     // ******************************END********************************
 
     @Value("直接写入值")
@@ -52,7 +58,8 @@ public class HelloController {
     @Autowired
     private Person person; // 为该对象注入配置文件中属性的步骤去person上找
 
-    @RequestMapping("/")
+    @ApiOperation(value = "yml配置静态变量")
+    @GetMapping("/static")
     public String hehe1() {
         System.out.println(APP_ID);
         return APP_ID;
@@ -62,7 +69,8 @@ public class HelloController {
      * Environment
      * getProperty()返回String
      */
-    @RequestMapping("/test2")
+    @ApiOperation(value = "test2")
+    @GetMapping("/test2")
     public String test2() {
         System.out.println(env.getProperty("person.name"));
         System.out.println(env.getProperty("person.age"));
@@ -73,7 +81,8 @@ public class HelloController {
         return "看控制台！";
     }
 
-    @RequestMapping("/test3")
+    @ApiOperation(value = "test3")
+    @GetMapping("/test3")
     public String test3() {
         System.out.println(message);
         System.out.println(myName);
@@ -83,6 +92,17 @@ public class HelloController {
         // System.out.println(myTitles);
         // System.out.println(myList);
         return "看控制台！";
+    }
+
+    @ApiOperation(value = "logTest")
+    @GetMapping("/logTest")
+    public String hehe12() {
+        log.debug("我是debug日志");
+        log.info("我是info日志");
+        log.warn("我是warn日志");
+        log.error("我是error日志");
+
+        return "success";
     }
 
 }

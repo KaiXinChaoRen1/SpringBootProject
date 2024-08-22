@@ -19,7 +19,7 @@
     <dependencies>
 
         <!--引入Knife4j的官方start包,该指南选择Spring
-        Boot版本<3.0,开发者需要注意-->
+        Boot版本小于3.0,开发者需要注意-->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>

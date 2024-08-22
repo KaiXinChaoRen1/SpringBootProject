@@ -3,8 +3,8 @@ management:
     web:
       exposure:
         include: "logfile"
-server:
-  port: 9090
+# server:
+#   port: 9090
 neinei: lwq
 
 msg1: 'hhehe \n haha' # 单引忽略转义字符

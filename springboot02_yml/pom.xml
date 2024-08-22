@@ -22,62 +22,37 @@
 
     <dependencies>
 
-
+        <!-- Knife4j冲突 -->
+        <!-- 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!-- optional=true 防止将devtools依赖传递到其他模块中 -->
-        <!-- <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional> 
         </dependency> -->
+
+        <!--引入Knife4j的官方start包,该指南选择Spring
+        Boot版本小于3.0,开发者需要注意-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
+        <!--web依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        <!--test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--该依赖可以在编写配置文件自己写的类时，有提示。还能解决自己domain类上难受但没实际影响的红条提示的-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
+        <!--lombok依赖-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
-        </dependency>
-        <dependency>
-            <groupId>com.scireum</groupId>
-            <artifactId>parsii</artifactId>
-            <version>4.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>QLExpress</artifactId>
-            <version>3.2.7</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/net.sourceforge.jeval/jeval -->
-        <dependency>
-            <groupId>net.sourceforge.jeval</groupId>
-            <artifactId>jeval</artifactId>
-            <version>0.9.4</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.cheffo/jeplite -->
-        <dependency>
-            <groupId>org.cheffo</groupId>
-            <artifactId>jeplite</artifactId>
-            <version>0.8.7a</version>
         </dependency>
 
 
@@ -122,5 +97,6 @@
 
         </plugins>
     </build>
+
 
 </project>

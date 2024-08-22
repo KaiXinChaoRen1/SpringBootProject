@@ -10,6 +10,9 @@ import javax.annotation.PostConstruct;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * 解方程工具类有空看
+ */
 @SpringBootApplication
 @Slf4j
 public class RunApplication {
