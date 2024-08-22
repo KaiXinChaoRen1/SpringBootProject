@@ -25,10 +25,10 @@ public class HelloController {
     @Value("${appid}")
     private String appId;
 
-    // @PostConstruct
-    // public void getStaticEnvironment() {
-    // APP_ID = appId;
-    // }
+    @PostConstruct
+    public void getStaticEnvironment() {
+        APP_ID = appId;
+    }
     // ******************************END********************************
 
     @Value("直接写入值")

@@ -5,7 +5,7 @@ show variables like 'character_set%';        可以查看MySQL数据库中关于
 
 
 
-------------------------->数据库备份
+------------------------->数据库备份与恢复
 
 mysqldump -u root -p xxxxx>/home/xxxxx.sql;
 然后输入你登录数据库的密码就ok啦。
