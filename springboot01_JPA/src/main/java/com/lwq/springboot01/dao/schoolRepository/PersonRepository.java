@@ -2,14 +2,13 @@ package com.lwq.springboot01.dao.schoolRepository;
 
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import com.lwq.springboot01.entity.schoolstory.Person;
-import com.lwq.springboot01.entity.schoolstory.Student;
 
 public interface PersonRepository extends JpaRepository<Person, Integer>, JpaSpecificationExecutor<Person> {
     @Query("Select p.name from Person as p where p.id=:id")
@@ -19,6 +18,10 @@ public interface PersonRepository extends JpaRepository<Person, Integer>, JpaSpe
     // Person findByName(String name);
     // 2
     Optional<Person> findByName(String name);
+
+    Person findByIndexedUuid(String uuid);
+
+    Person findByUnindexedUuid(String uuid);
 
     // @Modifying
     // @Transactional
@@ -32,4 +35,5 @@ public interface PersonRepository extends JpaRepository<Person, Integer>, JpaSpe
     // + " ON DUPLICATE KEY UPDATE "
     // +" age=VALUES(age)", nativeQuery = true)
     // void upInsertPerson(List<Person> persons);
+
 }

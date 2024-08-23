@@ -11,7 +11,6 @@ spring:
       "jdbc:mysql://${MYSQL_HOST:101.200.149.98}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:lwq_test}?\
       createDatabaseIfNotExist=true\
       &useUnicode=true\
-      &characterEncoding=UTF-8\
       &autoReconnect=true\
       &useSSL=false\
       &nullCatalogMeansCurrent=true\
@@ -19,7 +18,8 @@ spring:
       &useLegacyDatetimeCode=false\
       &cachePrepStmts=true\
       &useServerPrepStmts=true\
-      &rewriteBatchedStatements=true"
+      &rewriteBatchedStatements=true\
+      &characterEncoding=UTF-8"
     username: lwq
     password: 123456
   #jpa相关配置(和datasource同级)
@@ -48,7 +48,8 @@ spring:
       hibernate:
         enable_lazy_load_no_trans: true
         jdbc:
-          batch_size: 1000
+          fetch_size: 100
+          batch_size: 100
           batch_versioned_data: true
         order_inserts: true
         order_updates: true

@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "t_person", indexes = {
         // 联合唯一索引
-        @Index(name = "uniqueidx_unique1_unique2", columnList = "c_unique1, c_unique2", unique = true) })
+        @Index(name = "uniqueidx_unique1_unique2", columnList = "c_unique1, c_unique2", unique = true),
+        @Index(name = "idx_uuid", columnList = "index_uuid") })
 public class Person {
 
     @Id
@@ -35,6 +36,12 @@ public class Person {
 
     @Column(name = "c_unique2")
     private String unique2;
+
+    @Column(name = "index_uuid")
+    private String indexedUuid;
+
+    @Column(name = "unindexed_uuid")
+    private String unindexedUuid;
 
     public Person(String name) {
         this.name = name;

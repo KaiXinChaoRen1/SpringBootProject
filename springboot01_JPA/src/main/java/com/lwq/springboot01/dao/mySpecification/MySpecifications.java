@@ -6,7 +6,7 @@ import com.lwq.springboot01.entity.schoolstory.Person;
 
 public class MySpecifications {
 
-    public static Specification<Person> where(String filterProperty, String filterValue) {
+    public static Specification<Person> equal(String filterProperty, String filterValue) {
 
         Specification<Person> spec = (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get(filterProperty),
                 filterValue);
