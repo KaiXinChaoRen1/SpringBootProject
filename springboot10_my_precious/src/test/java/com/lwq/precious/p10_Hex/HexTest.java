@@ -14,6 +14,15 @@ import lombok.extern.slf4j.Slf4j;
 public class HexTest {
 
     @Test
+    public void convertbytearr() {
+        byte[] longToByte = longToByte(10000L);
+
+        byte[] long2ByteArr = long2ByteArr(10000L);
+
+        System.out.println("此处断点查看");
+    }
+
+    @Test
     public void name12323443() {
         HashMap<Object, Object> hashMap = new HashMap<>();
         hashMap.containsKey(null);
@@ -283,6 +292,53 @@ public class HexTest {
         hexString = sb.toString();
         hexString = hexString.toUpperCase();// 将16进制字符串中的字母大写
         return hexString;
+    }
+
+    // =======simpole中转换byte[]================================================================================================================
+    public static byte[] intToByte(int i) {
+        byte[] b = new byte[8];
+        b[0] = (byte) (i & 0xff);
+        b[1] = (byte) (i >> 8 & 0xff);
+        b[2] = (byte) (i >> 16 & 0xff);
+        b[3] = (byte) (i >> 24 & 0xff);
+
+        return b;
+    }
+
+    public static byte[] longToByte(long i) {
+        byte[] b = new byte[8];
+        b[0] = (byte) (i & 0xff);
+        b[1] = (byte) (i >> 8 & 0xff);
+        b[2] = (byte) (i >> 16 & 0xff);
+        b[3] = (byte) (i >> 24 & 0xff);
+        b[4] = (byte) (i >> 32 & 0xff);
+        b[5] = (byte) (i >> 40 & 0xff);
+        b[6] = (byte) (i >> 48 & 0xff);
+        b[7] = (byte) (i >> 56 & 0xff);
+        return b;
+    }
+
+    public static byte[] shortToByte(short i) {
+        byte[] b = new byte[8];
+        b[0] = (byte) (i & 0xff);
+        b[1] = (byte) (i >> 8 & 0xff);
+
+        return b;
+    }
+
+    public static byte[] charToByte(char i) {
+        byte[] b = new byte[8];
+        b[0] = (byte) (i & 0xff);
+
+        return b;
+    }
+
+    public static byte[] floatToByte(float i) {
+        return intToByte(Float.floatToIntBits(i));
+    }
+
+    public static byte[] doubleToByte(double i) {
+        return longToByte(Double.doubleToLongBits(i));
     }
 
 }
