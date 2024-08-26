@@ -1,6 +1,7 @@
 package com.lwq.springboot01.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,17 +44,28 @@ public class IndexService {
     private EntityManager entityManager;
 
     @Transactional
-    public void batchInsert(List<Person> entities) {
-        for (Person entity : entities) {
-            entityManager.persist(entity);
-            if (entities.indexOf(entity) % BATCH_SIZE == 0) {
-                entityManager.flush();
-                entityManager.clear();
+    public <S extends Object> List<S> insertAll(Iterable<S> entities) {
+        Iterator<S> iterator = entities.iterator();
+        List<S> list = new ArrayList<S>();
+
+        int index = 0;
+        while (iterator.hasNext()) {
+            S next = iterator.next();
+            entityManager.persist(next);
+
+            index++;
+            if (index % BATCH_SIZE == 0) {
+                entityManager.flush(); // 将所有Managed状态的Entity实例同步到数据库；
+                entityManager.clear(); // 将所有的Entity实例状态转至Detached状态；
             }
+
+            list.add(next);
         }
-        if (!entities.isEmpty()) {
+        if (index % BATCH_SIZE != 0) {
             entityManager.flush();
             entityManager.clear();
         }
+
+        return list;
     }
 }

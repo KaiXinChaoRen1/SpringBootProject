@@ -18,8 +18,13 @@ import javax.persistence.*;
         @Index(name = "idx_uuid", columnList = "index_uuid") })
 public class Person {
 
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY) //这种情况jpa不支持批量插入
+    // private Integer id;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGen")
+    @SequenceGenerator(name = "seqGen", sequenceName = "seq", initialValue = 1)
     private Integer id;
 
     @Column(name = "name")
@@ -37,10 +42,10 @@ public class Person {
     @Column(name = "c_unique2")
     private String unique2;
 
-    @Column(name = "index_uuid")
+    @Column(name = "idx_uuid")
     private String indexedUuid;
 
-    @Column(name = "unindexed_uuid")
+    @Column(name = "unidx_uuid")
     private String unindexedUuid;
 
     public Person(String name) {

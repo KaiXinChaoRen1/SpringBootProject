@@ -41,13 +41,12 @@ public class IndexController {
         return ResponseEntity.ok("添加成功");
     }
 
-    @ApiOperation(value = "指定数量添加数据")
+    @ApiOperation(value = "指定数量添加数据saveAll (无 @Transactional) ")
     @PostMapping("/add2")
     public ResponseEntity<String> add2(Integer num) {
         List<Person> arrayList = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             Person person = new Person();
-            // person.setId(i);
             person.setIndexedUuid(UUID.randomUUID().toString() + i);
             person.setUnindexedUuid(UUID.randomUUID().toString() + i);
             arrayList.add(person);
@@ -56,17 +55,9 @@ public class IndexController {
         return ResponseEntity.ok("添加成功");
     }
 
-    @ApiOperation(value = "指定数量添加数据,(事务中执行saveAll)")
-    @PostMapping("/add22")
-    public ResponseEntity<String> add22(Integer num) {
-        indexService.addNum(num);
-        return ResponseEntity.ok("添加成功");
-    }
-
     @ApiOperation(value = "指定数量添加数据,(EntityManager)")
     @PostMapping("/add222")
     public ResponseEntity<String> add222(Integer num) {
-
         List<Person> list = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             Person person = new Person();
@@ -74,7 +65,7 @@ public class IndexController {
             person.setUnindexedUuid(UUID.randomUUID().toString());
             list.add(person);
         }
-        indexService.batchInsert(list);
+        indexService.insertAll(list);
 
         return ResponseEntity.ok("添加成功");
     }
