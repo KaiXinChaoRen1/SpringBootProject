@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lwq.springboot01.service.One2OneService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

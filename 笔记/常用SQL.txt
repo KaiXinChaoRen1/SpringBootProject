@@ -1,0 +1,18 @@
+
+查询表中某列数据重复次数>1的相关数据
+
+        SELECT id, colume2, colume2, COUNT(*) AS  count_num
+        FROM `t_yourtablename`
+        WHERE id<10000                          //where语句
+        GROUP BY no_idx_uuid                    //查询那一列数据重复
+        HAVING COUNT(*) > 1;        
+
+清空表
+    TRUNCATE TABLE table_name;
+    TRUNCATE TABLE 语句无法被回滚，它是一个不可逆操作
+    在某些数据库系统中，如果表被外键约束引用，你可能无法使用 TRUNCATE TABLE。在这种情况下，你可能需要先删除或禁用外键约束。
+    在使用 TRUNCATE TABLE 之前，确保没有活动的用户事务或锁，因为这可能会阻止清空操作。
+    在某些数据库系统中，TRUNCATE TABLE 会重置表的统计信息，可能需要重新收集统计信息。
+
+    DELETE FROM table_name;
+    这将删除表中的所有行，但是与 TRUNCATE TABLE 不同，DELETE 可以被回滚，并且它不会重置自增的标识符。

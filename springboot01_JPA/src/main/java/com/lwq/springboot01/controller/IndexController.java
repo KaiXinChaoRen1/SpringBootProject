@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lwq.springboot01.dao.mySpecification.MySpecifications;
 import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
 import com.lwq.springboot01.entity.schoolstory.Person;
+import com.lwq.springboot01.service.IndexService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

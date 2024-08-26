@@ -48,8 +48,8 @@ spring:
       hibernate:
         enable_lazy_load_no_trans: true
         jdbc:
-          fetch_size: 100
-          batch_size: 100
+          fetch_size: 200
+          batch_size: 200
           batch_versioned_data: true
         order_inserts: true
         order_updates: true

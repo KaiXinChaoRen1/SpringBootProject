@@ -1,20 +1,27 @@
 package com.lwq.springboot01.controller;
 
+import java.time.LocalDateTime;
+
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lwq.springboot01.dao.schoolRepository.PersonRepository;
+import com.lwq.springboot01.entity.schoolstory.Person;
+import com.lwq.springboot01.service.transactionalTest.TransactionalTestService;
+
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "事务测试")
 @RestController
 public class TransactionalTestController {
-
+    @Resource
+    private PersonRepository pr;
     @Resource
     TransactionalTestService transactionalTestService;
 
@@ -31,6 +38,23 @@ public class TransactionalTestController {
     public ResponseEntity<String> add2() {
         transactionalTestService.add2();
         return ResponseEntity.ok("添加成功");
+    }
+
+    @ApiOperation(value = "子线程 测试事务,(线程内事务有效,但跟主线程无关,主线程回滚,子线程不会滚)")
+    @GetMapping("/threadAdd")
+    @Transactional
+    public ResponseEntity<String> threadAdd() {
+
+        new Thread(() -> {
+            add3();
+        }).start();
+
+        Person p1 = Person.builder().name("zhangfei_main").age(55).birthday(LocalDateTime.now()).build();
+        pr.save(p1);
+        if (true) {
+            throw new RuntimeException();
+        }
+        return ResponseEntity.ok("执行完毕");
     }
 
     @ApiOperation(value = "添加数据同时抛出RuntimeException,事务设置此异常不回滚(不回滚)")
