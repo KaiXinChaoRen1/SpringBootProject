@@ -9,7 +9,10 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Component;
+
+import com.lwq.annotation.OnAopCondition;
 
 /**
  * execution()定义切点的方式有多种
@@ -20,6 +23,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Aspect
+@Conditional(OnAopCondition.class)
 public class AOPAdvice {
 
     // ********************************************注解AOP*****************
@@ -40,9 +44,9 @@ public class AOPAdvice {
     // ********************************************常规AOP***************************
 
     // @Pointcut("execution(* name1(..))") //根据方法名 ==>任意返回类型,方法名为name1,任意参数
-    // @Pointcut("execution(* com.lwq.service.TestService.*(..))") //根据类名
-    // ==>任意返回类型,TestService类,任意方法,任意参数
-    @Pointcut("execution(* com.lwq.service..*.*(..))") // 根据包名 ==>任意返回类型,com.lwq.service包及其子包,任意类,任意方法,任意参数
+    @Pointcut("execution(* com.lwq.service.TestService.*(..))") // 根据类名 ==>任意返回类型,TestService类,任意方法,任意参数
+    // @Pointcut("execution(* com.lwq.service..*.*(..))") // 根据包名
+    // ==>任意返回类型,com.lwq.service包及其子包,任意类,任意方法,任意参数
     public void pt() {
     }
 
@@ -72,6 +76,25 @@ public class AOPAdvice {
     @AfterThrowing("pt()")
     public void afterThrowing() {
         System.out.println("afterThrowing抛出异常后,有我殿后");
+    }
+
+    // ----------------------------------------------------------
+
+    @Pointcut("execution(* com.lwq.myInterface.FuncInterface+.*(..))")
+    public void pt3() {
+    }
+
+    @Before("pt3()")
+    public void before3() {
+        System.out.println("接口前置before...");
+    }
+
+    @Around("pt3()")
+    public Object around3(ProceedingJoinPoint pjp) throws Throwable {
+        System.out.println("接口环绕前around before...");
+        Object ret = pjp.proceed();
+        System.out.println("接口环绕后around after...");
+        return ret;
     }
 
 }
