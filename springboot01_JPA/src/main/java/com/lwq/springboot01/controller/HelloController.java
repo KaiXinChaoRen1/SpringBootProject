@@ -75,4 +75,11 @@ public class HelloController {
         layersService.deleteChild();
         return "";
     }
+
+    @ApiOperation(value = "一个事务内  持续save数据 并持续find数据")
+    @GetMapping("/saveAndFindInOneTransaction")
+    public String saveAndFindInOneTransaction() {
+        layersService.saveAndFindInOneTransaction();
+        return "";
+    }
 }
