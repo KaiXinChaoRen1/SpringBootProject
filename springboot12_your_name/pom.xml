@@ -12,8 +12,8 @@
     </parent>
 
     <groupId>com.lwq</groupId>
-    <artifactId>12_hutool</artifactId>
-    <version>my_version_1.0</version>
+    <artifactId>your_artifactId</artifactId>
+    <version>your_version</version>
 
 
     <properties>
@@ -22,17 +22,14 @@
 
     <dependencies>
 
+        <!--引入Knife4j的官方start包,该指南选择Spring
+        Boot版本小于3.0,开发者需要注意-->
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.16</version>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+            <version>4.4.0</version>
         </dependency>
-        <!-- optional=true 防止将devtools依赖传递到其他模块中 -->
-        <!-- <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional> 
-        </dependency> -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
