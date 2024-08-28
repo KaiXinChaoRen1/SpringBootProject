@@ -65,4 +65,7 @@ logging:
   file:
     name: logs/lwq.log
   level:
-    root: info
+    root: error
+    com.lwq.springboot02_init: warn
+    com.lwq.springboot02_init.controller: info
+    com.lwq.springboot02_init.controller.HelloController: info #给特定的类设置日志级别
