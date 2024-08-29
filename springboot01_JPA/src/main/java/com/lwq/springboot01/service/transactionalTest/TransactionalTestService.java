@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
@@ -145,6 +146,22 @@ public class TransactionalTestService {
             transactionManager.rollback(newStatus);
             throw e;
         }
+    }
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @Transactional
+    public void jdbcTemplateTest(Integer id, Boolean isException) {
+
+        String sql = "UPDATE `t_person` SET NAME ='hehe' WHERE id=" + id;
+
+        jdbcTemplate.execute(sql);
+
+        if (isException) {
+            throw new RuntimeException();
+        }
+
     }
 
 }

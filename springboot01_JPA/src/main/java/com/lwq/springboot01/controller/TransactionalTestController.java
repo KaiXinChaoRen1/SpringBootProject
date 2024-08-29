@@ -121,4 +121,13 @@ public class TransactionalTestController {
         return ResponseEntity.ok("success");
     }
 
+    @ApiOperation(value = "jpa+jdbcTemplate) ")
+    @GetMapping("/jdbcTemplate")
+    public ResponseEntity<String> jdbcTemplate(Integer id, Boolean isException) {
+
+        transactionalTestService.jdbcTemplateTest(id, isException);
+
+        return ResponseEntity.ok("success");
+    }
+
 }

@@ -20,6 +20,11 @@ public class AOPTest {
     private ImplService implService;
 
     @Test
+    public void name42323() {
+        testService.method3();
+    }
+
+    @Test
     public void name4() {
         implService.sayhehe();
     }
