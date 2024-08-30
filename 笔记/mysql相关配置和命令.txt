@@ -19,3 +19,10 @@ xxxxx.sql：备份文件的名字，后缀名不要错（.sql）
 create database xxx;
 use  xxx;
 source /home/xxxxx.sql;
+
+
+配置文件位置
+/etc/my.cnf
+查看服务运行状态
+service  mysqld status
+systemctl   status  mysqld
