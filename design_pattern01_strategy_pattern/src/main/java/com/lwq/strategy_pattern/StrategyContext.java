@@ -11,15 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StrategyContext {
 
-    private final Map<String,StrategyInterface>  strategyMap=new ConcurrentHashMap<>();
-    
-    public StrategyContext(Map<String,StrategyInterface>  map){
+    private final Map<String, StrategyInterface> strategyMap = new ConcurrentHashMap<>();
+
+    public StrategyContext(Map<String, StrategyInterface> map) {
         map.forEach(this.strategyMap::put);
     }
 
-    public StrategyInterface getResource(String type){
-        if(!strategyMap.containsKey(type)){
-            throw new RuntimeException("未找到类型是"+type+"的策略");
+    public StrategyInterface getResource(String type) {
+        if (!strategyMap.containsKey(type)) {
+            throw new RuntimeException("未找到类型是" + type + "的策略");
         }
         return strategyMap.get(type);
     }

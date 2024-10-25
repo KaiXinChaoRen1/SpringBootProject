@@ -37,3 +37,4 @@ build/
 #同理
 logs/
 *.log
+*.class

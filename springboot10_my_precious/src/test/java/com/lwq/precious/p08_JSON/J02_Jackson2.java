@@ -15,22 +15,22 @@ import com.lwq.precious.model.MyJsonUser;
 public class J02_Jackson2 {
 
     @Test
-    void name() throws JsonProcessingException {
-       // MyJsonUser myUser = MyJsonUser.builder().name("甄子丹").age(55).birthday(LocalDateTime.now()).addHobby("咏春").addHobby("吃火锅").build();
+    void name() throws Exception {
+        // MyJsonUser myUser =
+        // MyJsonUser.builder().name("甄子丹").age(55).birthday(LocalDateTime.now()).addHobby("咏春").addHobby("吃火锅").build();
 
-
-       MyJsonUser myUser = MyJsonUser.builder().name("甄子丹").age(55).birthday(LocalDateTime.now()).build();
+        MyJsonUser myUser = MyJsonUser.builder().name("甄子丹").age(55).birthday(LocalDateTime.now()).build();
 
         // 在高并发环境下，为了保证线程安全会有较高的锁竞争，所以很多时候都是每次通过new来创建ObjectMapper。
         ObjectMapper objectMapper = new ObjectMapper();
-        //使jackson支持java8时间格式
+        // 使jackson支持java8时间格式
         objectMapper.registerModule(new JavaTimeModule());
 
-        //Java对象->JSONString
+        // Java对象->JSONString
         String jsonStr = objectMapper.writeValueAsString(myUser);
         System.out.println(jsonStr);
 
-        //<-
+        // <-
         MyJsonUser readValue = objectMapper.readValue(jsonStr, MyJsonUser.class);
         System.out.println(readValue);
 

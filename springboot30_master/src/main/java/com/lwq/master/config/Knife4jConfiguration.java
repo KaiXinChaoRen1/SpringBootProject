@@ -1,4 +1,4 @@
-package com.lwq.your_name.config;
+package com.lwq.master.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class Knife4jConfiguration {
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
                         // 描述字段支持Markdown语法
-                        .description("我是description")
+                        .description("Master服务 ")
                         .termsOfServiceUrl("我是termsOfServiceUrl")
                         .contact("hahah")
                         // .version("1.0")
@@ -29,7 +29,7 @@ public class Knife4jConfiguration {
                 .groupName("用户服务")
                 .select()
                 // 这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.lwq.your_name.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lwq.master.controller"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;

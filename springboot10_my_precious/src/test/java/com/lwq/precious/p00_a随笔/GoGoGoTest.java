@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -39,6 +40,16 @@ public class GoGoGoTest implements Serializable {
 
     @Autowired
     private AsyncTaskService2 asyncTaskService2;
+
+    @Test
+    public void test92111sds2223ss() {
+        ArrayList<String> arrayList = new ArrayList<String>();
+        for (int i = 0; i < 100; i++) {
+            arrayList.add(String.valueOf(i));
+        }
+        Collections.sort(arrayList);
+        System.out.println(arrayList);
+    }
 
     @Test
     public void test92111sds2223() {

@@ -1,4 +1,4 @@
-package com.lwq.your_name.controller;
+package com.lwq.master.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -17,8 +17,8 @@ public class TestController {
     @GetMapping("/test")
     public String hehe(@RequestParam String type) {
         StrategyInterface resource = StrategyContext.getResource(type);
-        
+
         return resource.doOperation();
     }
-    
+
 }

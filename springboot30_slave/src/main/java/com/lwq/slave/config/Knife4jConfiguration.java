@@ -1,4 +1,4 @@
-package com.lwq.your_name.config;
+package com.lwq.slave.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class Knife4jConfiguration {
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
                         // 描述字段支持Markdown语法
-                        .description("我是description")
+                        .description("slave服务")
                         .termsOfServiceUrl("我是termsOfServiceUrl")
                         .contact("hahah")
                         // .version("1.0")
