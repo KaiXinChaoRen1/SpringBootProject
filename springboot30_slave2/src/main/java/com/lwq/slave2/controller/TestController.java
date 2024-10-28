@@ -1,4 +1,4 @@
-package com.lwq.slave.controller;
+package com.lwq.slave2.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +17,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/")
 @Slf4j
 public class TestController {
-
     @Value("${server.port}")
     private String serverPort;
 
     @ApiOperation(value = "calculate")
     @PostMapping("/calculate")
     public Object calculate(@RequestBody Integer a, @RequestParam Integer b) throws InterruptedException {
-        // Thread.sleep(5000);
-        return a + b;
+        // Thread.sleep(3000);
+
+        return a * b;
 
     }
 

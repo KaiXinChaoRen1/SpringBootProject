@@ -1,8 +1,17 @@
 package com.lwq.master.controller;
 
+import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.lwq.master.feign.MyFeginService;
+import com.lwq.master.service.TestService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,28 +19,62 @@ import lombok.extern.slf4j.Slf4j;
 
 @Api(tags = "@Api(tags=\"hello\")")
 @RestController
-@RequestMapping("/node7788")
+@RequestMapping("/")
 @Slf4j
 public class TestController {
 
-    @ApiOperation(value = " @ApiOperation(value = \"hehe\")")
-    @GetMapping("/hehe")
-    public Object hehe() {
+    @Autowired
+    MyFeginService myFeginService;
 
-        return "hehe";
+    @Autowired
+    TestService testService;
+
+    @ApiOperation(value = "asynCalculate")
+    @GetMapping("/asynCalculate")
+    public Object asynCalculate() {
+        long time1 = System.currentTimeMillis();
+        Object res = testService.asynCalculate();
+        long time2 = System.currentTimeMillis();
+        System.out.println("用时" + (time2 - time1));
+        return res;
     }
 
-    @ApiOperation(value = "hehe2")
-    @GetMapping("/hehe2")
-    public Object hehe2() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+    @ApiOperation(value = "loopCalculate")
+    @GetMapping("/loopCalculate")
+    public Object loopCalculate() {
+        long time1 = System.currentTimeMillis();
+        Object res = testService.loopCalculate();
+        long time2 = System.currentTimeMillis();
+        System.out.println("用时" + (time2 - time1));
+        return res;
+    }
+
+    /*
+     * URI
+     * :http://127.0.0.1:7789
+     */
+    @ApiOperation(value = "dohehe1")
+    @GetMapping("/dohehe1")
+    public Object dohehe1(@RequestParam String uriStr) throws URISyntaxException {
+        Object res = myFeginService.doHehe1(uriStr);
+        return res;
+    }
+
+    @ApiOperation(value = "dohehe2")
+    @GetMapping("/dohehe2")
+    public Object dohehe2() throws URISyntaxException {
+        HashMap<String, String> hashMap = new HashMap<String, String>();
+        hashMap.put("node1", "http://127.0.0.1:7788");
+        hashMap.put("node2", "http://127.0.0.1:7789");
+
+        String resStr = new String();
+        for (Entry<String, String> entry : hashMap.entrySet()) {
+            Object res = myFeginService.doHehe1(entry.getValue());
+            resStr = resStr + entry.getKey() + ":" + res.toString() + "\n";
+
         }
 
-        return "hehe";
+        return resStr;
     }
 
 }

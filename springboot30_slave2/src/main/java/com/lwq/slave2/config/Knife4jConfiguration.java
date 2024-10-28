@@ -1,4 +1,4 @@
-package com.lwq.slave.config;
+package com.lwq.slave2.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ public class Knife4jConfiguration {
                 .groupName("用户服务")
                 .select()
                 // 这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.lwq.slave.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lwq.slave2.controller"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
