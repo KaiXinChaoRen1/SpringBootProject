@@ -7,7 +7,10 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.lwq.master.vo.StudentVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,10 +27,23 @@ public class MyFeginService {
         return heheClient.hehe1(uri);
     }
 
-    public Object calculate(String uriStr, Integer a, Integer b) throws URISyntaxException {
+    public Object calculate(String uriStr, Integer a, Integer b) {
+
+        URI uri;
+        try {
+            uri = new URI(uriStr);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return "uri错误";
+        }
+        return heheClient.calculate(uri, a, b);
+    }
+
+    public Object studentLearning(String uriStr, StudentVo s, String teacherName, String subjectName)
+            throws URISyntaxException {
 
         URI uri = new URI(uriStr);
-        return heheClient.calculate(uri, a, b);
+        return heheClient.studentLearning(uri, s, teacherName, subjectName);
     }
 
 }

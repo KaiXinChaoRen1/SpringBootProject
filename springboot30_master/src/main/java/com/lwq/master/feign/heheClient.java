@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lwq.master.vo.StudentVo;
+
 @Component
 @FeignClient(name = "my-service", url = "http://localhost:8080")
 public interface heheClient {
@@ -26,4 +28,8 @@ public interface heheClient {
 
     @PostMapping("/calculate")
     public ResponseEntity<String> calculate(URI uri, @RequestBody Integer a, @RequestParam Integer b);
+
+    @PostMapping("/student_learning")
+    public Object studentLearning(URI uri, @RequestBody StudentVo s, @RequestParam String teacherName,
+            @RequestParam String subjectName);
 }

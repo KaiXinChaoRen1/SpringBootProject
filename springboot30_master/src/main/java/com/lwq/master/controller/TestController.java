@@ -29,6 +29,17 @@ public class TestController {
     @Autowired
     TestService testService;
 
+    @ApiOperation(value = "asynStudy")
+    @GetMapping("/asynStudy")
+    public Object asynStudy() {
+        long time1 = System.currentTimeMillis();
+        Object res = testService.asynStudy();
+
+        long time2 = System.currentTimeMillis();
+        System.out.println("用时" + (time2 - time1));
+        return res;
+    }
+
     @ApiOperation(value = "asynCalculate")
     @GetMapping("/asynCalculate")
     public Object asynCalculate() {

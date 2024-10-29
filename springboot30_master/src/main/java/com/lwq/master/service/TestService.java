@@ -1,6 +1,6 @@
 package com.lwq.master.service;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -17,6 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lwq.master.feign.MyFeginService;
+import com.lwq.master.utils.CountDownLatchUtils;
+import com.lwq.master.utils.MyFunctionalInterface;
+
+import com.lwq.master.vo.NodeVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -97,5 +101,36 @@ public class TestService {
         }
 
         return resStr;
+    }
+
+    public Object asynStudy() {
+
+        // 此时应该有节点信息,和调用接口的参数
+        NodeVo nodeVo1 = new NodeVo("node1", "http://127.0.0.1:7788");
+        NodeVo nodeVo2 = new NodeVo("node2", "http://127.0.0.1:7789");
+
+        HashMap<NodeVo, Object[]> nodeMap = new HashMap<NodeVo, Object[]>();
+        nodeMap.put(nodeVo1, new Object[] { nodeVo1, 2, 1 });
+        nodeMap.put(nodeVo2, new Object[] { nodeVo2, 2, 3 });
+
+        // 构建函数式接口 -> 接口参数 列表
+        Map<MyFunctionalInterface, Object[]> funcMap = new HashMap<MyFunctionalInterface, Object[]>();
+
+        for (Entry<NodeVo, Object[]> entry : nodeMap.entrySet()) {
+            NodeVo node = entry.getKey();
+            Object[] argArr = entry.getValue();
+
+            // 函数式接口实现
+            MyFunctionalInterface mfi = (Object... args) -> {
+                return myFeginService.calculate(node.getUri(), (Integer) args[1], (Integer) args[2]);
+            };
+
+            funcMap.put(mfi, argArr);
+
+        }
+        // 将多个函数式接口传入CountDownLatch执行
+        Object execute = CountDownLatchUtils.execute(funcMap);
+
+        return execute;
     }
 }
