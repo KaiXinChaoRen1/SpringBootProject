@@ -33,8 +33,6 @@ public class CountDownLatchUtils {
 
         List<NodeResult> nodeResultList = new ArrayList<NodeResult>();
 
-        HashMap<Object, Object> resMap = new HashMap<>();
-
         try {
 
             for (Entry<MyFunctionalInterface, Object[]> entry : functionMap.entrySet()) {
@@ -68,14 +66,11 @@ public class CountDownLatchUtils {
                 try {
                     res = future.get(100, TimeUnit.MILLISECONDS);
                 } catch (ExecutionException e) {
-                    // 接口调用失败，记录错误信息
-                    res = "Error: " + e.getCause().getMessage() + "\n";
+                    res = "Error: " + e.getCause().getMessage();
                 } catch (CancellationException e) {
-                    // 接口调用超时，记录超时信息
-                    res = "任务被取消" + "\n";
+                    res = "任务被取消";
                 } catch (TimeoutException e) {
-                    // 接口调用超时，记录超时信息
-                    res = "任务超时" + "\n";
+                    res = "任务超时";
                 }
                 NodeResult nr = new NodeResult(nodeVo, res);
                 nodeResultList.add(nr);

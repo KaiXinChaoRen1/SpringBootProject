@@ -39,10 +39,16 @@ public class MyFeginService {
         return heheClient.calculate(uri, a, b);
     }
 
-    public Object studentLearning(String uriStr, StudentVo s, String teacherName, String subjectName)
-            throws URISyntaxException {
+    public Object studentLearning(String uriStr, StudentVo s, String teacherName, String subjectName) {
 
-        URI uri = new URI(uriStr);
+        URI uri;
+        try {
+            uri = new URI(uriStr);
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "uri错误";
+        }
         return heheClient.studentLearning(uri, s, teacherName, subjectName);
     }
 

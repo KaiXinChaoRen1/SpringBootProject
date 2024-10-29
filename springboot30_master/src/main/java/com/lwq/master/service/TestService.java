@@ -1,8 +1,6 @@
 package com.lwq.master.service;
 
 import java.util.*;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CountDownLatch;
@@ -21,6 +19,7 @@ import com.lwq.master.utils.CountDownLatchUtils;
 import com.lwq.master.utils.MyFunctionalInterface;
 
 import com.lwq.master.vo.NodeVo;
+import com.lwq.master.vo.StudentVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -105,13 +104,15 @@ public class TestService {
 
     public Object asynStudy() {
 
-        // 此时应该有节点信息,和调用接口的参数
+        // 此时应该有节点信息,和调用接口的参数信息
         NodeVo nodeVo1 = new NodeVo("node1", "http://127.0.0.1:7788");
         NodeVo nodeVo2 = new NodeVo("node2", "http://127.0.0.1:7789");
 
         HashMap<NodeVo, Object[]> nodeMap = new HashMap<NodeVo, Object[]>();
-        nodeMap.put(nodeVo1, new Object[] { nodeVo1, 2, 1 });
-        nodeMap.put(nodeVo2, new Object[] { nodeVo2, 2, 3 });
+        StudentVo studentVo1 = new StudentVo("小明", "12");
+        StudentVo studentVo2 = new StudentVo("小李", "12");
+        nodeMap.put(nodeVo1, new Object[] { nodeVo1, studentVo1, "王老师", "数学" });
+        nodeMap.put(nodeVo2, new Object[] { nodeVo2, studentVo2, "刘老师", "英语" });
 
         // 构建函数式接口 -> 接口参数 列表
         Map<MyFunctionalInterface, Object[]> funcMap = new HashMap<MyFunctionalInterface, Object[]>();
@@ -122,7 +123,8 @@ public class TestService {
 
             // 函数式接口实现
             MyFunctionalInterface mfi = (Object... args) -> {
-                return myFeginService.calculate(node.getUri(), (Integer) args[1], (Integer) args[2]);
+                return myFeginService.studentLearning(node.getUri(), (StudentVo) args[1], (String) args[2],
+                        (String) args[3]);
             };
 
             funcMap.put(mfi, argArr);
