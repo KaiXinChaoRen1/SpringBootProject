@@ -1,7 +1,6 @@
 package com.lwq.master.utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,18 +13,25 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import com.lwq.master.vo.NodeFuture;
 import com.lwq.master.vo.NodeResult;
 import com.lwq.master.vo.NodeVo;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Service
 @Slf4j
-public class CountDownLatchUtils {
+public class CountDownLatchExecutor {
 
-    private static ExecutorService executorPool = Executors.newFixedThreadPool(8);
+    @Value("${latchwaittime}")
+    private Integer latchWaitTime = 5;
 
-    public static Object execute(Map<MyFunctionalInterface, Object[]> functionMap) {
+    private ExecutorService executorPool = Executors.newFixedThreadPool(8);
+
+    public Object execute(Map<MyFunctionalInterface, Object[]> functionMap) {
 
         CountDownLatch latch = new CountDownLatch(functionMap.size());
 
@@ -55,10 +61,10 @@ public class CountDownLatchUtils {
             }
 
             // 等待所有接口调用完成或超时
-            latch.await(4, TimeUnit.SECONDS); // 设置超时时间为x秒
-            log.info("等待结束");
+            latch.await(latchWaitTime, TimeUnit.SECONDS); // 设置超时时间为x秒
+            // log.info("等待结束");
 
-            // 检查每个Future的状态，收集结果或错误
+            // 检查每个节点 Future的状态，收集结果
             for (NodeFuture nf : nodeFutureList) {
                 Future<Object> future = nf.getFuture();
                 NodeVo nodeVo = nf.getNodeVo();

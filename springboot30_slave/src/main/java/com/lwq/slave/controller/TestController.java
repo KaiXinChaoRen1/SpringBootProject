@@ -25,9 +25,11 @@ public class TestController {
 
     @ApiOperation(value = "student learning")
     @PostMapping("/student_learning")
-    public Object studentLearning(@RequestBody StudentVo s, String teacherName, String subjectName) {
+    public Object studentLearning(@RequestBody StudentVo s, String teacherName,
+            String subjectName) {
 
-        log.info("我是{},我今年{}岁了,我爱学{}老师教的{}", s.getName(), s.getAge(), teacherName, subjectName);
+        log.info("我是{},我今年{}岁了,我爱学{}老师教的{}", s.getName(), s.getAge(), teacherName,
+                subjectName);
         return subjectName + "下课啦";
 
     }

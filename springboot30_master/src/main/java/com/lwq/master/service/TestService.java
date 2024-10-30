@@ -1,6 +1,9 @@
 package com.lwq.master.service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CountDownLatch;
@@ -15,9 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lwq.master.feign.MyFeginService;
-import com.lwq.master.utils.CountDownLatchUtils;
-import com.lwq.master.utils.MyFunctionalInterface;
+import com.lwq.master.utils.CountDownLatchExecutor;
 
+import com.lwq.master.utils.MyFunctionalInterface;
 import com.lwq.master.vo.NodeVo;
 import com.lwq.master.vo.StudentVo;
 
@@ -26,6 +29,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class TestService {
+    @Autowired
+    CountDownLatchExecutor latchExecutor;
 
     private ExecutorService executorPool = Executors.newFixedThreadPool(8);
 
@@ -131,7 +136,7 @@ public class TestService {
 
         }
         // 将多个函数式接口传入CountDownLatch执行
-        Object execute = CountDownLatchUtils.execute(funcMap);
+        Object execute = latchExecutor.execute(funcMap);
 
         return execute;
     }

@@ -1,8 +1,0 @@
-logging:
-  file:
-    name: logs/lwq.log
-  level:
-    root: info
-
-server:
-  port: 9090
