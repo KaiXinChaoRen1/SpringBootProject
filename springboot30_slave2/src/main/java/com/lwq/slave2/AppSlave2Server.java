@@ -1,4 +1,4 @@
-package com.lwq.slave;
+package com.lwq.slave2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,11 +13,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @SpringBootApplication
 @Slf4j
-public class Slave1Server {
+public class AppSlave2Server {
 
     public static void main(String[] args) {
-        SpringApplication.run(Slave1Server.class, args);
-
+        SpringApplication.run(AppSlave2Server.class, args);
     }
 
 }

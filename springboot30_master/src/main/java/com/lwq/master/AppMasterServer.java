@@ -1,22 +1,19 @@
-package com.lwq.slave2;
+package com.lwq.master;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * 复制一个项目
- * 修改包名,
- * 修改pom的artifactId
- * 修改import
- */
 @SpringBootApplication
 @Slf4j
-public class Slave2Server {
+@EnableFeignClients
+public class AppMasterServer {
 
     public static void main(String[] args) {
-        SpringApplication.run(Slave2Server.class, args);
+        SpringApplication.run(AppMasterServer.class, args);
+
     }
 
 }
