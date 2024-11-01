@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,5 +32,9 @@ public interface heheClient {
 
     @PostMapping("/student_learning")
     public Object studentLearning(URI uri, @RequestBody StudentVo s, @RequestParam String teacherName,
+            @RequestParam String subjectName);
+
+    @PutMapping("/put_student_learning")
+    public Object put_student_learning(URI uri, @RequestBody StudentVo s, @RequestParam String teacherName,
             @RequestParam String subjectName);
 }

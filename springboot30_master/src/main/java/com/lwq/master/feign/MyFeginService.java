@@ -52,4 +52,17 @@ public class MyFeginService {
         return heheClient.studentLearning(uri, s, teacherName, subjectName);
     }
 
+    public Object put_student_learning(String uriStr, StudentVo s, String teacherName, String subjectName) {
+
+        URI uri;
+        try {
+            uri = new URI(uriStr);
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "uri错误";
+        }
+        return heheClient.put_student_learning(uri, s, teacherName, subjectName);
+    }
+
 }

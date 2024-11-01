@@ -3,11 +3,13 @@ package com.lwq.slave2.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lwq.slave2.vo.R;
 import com.lwq.slave2.vo.StudentVo;
 
 import io.swagger.annotations.Api;
@@ -21,6 +23,14 @@ import lombok.extern.slf4j.Slf4j;
 public class TestController {
     @Value("${server.port}")
     private String serverPort;
+
+    @ApiOperation(value = "student learning")
+    @PutMapping("/put_student_learning")
+    public R put_student_learning(@RequestBody StudentVo s, String teacherName,
+            String subjectName) {
+
+        return R.error(999, "接口请求异常,发生空空错误");
+    }
 
     @ApiOperation(value = "student learning")
     @PostMapping("/student_learning")

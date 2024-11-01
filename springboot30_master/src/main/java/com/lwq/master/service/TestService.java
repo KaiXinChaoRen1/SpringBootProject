@@ -140,4 +140,38 @@ public class TestService {
 
         return execute;
     }
+
+    public Object asynStudy2() {
+
+        // 此时应该有节点信息,和调用接口的参数信息
+        NodeVo nodeVo1 = new NodeVo("node1", "http://127.0.0.1:7788");
+        NodeVo nodeVo2 = new NodeVo("node2", "http://127.0.0.1:7789");
+
+        HashMap<NodeVo, Object[]> nodeMap = new HashMap<NodeVo, Object[]>();
+        StudentVo studentVo1 = new StudentVo("小明", "12");
+        StudentVo studentVo2 = new StudentVo("小李", "12");
+        nodeMap.put(nodeVo1, new Object[] { nodeVo1, studentVo1, "王老师", "数学" });
+        nodeMap.put(nodeVo2, new Object[] { nodeVo2, studentVo2, "刘老师", "英语" });
+
+        // 构建函数式接口 -> 接口参数 列表
+        Map<MyFunctionalInterface, Object[]> funcMap = new HashMap<MyFunctionalInterface, Object[]>();
+
+        for (Entry<NodeVo, Object[]> entry : nodeMap.entrySet()) {
+            NodeVo node = entry.getKey();
+            Object[] argArr = entry.getValue();
+
+            // 函数式接口实现
+            MyFunctionalInterface mfi = (Object... args) -> {
+                return myFeginService.put_student_learning(node.getUri(), (StudentVo) args[1], (String) args[2],
+                        (String) args[3]);
+            };
+
+            funcMap.put(mfi, argArr);
+
+        }
+        // 将多个函数式接口传入CountDownLatch执行
+        Object execute = latchExecutor.execute(funcMap);
+
+        return execute;
+    }
 }
