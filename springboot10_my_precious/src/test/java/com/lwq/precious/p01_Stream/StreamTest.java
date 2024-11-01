@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class StreamTest {
+
+    @Test
+    public void lwq1() {
+        List<Integer> collect = IntStream.range(0, 10).mapToObj(id -> {
+            return new Integer(id);
+        }).collect(Collectors.toList());
+
+        System.out.println(collect);
+    }
 
     /**
      * toMap:value不能为null
