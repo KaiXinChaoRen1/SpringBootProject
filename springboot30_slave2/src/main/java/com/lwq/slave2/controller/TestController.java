@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lwq.slave2.vo.R;
 import com.lwq.slave2.vo.StudentVo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.extern.slf4j.Slf4j;
 
-@Api(tags = "@Api(tags=\"hello\")")
+@Tag(name = "TestController", description = "商品品牌管理")
 @RestController
 @RequestMapping("/")
 @Slf4j
@@ -24,7 +25,7 @@ public class TestController {
     @Value("${server.port}")
     private String serverPort;
 
-    @ApiOperation(value = "student learning")
+    @Operation(summary = "summary:PutMapping", description = "description:hahah")
     @PutMapping("/put_student_learning")
     public R put_student_learning(@RequestBody StudentVo s, String teacherName,
             String subjectName) {
@@ -32,32 +33,35 @@ public class TestController {
         return R.error(999, "接口请求异常,发生空空错误");
     }
 
-    @ApiOperation(value = "student learning")
+    @Operation(summary = "summary:PostMapping", description = "description:hahah")
     @PostMapping("/student_learning")
-    public Object studentLearning(@RequestBody StudentVo s, String teacherName, String subjectName) {
+    public Object studentLearning(@RequestBody StudentVo s, String teacherName,
+            String subjectName) {
 
-        log.info("我是{},我今年{}岁了,我爱学{}老师教的{}", s.getName(), s.getAge(), teacherName, subjectName);
+        log.info("我是{},我今年{}岁了,我爱学{}老师教的{}", s.getName(), s.getAge(), teacherName,
+                subjectName);
         return subjectName + "下课啦";
 
     }
 
-    @ApiOperation(value = "calculate")
+    @Operation(summary = "calculate")
     @PostMapping("/calculate")
-    public Object calculate(@RequestBody Integer a, @RequestParam Integer b) throws InterruptedException {
+    public Object calculate(@RequestBody Integer a, @RequestParam Integer b)
+            throws InterruptedException {
         Thread.sleep(5000);
 
         return a * b;
 
     }
 
-    @ApiOperation(value = " @ApiOperation(value = \"hehe1\")")
+    @Operation(summary = " @ApiOperation(value = \"hehe1\")")
     @GetMapping("/hehe1")
     public Object hehe() {
 
         return serverPort + "hehe1";
     }
 
-    @ApiOperation(value = "hehe2")
+    @Operation(summary = "hehe2")
     @GetMapping("/hehe2")
     public Object hehe2() {
         try {
