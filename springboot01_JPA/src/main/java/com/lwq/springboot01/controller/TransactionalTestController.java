@@ -20,6 +20,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "事务测试")
 @RestController
 public class TransactionalTestController {
+
     @Resource
     private PersonRepository pr;
     @Resource
@@ -37,6 +38,13 @@ public class TransactionalTestController {
     @GetMapping("/add2")
     public ResponseEntity<String> add2() {
         transactionalTestService.add2();
+        return ResponseEntity.ok("添加成功");
+    }
+
+    @ApiOperation(value = "方法修饰符对 @Transactional注解的影响,只有pubnlic才生效")
+    @GetMapping("/add222")
+    public ResponseEntity<String> xiushifuTest() {
+        transactionalTestService.xiushifuTest();
         return ResponseEntity.ok("添加成功");
     }
 

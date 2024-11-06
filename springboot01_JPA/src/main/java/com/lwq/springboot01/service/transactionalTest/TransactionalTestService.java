@@ -3,6 +3,7 @@ package com.lwq.springboot01.service.transactionalTest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 public class TransactionalTestService {
 
     @Autowired
+    XiushifuTest xiushifuTest;
+    @Autowired
     private PersonRepository pr;
 
     @Autowired
@@ -36,6 +39,65 @@ public class TransactionalTestService {
     @Transactional
     public void add2() {
         Person p1 = Person.builder().name("zhangfei").age(55).birthday(LocalDateTime.now()).build();
+        pr.save(p1);
+        if (true) {
+            throw new RuntimeException();
+        }
+    }
+
+    public void xiushifuTest() {
+        try {
+            xiushifuTest.publicadd2();
+        } catch (Exception e) {
+            log.error("hehe");
+        }
+        try {
+            // xiushifuTest.privateadd2();
+        } catch (Exception e) {
+            log.error("hehe");
+        }
+        try {
+            xiushifuTest.protectedadd2();
+        } catch (Exception e) {
+            log.error("hehe");
+        }
+        try {
+            xiushifuTest.defaultdadd2();
+        } catch (Exception e) {
+            log.error("hehe");
+        }
+    }
+
+    @Transactional
+    public void publicadd2() {
+        Person p1 = Person.builder().name("public").age(55).birthday(LocalDateTime.now()).build();
+        pr.save(p1);
+        if (true) {
+            throw new RuntimeException();
+        }
+    }
+
+    @Transactional
+    private void privateadd2() {
+        Person p1 = Person.builder().name("private").age(55).birthday(LocalDateTime.now()).build();
+        pr.save(p1);
+        if (true) {
+            throw new RuntimeException();
+        }
+    }
+
+    @Transactional
+    protected void protectedadd2() {
+        Person p1 = Person.builder().name("protected").age(55).birthday(LocalDateTime.now()).build();
+        pr.save(p1);
+        if (true) {
+            throw new RuntimeException();
+        }
+    }
+
+    @Transactional
+    void defaultdadd2() {
+        Person p1 = Person.builder().name("default").age(55).birthday(LocalDateTime.now()).build();
         pr.save(p1);
         if (true) {
             throw new RuntimeException();
