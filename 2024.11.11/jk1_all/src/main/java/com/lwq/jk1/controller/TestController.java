@@ -1,7 +1,11 @@
 package com.lwq.jk1.controller;
 
+import java.util.HashMap;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -16,8 +20,10 @@ public class TestController {
 
     @ApiOperation(value = " @ApiOperation(value = \"hehe\")")
     @GetMapping("/hehe")
-    public Object hehe() {
-
+    public Object hehe(@RequestParam String aaa) {
+        if (true) {
+            throw new RuntimeException(aaa + "异常啊实打实的");
+        }
         return "hehe";
     }
 
