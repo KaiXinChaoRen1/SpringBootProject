@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #   jdbc:mysql://43.143.216.21:3306/hehe_db?\
+    #   useUnicode=true\
+    #   &characterEncoding=UTF-8\         跟上面的配合使用,配置utf8字符集
+    #   &useSSL=false\                    配置不使用证书令牌等校验,只用账号密码
+    #   &serverTimezone=UTC"
+    url:
+      "jdbc:mysql://${MYSQL_HOST:101.200.149.98}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:lwq_test}?\
+      createDatabaseIfNotExist=true\
+      &useUnicode=true\
+      &autoReconnect=true\
+      &useSSL=false\
+      &nullCatalogMeansCurrent=true\
+      &serverTimezone=UTC\
+      &useLegacyDatetimeCode=false\
+      &cachePrepStmts=true\
+      &useServerPrepStmts=true\
+      &rewriteBatchedStatements=true\
+      &characterEncoding=UTF-8"
+    username: lwq
+    password: 123456
+  #jpa相关配置(和datasource同级)
+  # jpa:
+  #   database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  #这个参数是在建表的时候，将默认的存储引擎切换为 InnoDB 用的
+  #   ddl-auto: create
+  #   open-in-view: false   # 默认为true(是指延时加载的一些属性数据，可以在页面展现的时候，保持session不关闭，从而保证能在页面进行延时加载?)
+  #   show_sql: true    #输出sql语句
+  #   format_sql: true  #格式化输出的sql，否则会一行显示
+  #   user_query_cache: true  #这条还没弄会
+  #   properties:
+  #     hibernate:
+  #       jdbc:
+  #         fetch_size: 100
+  #         batch_size: 100
+  #         batch_versioned_data: true
+  #       order_inserts: true
+  #       order_updates: true
+  jpa:
+    show-sql: true
+    generate-ddl: true # 需要加上这个才能自动生成数据库表
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        physical_naming_strategy: com.lwq.jk2_JPA.multiTenancy.CustomPhysicalNamingStrategy
+        jdbc:
+          fetch_size: 200
+          batch_size: 200
+          batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
+        cache:
+          use_query_cache: false
+          use_second_level_cache: false
