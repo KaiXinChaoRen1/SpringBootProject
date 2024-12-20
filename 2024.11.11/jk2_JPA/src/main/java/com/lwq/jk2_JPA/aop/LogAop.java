@@ -8,10 +8,13 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.hibernate.boot.model.naming.Identifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.lwq.jk2_JPA.multiTenancy.CustomPhysicalNamingStrategy;
 import com.lwq.jk2_JPA.multiTenancy.TenantContext;
 
 import lombok.extern.slf4j.Slf4j;
