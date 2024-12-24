@@ -42,11 +42,14 @@ spring:
     show-sql: true
     generate-ddl: true # 需要加上这个才能自动生成数据库表
     hibernate:
-      naming:
-        physical_strategy: com.lwq.jk2_JPA.multiTenancy.CustomPhysicalNamingStrategy
+      physical_naming_strategy: com.lwq.jk2_JPA.multiTenancy.CustomPhysicalNamingStrategy
       ddl-auto: none
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        physical_naming_strategy: com.lwq.jk2_JPA.multiTenancy.CustomPhysicalNamingStrategy
         jdbc:
           fetch_size: 200
           batch_size: 200

@@ -5,7 +5,7 @@ import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
 import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class CustomPhysicalNamingStrategy implements PhysicalNamingStrategy {
 
     @Override
@@ -13,9 +13,10 @@ public class CustomPhysicalNamingStrategy implements PhysicalNamingStrategy {
         System.out.println("toPhysicalTableName执行啦");
         String tenantId = TenantContext.getCurrentTenant();
         if (tenantId == null || tenantId.isEmpty()) {
-            System.out.println("租户ID为空！");
+            System.out.println("租户ID为空!");
             return Identifier.toIdentifier(name.getText() + "_default");
         }
+        System.out.println("租户ID设置为" + tenantId);
         String newTableName = name.getText() + "_" + tenantId; // 在表名后添加租户ID
         return Identifier.toIdentifier(newTableName);
     }
@@ -23,21 +24,25 @@ public class CustomPhysicalNamingStrategy implements PhysicalNamingStrategy {
     // 其他方法保持默认实现
     @Override
     public Identifier toPhysicalCatalogName(Identifier name, JdbcEnvironment context) {
+        System.out.println("toPhysicalCatalogName!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return name;
     }
 
     @Override
     public Identifier toPhysicalSchemaName(Identifier name, JdbcEnvironment context) {
+        System.out.println("toPhysicalSchemaName!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return name;
     }
 
     @Override
     public Identifier toPhysicalSequenceName(Identifier name, JdbcEnvironment context) {
+        System.out.println("toPhysicalSequenceName!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return name;
     }
 
     @Override
     public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment context) {
+        System.out.println("toPhysicalColumnName!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return name;
     }
 }

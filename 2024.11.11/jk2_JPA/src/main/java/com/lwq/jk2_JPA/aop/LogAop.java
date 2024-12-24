@@ -1,20 +1,18 @@
 package com.lwq.jk2_JPA.aop;
 
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.hibernate.boot.model.naming.Identifier;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.lwq.jk2_JPA.multiTenancy.CustomPhysicalNamingStrategy;
 import com.lwq.jk2_JPA.multiTenancy.TenantContext;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,8 +33,18 @@ public class LogAop {
     // return result;
     // }
 
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
+
+    public void clearHibernateCache() {
+        SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+        sessionFactory.getCache().evictAllRegions(); // 清空所有缓存
+    }
+
     @Before("execution(public * com.lwq.jk2_JPA.controller..*.*(..))")
     public void setTenantBeforeController(JoinPoint joinPoint) {
+        System.out.println("aop执行啦");
+        clearHibernateCache();
         // 获取 HttpServletRequest
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
